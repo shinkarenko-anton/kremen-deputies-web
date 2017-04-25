@@ -13,8 +13,17 @@ import { combineReducers } from 'redux';
 
 function deputies(state = {}, action){
     switch (action.type){
-        // case actionTypes.SOME_ACTION:
-        //     return state.concat(items);    
+        case actionTypes.DEPUTIES_CHANGE:
+            let item = action.item;
+            if(!item) return state;
+            // Clonging just in case
+            item = _.clone(item);
+            // Getting id from object and remove this id from object
+            var id = item.id;
+            delete item.id;
+            // update state
+            state[id] = item;
+            return state;    
         default:
             return state;
     }

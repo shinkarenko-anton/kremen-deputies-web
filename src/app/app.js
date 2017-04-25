@@ -34,10 +34,15 @@ store.subscribe(() => {
 
 // Firebase
 import {database} from './Shared/Firebase/Firebase';
-
-database.ref('/').on('value', snap => {
+let rootRef = database.ref('/');
+rootRef.once('value').then(snap => {
     const data = snap.val();
     store.dispatch(actions.store.setState(data));
+});
+
+store.subscribe(() => { 
+    // Saving state to db
+    rootRef.set(store.getState());
 });
 
 class AppContainer extends React.Component {

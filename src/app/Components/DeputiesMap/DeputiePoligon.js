@@ -9,9 +9,9 @@ import colors from '../DeputiesApp/DeputiesAppColors';
 import {Polygon, constants} from "react-google-maps";
 
 // Helpers
-const pathToData = (path) => {
-    return _.map(path.getArray(), (item, index) => ({ lat: item.lat(), lng: item.lng()}));
-}
+const pathToData = (path) => (
+    _.map(path.getArray(), (item, index) => ({ lat: item.lat(), lng: item.lng()}))
+);
 
 // DeputiePoligon
 export default class DeputiePoligon extends React.Component{
@@ -37,19 +37,23 @@ export default class DeputiePoligon extends React.Component{
         this._polygon = polygon;
         let path = polygon.getPath();
 
+        const updateDeputiePath = () => {
+            let newPath = pathToData(path);
+            let deputie = this.props.deputie;
+            deputie.path = newPath;
+            this.props.onChange(null, deputie);
+        }
+
         path.addListener('set_at', () => {
-            let data = pathToData(path);
-            this.props.onPathChange(null, data);
+            updateDeputiePath();
         });
 
         path.addListener('remove_at', () => {
-            let data = pathToData(path);
-            this.props.onPathChange(null, data);
+            updateDeputiePath();
         });
 
         path.addListener('insert_at', () => {
-            let data = pathToData(path);
-            this.props.onPathChange(null, data);
+            updateDeputiePath();
         });
     }
 
@@ -64,7 +68,7 @@ export default class DeputiePoligon extends React.Component{
             <Polygon 
                 ref={(polygon) => this.handlePolygon(polygon)}
                 paths={deputie.path}
-                editable={true}
+                editable={this.props.editable}
                 options={{
                     strokeColor: colors.orange,
                     strokeOpacity: 0.8,

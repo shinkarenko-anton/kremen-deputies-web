@@ -20,6 +20,15 @@ import DeputiePoligon from './DeputiePoligon';
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
 
+// Redux
+const mapStateToProps = (state) => ({
+    deputies: state.deputies
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    onDeputieChange: (item) => dispatch(actions.deputies.change(item))
+});
+
 // Map
 const KremenGoogleMap = withGoogleMap(props => {
     return (
@@ -28,24 +37,16 @@ const KremenGoogleMap = withGoogleMap(props => {
             defaultZoom={12}
             defaultCenter={CITY_LOC}
             onClick={(e) => props.onMapClick(e)}>
-            {_.map(props.deputies, (deputie, key) => (
+            {_.map(props.deputies, deputie => (
                 <DeputiePoligon 
-                    key={key}
+                    key={deputie.id}
                     deputie={deputie}
-                    onPathChange={(e, path) => props.onDeputiePathChange(e, deputie, path)}
+                    editable={true}
+                    onChange={(e, path) => props.onDeputieChange(e, deputie)}
                     onClick={(e, deputie) => props.onDeputieClick(e, deputie)}/>
             ))}
         </GoogleMap>
     );
-});
-
-// Redux
-const mapStateToProps = (state) => ({
-    deputies: state.deputies
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    
 });
 
 // DeputiesMap
@@ -69,8 +70,9 @@ class DeputiesMap extends React.Component{
         log('deputie click: ' + JSON.stringify(location));
     }
 
-    onDeputiePathChange(e, deputie, path){
-        log('deputie path change: ' + JSON.stringify(path));
+    onDeputieChange(e, deputie){
+        log('deputie change: ' + deputie.name);
+        this.props.onDeputieChange(deputie);
     }
 
     // Render
@@ -79,6 +81,13 @@ class DeputiesMap extends React.Component{
         // Props
         let newProps = _.clone(this.props);
         if(newProps.deputies) delete newProps.deputies;
+        if(newProps.onDeputieChange) delete newProps.onDeputieChange;
+
+        let deputies = _.map(this.props.deputies, (item, id) => {
+            item = _.clone(item);
+            item.id = id;
+            return item;
+        });
 
         return (
             <div {...newProps}>
@@ -86,12 +95,12 @@ class DeputiesMap extends React.Component{
                     containerElement={(<div style={mixings.fullScreen} />)}
                     mapElement={(<div style={mixings.fullScreen} />)}
 
-                    deputies={this.props.deputies}
+                    deputies={deputies}
 
                     onMapLoad={(map) => this.onMapLoad(map)}
                     onMapClick={(e) => this.onMapClick(e)}
                     onDeputieClick={(e, deputie) => this.onDeputieClick(e, deputie)}
-                    onDeputiePathChange={(e, deputie, path) => this.onDeputiePathChange(e, deputie, path)}
+                    onDeputieChange={(e, deputie) => this.onDeputieChange(e, deputie)}
                 />
             </div>
         );
