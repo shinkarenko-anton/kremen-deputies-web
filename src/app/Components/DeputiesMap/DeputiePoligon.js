@@ -6,7 +6,7 @@ const log = Log.withModule('DeputiePoligon');
 // Theme
 import colors from '../DeputiesApp/DeputiesAppColors';
 // Google Maps
-import {Polygon, constants} from "react-google-maps";
+import {Polygon, Marker} from "react-google-maps";
 
 // Helpers
 const pathToData = (path) => (
@@ -69,6 +69,7 @@ export default class DeputiePoligon extends React.Component{
                 ref={(polygon) => this.handlePolygon(polygon)}
                 paths={deputie.path}
                 editable={this.props.editable}
+                draggable={this.props.editable}
                 options={{
                     strokeColor: colors.orange,
                     strokeOpacity: 0.8,
