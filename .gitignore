@@ -1,0 +1,11 @@
+node_modules
+bower_components
+dist
+coverage
+.tmp
+.DS_Store
+.vscode
+npm-debug.log
+video
+pack
+compile
