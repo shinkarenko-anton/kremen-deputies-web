@@ -14,24 +14,30 @@ import * as mixings from '../../Shared/Style/mixings';
 import colors from '../DeputiesApp/DeputiesAppColors';
 // Google Map
 import {withGoogleMap, GoogleMap, Marker, Polygon} from "react-google-maps";
+// Elements
+import DeputiePoligon from './DeputiePoligon';
 
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
 
 // Map
-const KremenGoogleMap = withGoogleMap(props => (
-  <GoogleMap
-    ref={(map) => props.onMapLoad(map)}
-    defaultZoom={12}
-    defaultCenter={CITY_LOC}
-    onClick={(e) => props.onMapClick(e)}>
-    {_.map(props.polygons, (polygon, index) => (
-        <Polygon 
-            {...polygon}
-            onClick={(e) => props.onPolygonClick(e, polygon)}/>
-    ))}
-  </GoogleMap>
-));
+const KremenGoogleMap = withGoogleMap(props => {
+    return (
+        <GoogleMap
+            ref={(map) => props.onMapLoad(map)}
+            defaultZoom={12}
+            defaultCenter={CITY_LOC}
+            onClick={(e) => props.onMapClick(e)}>
+            {_.map(props.deputies, (deputie, key) => (
+                <DeputiePoligon 
+                    key={key}
+                    deputie={deputie}
+                    onPathChange={(e, path) => props.onDeputiePathChange(e, deputie, path)}
+                    onClick={(e, deputie) => props.onDeputieClick(e, deputie)}/>
+            ))}
+        </GoogleMap>
+    );
+});
 
 // Redux
 const mapStateToProps = (state) => ({
@@ -58,29 +64,17 @@ class DeputiesMap extends React.Component{
         log('map click: ' + JSON.stringify(location));
     }
 
-    onPolygonClick(e, polygon){
+    onDeputieClick(e, deputie){
         let location = e.latLng;
-        log('polygon click: ' + JSON.stringify(location));
+        log('deputie click: ' + JSON.stringify(location));
+    }
+
+    onDeputiePathChange(e, deputie, path){
+        log('deputie path change: ' + JSON.stringify(path));
     }
 
     // Render
-    render(){
-        // Converting data to polygons
-        let polygonStyle = {
-            strokeColor: colors.orange,
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: colors.orange,
-            fillOpacity: 0.35
-        }
-
-        let polygons = _.map(this.props.deputies, (item, key) => {
-            return _.assign({}, {options: polygonStyle}, {
-                key,
-                paths: item.path,
-                editable: true
-            });
-        }); 
+    render(){ 
 
         // Props
         let newProps = _.clone(this.props);
@@ -92,11 +86,12 @@ class DeputiesMap extends React.Component{
                     containerElement={(<div style={mixings.fullScreen} />)}
                     mapElement={(<div style={mixings.fullScreen} />)}
 
-                    polygons={polygons}
+                    deputies={this.props.deputies}
 
                     onMapLoad={(map) => this.onMapLoad(map)}
                     onMapClick={(e) => this.onMapClick(e)}
-                    onPolygonClick={(e, polygon) => this.onPolygonClick(e, polygon)}
+                    onDeputieClick={(e, deputie) => this.onDeputieClick(e, deputie)}
+                    onDeputiePathChange={(e, deputie, path) => this.onDeputiePathChange(e, deputie, path)}
                 />
             </div>
         );
