@@ -13,6 +13,15 @@ const pathToData = (path) => (
     _.map(path.getArray(), (item, index) => ({ lat: item.lat(), lng: item.lng()}))
 );
 
+const getPolygonCenter = (path) => {
+    var bound = new google.maps.LatLngBounds();
+    _.each(path, item => {
+        bound.extend( new google.maps.LatLng(item.lat, item.lng));
+    });
+    let center = bound.getCenter();
+    return {lat: center.lat(), lng: center.lng()};
+}
+
 // DeputiePoligon
 export default class DeputiePoligon extends React.Component{
     constructor(props){
@@ -41,6 +50,7 @@ export default class DeputiePoligon extends React.Component{
             let newPath = pathToData(path);
             let deputie = this.props.deputie;
             deputie.path = newPath;
+            deputie.center = getPolygonCenter(newPath);
             this.props.onChange(null, deputie);
         }
 
@@ -69,13 +79,13 @@ export default class DeputiePoligon extends React.Component{
                 ref={(polygon) => this.handlePolygon(polygon)}
                 paths={deputie.path}
                 editable={this.props.editable}
-                draggable={this.props.editable}
+                draggable={false}
                 options={{
-                    strokeColor: colors.orange,
+                    strokeColor: colors.blue,
                     strokeOpacity: 0.8,
                     strokeWeight: 1,
-                    fillColor: colors.orange,
-                    fillOpacity: 0.35
+                    fillColor: colors.blue,
+                    fillOpacity: 0.1
                 }}
                 onClick={(e) => this.props.onClick(e, deputie)}
             />

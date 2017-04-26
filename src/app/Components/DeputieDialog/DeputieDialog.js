@@ -32,13 +32,13 @@ export default class DeputieDialog extends React.Component{
                 open={this.props.open}
                 onRequestClose={() => this.props.onClose()}>
                 <div>
-                    <div>Виборчий округ</div>
+                    <div>Виборчий округ:</div>
                     <div>{item.locationId}</div>
-                    <div>День та години прийому</div>
+                    <div>День та години прийому: </div>
                     <div>{item.schedule}</div>
-                    <div>Місце прийому</div>
+                    <div>Місце прийому: </div>
                     <div>{item.address}</div>
-                    <div>Телефон</div>
+                    <div>Телефон: </div>
                     <div>{item.phone}</div>
                 </div>
             </Dialog>

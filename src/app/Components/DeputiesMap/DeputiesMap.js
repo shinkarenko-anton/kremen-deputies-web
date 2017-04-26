@@ -9,6 +9,8 @@ const log = Log.withModule('DeputiesMap');
 // Utils
 import _ from 'lodash';
 import utils from '../../Shared/Services/Utils';
+// Config
+import ConfigStorage from '../../Shared/Services/ConfigStorage';
 // Theme
 import * as mixings from '../../Shared/Style/mixings';
 import colors from '../DeputiesApp/DeputiesAppColors';
@@ -20,14 +22,9 @@ import DeputieDialog from '../DeputieDialog/DeputieDialog';
 
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
-
-// Helpers
-const getPolygonCenter = (path) => {
-    var bound = new google.maps.LatLngBounds();
-    _.each(path, item => {
-        bound.extend( new google.maps.LatLng(item.lat, item.lng));
-    });
-    return bound.getCenter();
+const configKeys = {
+    MAP_CENTER: 'map-center',
+    MAP_ZOOM: 'map-zoom'
 }
 
 // Redux
@@ -44,24 +41,27 @@ const KremenGoogleMap = withGoogleMap(props => {
     return (
         <GoogleMap
             ref={(map) => props.onMapLoad(map)}
-            defaultZoom={12}
-            defaultCenter={CITY_LOC}
-            onClick={(e) => props.onMapClick(e)}>
+            defaultZoom={props.defaultZoom || 12}
+            defaultCenter={props.defaultCenter || CITY_LOC}
+            onClick={(e) => props.onMapClick(e)}
+            onResize={(e) => props.onMapResize(e)}
+            onCenterChanged={(e) => props.onMapCenterChanged(e)}
+            onZoomChanged={(e) => props.onMapZoomChanged(e)}>
             {_.map(props.deputies, deputie => {
                 return [
-                (<DeputiePoligon 
+                deputie.path ? (<DeputiePoligon 
                     key={"polygon-" + deputie.id}
                     deputie={deputie}
                     editable={false}
                     onChange={(e, path) => props.onDeputieChange(e, deputie)}
-                    onClick={(e, deputie) => props.onDeputieClick(e, deputie)}/>),
-                (<Marker
+                    onClick={(e, deputie) => props.onDeputieClick(e, deputie)}/>) : null,
+                deputie.center ? (<Marker
                     key={"marker-" + deputie.id}
-                    position={getPolygonCenter(deputie.path)}
+                    position={deputie.center}
                     label={deputie.locationId.toString()}
                     onClick={_.noop}
                     onRightClick={_.noop}
-                    onDragStart={_.noop}/>)
+                    onDragStart={_.noop}/>) : null
                 ];
             })}
         </GoogleMap>
@@ -76,6 +76,9 @@ class DeputiesMap extends React.Component{
         this.state = {
             deputieDialog: {open: false, item: null, key: utils.id.genId()}
         }
+        // Loading configs
+        this._defaultCenter = ConfigStorage.get(configKeys.MAP_CENTER);
+        this._defaultZoom = ConfigStorage.get(configKeys.MAP_ZOOM);
     }
 
     // Events
@@ -89,6 +92,33 @@ class DeputiesMap extends React.Component{
     onMapClick(e){
         let location = e.latLng;
         log('map click: ' + JSON.stringify(location));
+    }
+
+    onMapResize(e){
+        // log('on map resize');
+    }
+
+    onMapCenterChanged(e){
+        // log('on center changed');
+        if(this._map){
+            let map = this._map.state.map;
+            if(map){
+                let center = map.getCenter();
+                let centerData = {lat: center.lat(), lng: center.lng()};
+                ConfigStorage.set(configKeys.MAP_CENTER, centerData);
+            }
+        }
+    }
+
+    onMapZoomChanged(e){
+        // log('on zoom changed');
+        if(this._map){
+            let map = this._map.state.map;
+            if(map){
+                let zoom = map.getZoom();
+                ConfigStorage.set(configKeys.MAP_ZOOM, zoom);
+            }
+        }
     }
 
     onDeputieClick(e, deputie){
@@ -107,12 +137,11 @@ class DeputiesMap extends React.Component{
 
     // Render
     render(){ 
-
         // Props
         let newProps = _.clone(this.props);
         if(newProps.deputies) delete newProps.deputies;
         if(newProps.onDeputieChange) delete newProps.onDeputieChange;
-
+        // Mod deputies data
         let deputies = _.map(this.props.deputies, (item, id) => {
             item = _.clone(item);
             item.id = id;
@@ -122,8 +151,12 @@ class DeputiesMap extends React.Component{
         return (
             <div {...newProps}>
                 <KremenGoogleMap
+                    ref={(el) => {this._map = el}}
                     containerElement={(<div style={mixings.fullScreen} />)}
                     mapElement={(<div style={mixings.fullScreen} />)}
+
+                    defaultCenter={this._defaultCenter}
+                    defaultZoom={this._defaultZoom}
 
                     deputies={deputies}
 
@@ -131,6 +164,9 @@ class DeputiesMap extends React.Component{
                     onMapClick={(e) => this.onMapClick(e)}
                     onDeputieClick={(e, deputie) => this.onDeputieClick(e, deputie)}
                     onDeputieChange={(e, deputie) => this.onDeputieChange(e, deputie)}
+                    onMapResize={(e) => this.onMapResize(e)}
+                    onMapCenterChanged={(e) => this.onMapCenterChanged(e)}
+                    onMapZoomChanged={(e) => this.onMapZoomChanged(e)}
                 />
                 {this.state.deputieDialog.item ? (
                 <DeputieDialog 
