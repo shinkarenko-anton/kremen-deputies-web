@@ -92,6 +92,14 @@ export default class DeputieDialog extends React.Component{
                             </div>
                         </div>
                         ) : null}
+                        {item.twitter ? (
+                        <div style={style.row}>
+                            <div style={style.rowIcon}><i className="fa fa-twitter"></i></div>
+                            <div style={style.rowData}>
+                                <a href={item.twitter} target="__blank">{item.twitter}</a>
+                            </div>
+                        </div>
+                        ) : null}
                         {item.vk ? (
                         <div style={style.row}>
                             <div style={style.rowIcon}><i className="fa fa-vk"></i></div>

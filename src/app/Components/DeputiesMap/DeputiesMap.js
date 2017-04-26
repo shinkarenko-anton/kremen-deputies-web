@@ -3,6 +3,11 @@ import React from 'react';
 // Redux
 import {connect} from 'react-redux';
 import actions from '../../Shared/Redux/Actions';
+// UI
+import IconButton from 'material-ui/IconButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 // Log
 import Log from '../../Shared/Services/Log';
 const log = Log.withModule('DeputiesMap');
@@ -19,6 +24,7 @@ import {withGoogleMap, GoogleMap, Marker, Polygon, MarkerLabel} from "react-goog
 // Elements
 import DeputiePoligon from './DeputiePoligon';
 import DeputieDialog from '../DeputieDialog/DeputieDialog';
+import DeputieAuth from './DeputieAuth';
 
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
@@ -41,8 +47,17 @@ const KremenGoogleMap = withGoogleMap(props => {
     return (
         <GoogleMap
             ref={(map) => props.onMapLoad(map)}
+
             defaultZoom={props.defaultZoom || 12}
             defaultCenter={props.defaultCenter || CITY_LOC}
+
+            options= {{
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                }
+            }}
+
             onClick={(e) => props.onMapClick(e)}
             onResize={(e) => props.onMapResize(e)}
             onCenterChanged={(e) => props.onMapCenterChanged(e)}
@@ -74,7 +89,8 @@ class DeputiesMap extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            deputieDialog: {open: false, item: null, key: utils.id.genId()}
+            deputieDialog: {open: false, item: null, key: utils.id.genId()},
+            drawer: {open: false}
         }
         // Loading configs
         this._defaultCenter = ConfigStorage.get(configKeys.MAP_CENTER);
@@ -135,6 +151,10 @@ class DeputiesMap extends React.Component{
         this.setState(prev => ({deputieDialog: {open: false, item: prev.deputieDialog.item, key: prev.deputieDialog.key}}));
     }
 
+    onOpenMenuClick(e){
+        this.setState({drawer: {open: true}});
+    }
+
     // Render
     render(){ 
         // Props
@@ -150,6 +170,13 @@ class DeputiesMap extends React.Component{
 
         return (
             <div {...newProps}>
+                <div style={{position: 'absolute', left: 20, top: 20}}>
+                    <FloatingActionButton
+                        iconStyle={{color: '#FFFFFF'}}
+                        mini={true} 
+                        iconClassName="fa fa-bars"
+                        onClick={(e) => this.onOpenMenuClick(e)}/>
+                </div>
                 <KremenGoogleMap
                     ref={(el) => {this._map = el}}
                     containerElement={(<div style={mixings.fullScreen} />)}
@@ -176,6 +203,15 @@ class DeputiesMap extends React.Component{
                     onClose={(e) => this.onDeputieDialogClose(e)}
                 />
                 ) : null}
+                <Drawer
+                    docked={false}
+                    width={300}
+                    open={this.state.drawer.open}
+                    onRequestChange={(open) => this.setState({drawer: {open: false}})}>
+                    <div style={{padding: 20}}>
+                        <DeputieAuth />
+                    </div>
+                </Drawer>
             </div>
         );
     }
