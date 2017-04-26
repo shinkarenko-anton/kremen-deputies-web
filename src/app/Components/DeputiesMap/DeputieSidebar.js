@@ -35,7 +35,8 @@ export default class DeputieSidebar extends React.Component{
             <div style={{height: '100%'}}>
                 {user ? (
                     <DeputieAdmin 
-                        user={user}/>
+                        user={user}
+                        userData={this.props.userData}/>
                 ) : (
                     this.state.showAuth ? (
                         <DeputieAuth 

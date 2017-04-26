@@ -1,6 +1,14 @@
 {
-  "rules": {
-    ".read": "true",
-    ".write": "true"
-  }
+    "rules": {
+        "deputies": {
+            ".read": "true",
+            ".write": "(auth != null) && root.child('users/' + auth.uid + '/role').val() === 'admin'"
+        },
+        "users": {
+            "$uid": {
+                ".read": "auth != null && auth.uid === $uid",
+                ".write": "false"
+            }
+        }
+    }
 }

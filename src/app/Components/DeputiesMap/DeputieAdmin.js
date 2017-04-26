@@ -3,6 +3,7 @@ import React from "react";
 // UI
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Toggle from 'material-ui/Toggle';
 // Firebase
 import {auth} from '../../Shared/Firebase/Firebase';
 // Log
@@ -28,6 +29,10 @@ export default class DeputieAdmin extends React.Component{
 
     // Events
 
+    onEditModeToggle(e, val){
+        e.stopPropagation();
+    }
+
     onLogoutClick(e){
         e.stopPropagation();
         log('logout click');
@@ -43,6 +48,9 @@ export default class DeputieAdmin extends React.Component{
     render(){
         let user = this.props.user;
         if(!user) return null;
+        let userData = this.props.userData;
+
+        let isAdmin = userData && (userData.role === 'admin');
 
         // var displayName = user.displayName;
         // var email = user.email;
@@ -52,12 +60,27 @@ export default class DeputieAdmin extends React.Component{
         // var uid = user.uid;
         // var providerData = user.providerData;
 
+        const style = {
+            row: {
+                marginTop: 10
+            }
+        }
+
         return (
             <div>
                 <div>
                     <h3>{user.displayName}</h3>
                 </div>
+                {isAdmin ? (
                 <div>
+                    <div style={style.row}>
+                        <Toggle
+                            label="Режим редагування"
+                            onToggle={(e, val) => this.onEditModeToggle(e, val)}/>
+                    </div>
+                </div>
+                ) : null}
+                <div style={style.row}>
                     <RaisedButton 
                         label="Вийти"
                         primary={true}

@@ -26,7 +26,7 @@ import DeputiePoligon from './DeputiePoligon';
 import DeputieDialog from '../DeputieDialog/DeputieDialog';
 import DeputieSidebar from './DeputieSidebar';
 // Firebase
-import {auth} from '../../Shared/Firebase/Firebase';
+import {auth, database} from '../../Shared/Firebase/Firebase';
 
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
@@ -92,6 +92,7 @@ class DeputiesMap extends React.Component{
         super(props);
         this.state = {
             user: null,
+            userData: null,
             deputieDialog: {open: false, item: null, key: utils.id.genId()},
             drawer: {open: false}
         }
@@ -106,7 +107,15 @@ class DeputiesMap extends React.Component{
         auth.onAuthStateChanged((user) => {
             log('user state changed');
             log(user);
-            this.setState({user});
+            this.setState({user, userData: null});
+            if(user){
+                log('getting user data: ' + user.uid);
+                database.ref('/users/' + user.uid).once('value').then(snap => {
+                    const userData = snap.val();
+                    log('getting user data done: ' + JSON.stringify(userData));
+                    this.setState({userData});
+                });
+            }
         });
     }
 
@@ -222,7 +231,9 @@ class DeputiesMap extends React.Component{
                     open={this.state.drawer.open}
                     onRequestChange={(open) => this.setState({drawer: {open: false}})}>
                     <div style={{padding: 20, height: '100%'}}>
-                        <DeputieSidebar user={this.state.user} />
+                        <DeputieSidebar 
+                            userData={this.state.userData}
+                            user={this.state.user} />
                     </div>
                 </Drawer>
             </div>
