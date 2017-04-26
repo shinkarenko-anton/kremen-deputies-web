@@ -180,6 +180,11 @@ class DeputiesMap extends React.Component{
     onDeputieChange(e, deputie){
         log('deputie change: ' + deputie.name);
         this.props.onDeputieChange(deputie);
+        // Updating firebase
+        let id = deputie.id;
+        let data = _.cloneDeep(deputie);
+        if(data.id) delete data.id;
+        database.ref('/deputies/' + id).set(data);
     }
 
     onDeputieDialogClose(e){

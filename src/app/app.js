@@ -34,19 +34,11 @@ store.subscribe(() => {
 
 // Firebase
 import {database, auth} from './Shared/Firebase/Firebase';
+// Getting list of deputies
 let deputiesRef = database.ref('/deputies');
 deputiesRef.once('value').then(snap => {
     const deputies = snap.val();
     store.dispatch(actions.deputies.set(deputies));
-});
-
-store.subscribe(() => { 
-    // Saving state to db
-    let user = auth.currentUser;
-    if(user){
-        // let state = store.getState();
-        // deputiesRef.set(state.deputies);
-    }
 });
 
 class AppContainer extends React.Component {

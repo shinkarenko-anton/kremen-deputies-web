@@ -1,10 +1,43 @@
 // React
 import React from "react";
 // Utils
+import _ from 'lodash';
 import utils from '../../Shared/Services/Utils';
 // UI
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+
+// Style
+const style = {
+    container: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    avatar: {
+        width: 140,
+        marginRight: 12
+    },
+    avatarImg: {
+        width: '100%'
+    },
+    dataContainer: {
+        flex: 1
+    },
+    row: {
+        marginBottom: 12,
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    rowIcon: {
+        display: 'inline-block',
+        width: 20,
+        marginRight: 6,
+        textAlign: 'center'
+    },
+    rowData: {
+        flex: 1
+    }
+}
 
 // DeputieDialog
 export default class DeputieDialog extends React.Component{
@@ -19,37 +52,17 @@ export default class DeputieDialog extends React.Component{
         let item = this.props.item;
         if(!item) return null;
 
-        const style = {
-            container: {
-                display: 'flex',
-                flexDirection: 'row'
-            },
-            avatar: {
-                width: 140,
-                marginRight: 12
-            },
-            avatarImg: {
-                width: '100%'
-            },
-            dataContainer: {
-                flex: 1
-            },
-            row: {
-                marginBottom: 12,
-                display: 'flex',
-                flexDirection: 'row'
-            },
-            rowIcon: {
-                display: 'inline-block',
-                width: 20,
-                marginRight: 6,
-                textAlign: 'center'
-            },
-            rowData: {
-                flex: 1
-            }
+        // Polling stattions
+        let votersCount = 0;
+        if(item.pollingStations && item.pollingStations.length){
+            _.each(item.pollingStations, station => {
+                if(station.numberOfVoters){
+                    votersCount += parseInt(station.numberOfVoters);
+                }
+            });
         }
-
+        
+        // Actions
         const actions = [
             <FlatButton
                 label="Закрити"
@@ -72,6 +85,12 @@ export default class DeputieDialog extends React.Component{
                     ) : null}
                     <div style={style.dataContainer}>
                         <div style={style.row}>Виборчий округ: {item.locationId}</div>
+                        {votersCount ? (
+                        <div style={style.row}>
+                            <div style={style.rowIcon}><i className="fa fa-user"></i></div>
+                            <div style={style.rowData}>{votersCount}</div>
+                        </div>
+                        ) : null}
                         {item.schedule ? (
                         <div style={style.row}>
                             <div style={style.rowIcon}><i className="fa fa-calendar"></i></div>

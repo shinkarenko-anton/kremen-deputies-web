@@ -2,7 +2,7 @@
     "rules": {
         "deputies": {
             ".read": "true",
-            ".write": "(auth != null) && root.child('users/' + auth.uid + '/role').val() === 'admin'"
+            ".write": "(auth != null) && root.child('roles/' + auth.uid).val() === 'admin'"
         },
         "users": {
             "$uid": {
