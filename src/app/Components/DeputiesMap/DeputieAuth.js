@@ -3,6 +3,7 @@ import React from "react";
 // UI
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 // Log
 import Log from '../../Shared/Services/Log';
 const log = Log.withModule('DeputiesAuth');
@@ -118,6 +119,12 @@ export default class DeputiesAuth extends React.Component{
                         icon={<i className="fa fa-facebook" style={{color: '#ffffff'}} />}
                         fullWidth={true}
                         onClick={(e) => this.onLoginWithFacebookClick(e)}/>
+                </div>
+                <div style={{textAlign: 'center', marginTop: 20}}>
+                    <FlatButton 
+                        label="Назад" 
+                        fullWidth={true}
+                        onClick={(e) => this.props.onGoBackClick(e)}/>
                 </div>
             </div>
         );

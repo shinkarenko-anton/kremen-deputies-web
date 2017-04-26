@@ -33,16 +33,21 @@ store.subscribe(() => {
 });
 
 // Firebase
-import {database} from './Shared/Firebase/Firebase';
-let rootRef = database.ref('/');
-rootRef.once('value').then(snap => {
-    const data = snap.val();
-    store.dispatch(actions.store.setState(data));
+import {database, auth} from './Shared/Firebase/Firebase';
+let deputiesRef = database.ref('/deputies');
+deputiesRef.once('value').then(snap => {
+    const deputies = snap.val();
+    let state = _.assign({}, store.getState(), {deputies});
+    store.dispatch(actions.store.setState(state));
 });
 
 store.subscribe(() => { 
     // Saving state to db
-    rootRef.set(store.getState());
+    let user = auth.currentUser;
+    if(user){
+        let state = store.getState();
+        deputiesRef.set(state.deputies);
+    }
 });
 
 class AppContainer extends React.Component {
