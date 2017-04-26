@@ -1,5 +1,7 @@
 // React
 import React from "react";
+// Utils
+import utils from '../../Shared/Services/Utils';
 // UI
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -33,7 +35,6 @@ export default class DeputieDialog extends React.Component{
                 flex: 1
             },
             row: {
-                color: 'white',
                 marginBottom: 12,
                 display: 'flex',
                 flexDirection: 'row'
@@ -41,7 +42,8 @@ export default class DeputieDialog extends React.Component{
             rowIcon: {
                 display: 'inline-block',
                 width: 20,
-                marginRight: 6
+                marginRight: 6,
+                textAlign: 'center'
             },
             rowData: {
                 flex: 1
@@ -73,13 +75,13 @@ export default class DeputieDialog extends React.Component{
                         {item.schedule ? (
                         <div style={style.row}>
                             <div style={style.rowIcon}><i className="fa fa-calendar"></i></div>
-                            <div style={style.rowData}>{item.schedule}</div>
+                            <div style={style.rowData}>{utils.str.capitalizeFirstLetter(item.schedule)}</div>
                         </div>
                         ) : null}
                         {item.address ? (
                         <div style={style.row}>
                             <div style={style.rowIcon}><i className="fa fa-map-marker"></i></div>
-                            <div style={style.rowData}>{item.address}</div>
+                            <div style={style.rowData}>{utils.str.capitalizeFirstLetter(item.address)}</div>
                         </div>
                         ) : null}
                         {item.facebook ? (
@@ -102,7 +104,9 @@ export default class DeputieDialog extends React.Component{
                             _.map(item.phones, (phoneItem, key) => (
                                 <div key={key} style={style.row}>
                                     <div style={style.rowIcon}><i className="fa fa-phone"></i></div>
-                                    <div style={style.rowData}>{phoneItem}</div>
+                                    <div style={style.rowData}>
+                                        <a href={"tel:" + phoneItem} target="__blank">{phoneItem}</a>
+                                    </div>
                                 </div>
                             ))
                         ) : null}
