@@ -23,7 +23,20 @@ function deputies(state = {}, action){
             delete item.id;
             // update state
             state[id] = item;
-            return state;    
+            return state;
+        case actionTypes.DEPUTIES_SET:
+            return action.deputies;  
+        default:
+            return state;
+    }
+}
+
+function configs(state = {}, action){
+    switch (action.type){
+        case actionTypes.CONFIGS_CHANGE:
+            state = _.clone(state);
+            state[action.name] = action.val;
+            return state;
         default:
             return state;
     }
@@ -40,7 +53,8 @@ function mainReducer(state = {}, action){
 
     // New state
     state =  {
-        deputies: deputies(state.deputies, action)
+        deputies: deputies(state.deputies, action),
+        configs: configs(state.configs, action)
     }
     
     return state;

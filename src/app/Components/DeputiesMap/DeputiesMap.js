@@ -14,8 +14,6 @@ const log = Log.withModule('DeputiesMap');
 // Utils
 import _ from 'lodash';
 import utils from '../../Shared/Services/Utils';
-// Config
-import ConfigStorage from '../../Shared/Services/ConfigStorage';
 // Theme
 import * as mixings from '../../Shared/Style/mixings';
 import colors from '../DeputiesApp/DeputiesAppColors';
@@ -27,21 +25,21 @@ import DeputieDialog from '../DeputieDialog/DeputieDialog';
 import DeputieSidebar from './DeputieSidebar';
 // Firebase
 import {auth, database} from '../../Shared/Firebase/Firebase';
+// Configs
+import ConfigsKeys from '../../Shared/Configs/ConfigsKeys';
 
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
-const configKeys = {
-    MAP_CENTER: 'map-center',
-    MAP_ZOOM: 'map-zoom'
-}
 
 // Redux
 const mapStateToProps = (state) => ({
-    deputies: state.deputies
+    deputies: state.deputies,
+    configs: state.configs
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onDeputieChange: (item) => dispatch(actions.deputies.change(item))
+    onDeputieChange: (item) => dispatch(actions.deputies.change(item)),
+    onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val))
 });
 
 // Map
@@ -69,7 +67,7 @@ const KremenGoogleMap = withGoogleMap(props => {
                 deputie.path ? (<DeputiePoligon 
                     key={"polygon-" + deputie.id}
                     deputie={deputie}
-                    editable={false}
+                    editable={props.editable}
                     onChange={(e, path) => props.onDeputieChange(e, deputie)}
                     onClick={(e, deputie) => props.onDeputieClick(e, deputie)}/>) : null,
                 deputie.center ? (<Marker
@@ -92,13 +90,10 @@ class DeputiesMap extends React.Component{
         super(props);
         this.state = {
             user: null,
-            userData: null,
+            userRole: null,
             deputieDialog: {open: false, item: null, key: utils.id.genId()},
             drawer: {open: false}
         }
-        // Loading configs
-        this._defaultCenter = ConfigStorage.get(configKeys.MAP_CENTER);
-        this._defaultZoom = ConfigStorage.get(configKeys.MAP_ZOOM);
     }
 
     // Lifecycle hooks
@@ -107,13 +102,13 @@ class DeputiesMap extends React.Component{
         auth.onAuthStateChanged((user) => {
             log('user state changed');
             log(user);
-            this.setState({user, userData: null});
+            this.setState({user, userRole: null});
             if(user){
-                log('getting user data: ' + user.uid);
-                database.ref('/users/' + user.uid).once('value').then(snap => {
-                    const userData = snap.val();
-                    log('getting user data done: ' + JSON.stringify(userData));
-                    this.setState({userData});
+                log('getting user role: ' + user.uid);
+                database.ref('/roles/' + user.uid).once('value').then(snap => {
+                    const userRole = snap.val();
+                    log('getting user role done: ' + JSON.stringify(userRole));
+                    this.setState({userRole});
                 });
             }
         });
@@ -143,7 +138,7 @@ class DeputiesMap extends React.Component{
             if(map){
                 let center = map.getCenter();
                 let centerData = {lat: center.lat(), lng: center.lng()};
-                ConfigStorage.set(configKeys.MAP_CENTER, centerData);
+                this.props.onConfigsChange(ConfigsKeys.MAP_CENTER, centerData);
             }
         }
     }
@@ -154,7 +149,7 @@ class DeputiesMap extends React.Component{
             let map = this._map.state.map;
             if(map){
                 let zoom = map.getZoom();
-                ConfigStorage.set(configKeys.MAP_ZOOM, zoom);
+                this.props.onConfigsChange(ConfigsKeys.MAP_ZOOM, zoom);
             }
         }
     }
@@ -182,7 +177,16 @@ class DeputiesMap extends React.Component{
         // Props
         let newProps = _.clone(this.props);
         if(newProps.deputies) delete newProps.deputies;
+        if(newProps.configs) delete newProps.configs;
         if(newProps.onDeputieChange) delete newProps.onDeputieChange;
+        if(newProps.onConfigsChange) delete newProps.onConfigsChange;
+
+        // Edit mode
+        let editable = this.state.user && 
+                       this.state.userRole === 'admin' &&
+                       this.props.configs && 
+                       this.props.configs[ConfigsKeys.EDIT_MODE] === true;
+
         // Mod deputies data
         let deputies = _.map(this.props.deputies, (item, id) => {
             item = _.clone(item);
@@ -204,9 +208,10 @@ class DeputiesMap extends React.Component{
                     containerElement={(<div style={mixings.fullScreen} />)}
                     mapElement={(<div style={mixings.fullScreen} />)}
 
-                    defaultCenter={this._defaultCenter}
-                    defaultZoom={this._defaultZoom}
-
+                    defaultCenter={this.props.configs[ConfigsKeys.MAP_CENTER]}
+                    defaultZoom={this.props.configs[ConfigsKeys.MAP_ZOOM]}
+                    
+                    editable={editable}
                     deputies={deputies}
 
                     onMapLoad={(map) => this.onMapLoad(map)}
@@ -233,7 +238,7 @@ class DeputiesMap extends React.Component{
                     onRequestChange={(open) => this.setState({drawer: {open: false}})}>
                     <div style={{padding: 20, height: '100%'}}>
                         <DeputieSidebar 
-                            userData={this.state.userData}
+                            userRole={this.state.userRole}
                             user={this.state.user} />
                     </div>
                 </Drawer>

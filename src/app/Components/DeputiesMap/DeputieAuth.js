@@ -123,7 +123,6 @@ export default class DeputiesAuth extends React.Component{
                 <div style={{textAlign: 'center', marginTop: 20}}>
                     <FlatButton 
                         label="Назад" 
-                        fullWidth={true}
                         onClick={(e) => this.props.onGoBackClick(e)}/>
                 </div>
             </div>

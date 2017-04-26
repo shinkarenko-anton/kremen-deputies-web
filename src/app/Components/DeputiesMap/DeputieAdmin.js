@@ -1,5 +1,8 @@
 // React
 import React from "react";
+// Redux
+import {connect} from 'react-redux';
+import actions from '../../Shared/Redux/Actions';
 // UI
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -9,9 +12,20 @@ import {auth} from '../../Shared/Firebase/Firebase';
 // Log
 import Log from '../../Shared/Services/Log';
 const log = Log.withModule('DeputieAdmin');
+// Configs
+import ConfigsKeys from '../../Shared/Configs/ConfigsKeys';
+
+// Redux
+const mapStateToProps = (state) => ({
+    configs: state.configs
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val))
+});
 
 // DeputieAdmin
-export default class DeputieAdmin extends React.Component{
+class DeputieAdmin extends React.Component{
     constructor(props){
         super(props);
         this.state = {}
@@ -31,6 +45,7 @@ export default class DeputieAdmin extends React.Component{
 
     onEditModeToggle(e, val){
         e.stopPropagation();
+        this.props.onConfigsChange(ConfigsKeys.EDIT_MODE, val);
     }
 
     onLogoutClick(e){
@@ -48,9 +63,8 @@ export default class DeputieAdmin extends React.Component{
     render(){
         let user = this.props.user;
         if(!user) return null;
-        let userData = this.props.userData;
 
-        let isAdmin = userData && (userData.role === 'admin');
+        let isAdmin = this.props.userRole === 'admin';
 
         // var displayName = user.displayName;
         // var email = user.email;
@@ -76,6 +90,7 @@ export default class DeputieAdmin extends React.Component{
                     <div style={style.row}>
                         <Toggle
                             label="Режим редагування"
+                            toggled={this.props.configs[ConfigsKeys.EDIT_MODE]}
                             onToggle={(e, val) => this.onEditModeToggle(e, val)}/>
                     </div>
                 </div>
@@ -91,3 +106,5 @@ export default class DeputieAdmin extends React.Component{
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeputieAdmin); 
