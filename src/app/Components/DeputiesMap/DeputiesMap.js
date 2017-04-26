@@ -69,7 +69,8 @@ const KremenGoogleMap = withGoogleMap(props => {
                     deputie={deputie}
                     editable={props.editable}
                     onChange={(e, path) => props.onDeputieChange(e, deputie)}
-                    onClick={(e, deputie) => props.onDeputieClick(e, deputie)}/>) : null,
+                    onClick={(e, deputie) => props.onDeputieClick(e, deputie)}
+                    onDblClick={(e, deputie) => props.onDeputieDblClick(e, deputie)}/>) : null,
                 deputie.center ? (<Marker
                     key={"marker-" + deputie.id}
                     position={deputie.center}
@@ -91,6 +92,7 @@ class DeputiesMap extends React.Component{
         this.state = {
             user: null,
             userRole: null,
+            selected: null,
             deputieDialog: {open: false, item: null, key: utils.id.genId()},
             drawer: {open: false}
         }
@@ -114,6 +116,15 @@ class DeputiesMap extends React.Component{
         });
     }
 
+    // Properties
+
+    get isEditMode(){
+        return this.state.user && 
+               this.state.userRole === 'admin' &&
+               this.props.configs && 
+               this.props.configs[ConfigsKeys.EDIT_MODE] === true;
+    }
+
     // Events
 
     onMapLoad(map){
@@ -125,6 +136,7 @@ class DeputiesMap extends React.Component{
     onMapClick(e){
         let location = e.latLng;
         log('map click: ' + JSON.stringify(location));
+        this.setState({selected: null});
     }
 
     onMapResize(e){
@@ -156,7 +168,13 @@ class DeputiesMap extends React.Component{
 
     onDeputieClick(e, deputie){
         log('deputie click: ' + deputie.name);
+        if(this.isEditMode) return;
         this.setState({deputieDialog: {open: true, item: deputie, key: null}});
+    }
+
+    onDeputieDblClick(e, deputie){
+        log('deputie double click: ' + deputie.name);
+        this.setState({selected: deputie});
     }
 
     onDeputieChange(e, deputie){
@@ -182,10 +200,7 @@ class DeputiesMap extends React.Component{
         if(newProps.onConfigsChange) delete newProps.onConfigsChange;
 
         // Edit mode
-        let editable = this.state.user && 
-                       this.state.userRole === 'admin' &&
-                       this.props.configs && 
-                       this.props.configs[ConfigsKeys.EDIT_MODE] === true;
+        let editable = this.isEditMode;
 
         // Mod deputies data
         let deputies = _.map(this.props.deputies, (item, id) => {
@@ -193,6 +208,10 @@ class DeputiesMap extends React.Component{
             item.id = id;
             return item;
         });
+
+        if(editable && this.state.selected){
+            deputies = _.filter(deputies, item => item.id == this.state.selected.id);
+        }
 
         return (
             <div {...newProps}>
@@ -217,6 +236,7 @@ class DeputiesMap extends React.Component{
                     onMapLoad={(map) => this.onMapLoad(map)}
                     onMapClick={(e) => this.onMapClick(e)}
                     onDeputieClick={(e, deputie) => this.onDeputieClick(e, deputie)}
+                    onDeputieDblClick={(e, deputie) => this.onDeputieDblClick(e, deputie)}
                     onDeputieChange={(e, deputie) => this.onDeputieChange(e, deputie)}
                     onMapResize={(e) => this.onMapResize(e)}
                     onMapCenterChanged={(e) => this.onMapCenterChanged(e)}

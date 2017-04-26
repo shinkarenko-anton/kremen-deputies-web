@@ -88,6 +88,7 @@ export default class DeputiePoligon extends React.Component{
                     fillOpacity: 0.1
                 }}
                 onClick={(e) => this.props.onClick(e, deputie)}
+                onDblClick={(e) => this.props.onDblClick(e, deputie)}
             />
         );
     }
