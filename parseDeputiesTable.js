@@ -1,5 +1,20 @@
 $('#content table').each(function (tableIndex){
 
+    RegExp.prototype.execAll = function(string) {
+        var match = null;
+        var matches = new Array();
+        while (match = this.exec(string)) {
+            var matchArray = [];
+            for (var i in match) {
+                if (parseInt(i) == i) {
+                    matchArray.push(match[i]);
+                }
+            }
+            matches.push(matchArray);
+        }
+        return matches;
+    }
+
     let clearText = (text) => {
         if(!text) return text;
         text = text.replace(/[\r\n]+/g, ' ');
@@ -37,6 +52,33 @@ $('#content table').each(function (tableIndex){
         return transliterate(match[0]).toLowerCase();
     }
 
+    let parsePollingStations = (text) => {
+        if(!text) return [];
+        let matches = /Виборча дільниця №(\d+)(.+?)Орієнтовна кількість виборців\s*(–|-)\s*(\d+)/g.execAll(text);
+        let arr = [];
+        matches.forEach((match, index) => {
+            arr.push({
+                id: parseInt(match[1]),
+                addresses: match[2].trim(),
+                numberOfVoters: parseInt(match[4]),
+            });
+        });
+        return arr;
+    }
+
+    let parsePhones = (text) => {
+        if(!text) return [];
+        let phones = [];
+        /\d+-\d+-\d+/g.execAll(text).forEach(match => phones.push(match[0]));
+        /(066|067|068|097|098)\s(\d{3})\s(\d{2})\s(\d{2})/g.execAll(text).forEach(match => {
+            phones.push("(" + match[1] + ") " + match[2] + "-" + match[3] + "-" + match[4]);
+        });
+        /(066|067|068|097|098)(\s\d{3}\s\d{4})/g.execAll(text).forEach(match => {
+            phones.push("(" + match[1] + ") " + match[2] + "-" + match[3]);
+        });
+        return phones;
+    }
+
     let table = this;
     let items = [];
     $('tr', this).each(function (trIndex){
@@ -48,13 +90,14 @@ $('#content table').each(function (tableIndex){
             let text = clearText($(td).text());
             if(tdIndex == 0){
                 if(text){
+                    item.id = "kremen-loc-" + parseInt(text);
                     item.locationId = parseInt(text);
                 }
             }
             if(tdIndex == 1){
                 item.name = text;
-                if(!item.locationId){
-                    item.locationId = nameToLocId(text);
+                if(!item.id){
+                    item.id = "kremen-" + nameToLocId(text);
                 }
             }
             if(tdIndex == 2){
@@ -64,13 +107,19 @@ $('#content table').each(function (tableIndex){
                 item.address = text;
             }
             if(tdIndex == 4){
-                item.phone = text;
+                item.phones = parsePhones(text);
             }
             if(tdIndex == 5){
-                item.pollingStations = text;
+                item.pollingStations = parsePollingStations(text);
             }
         });
-        console.log(JSON.stringify(item));
         items.push(item);
     });
+    let res = {};
+    items.forEach(item => {
+        let id = item.id;
+        delete item.id;
+        res[id] = item;
+    });
+    console.log(JSON.stringify(res));
 });
