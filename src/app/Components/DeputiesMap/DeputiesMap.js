@@ -56,7 +56,7 @@ const KremenGoogleMap = withGoogleMap(props => {
             options= {{
                 mapTypeControlOptions: {
                     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                    position: google.maps.ControlPosition.TOP_RIGHT
+                    position: google.maps.ControlPosition.TOP_LEFT
                 }
             }}
 
@@ -192,7 +192,7 @@ class DeputiesMap extends React.Component{
 
         return (
             <div {...newProps}>
-                <div style={{position: 'absolute', left: 20, top: 20}}>
+                <div style={{position: 'absolute', right: 20, top: 20}}>
                     <FloatingActionButton
                         iconStyle={{color: '#FFFFFF'}}
                         mini={true} 
@@ -227,6 +227,7 @@ class DeputiesMap extends React.Component{
                 ) : null}
                 <Drawer
                     docked={false}
+                    openSecondary={true}
                     width={300}
                     open={this.state.drawer.open}
                     onRequestChange={(open) => this.setState({drawer: {open: false}})}>
