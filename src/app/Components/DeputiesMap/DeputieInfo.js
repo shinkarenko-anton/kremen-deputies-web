@@ -30,6 +30,10 @@ const style = {
     copyright: {
         marginTop: 10, 
         fontSize: '10px'
+    },
+    version: {
+        marginTop: 6,
+        fontSize: 8
     }
 }
 
@@ -70,6 +74,9 @@ export default class DeputieInfo extends React.Component{
                         <a href="http://io.kr.ua/" target="__blank" style={{borderBottom: 'none'}}>
                             IQ Hub &copy; 2017 рік.
                         </a>
+                    </div>
+                    <div style={style.version}>
+                        {"v" + VERSION}
                     </div>
                 </div>
             </div>

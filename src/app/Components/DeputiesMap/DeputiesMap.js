@@ -19,6 +19,7 @@ import * as mixings from '../../Shared/Style/mixings';
 import colors from '../DeputiesApp/DeputiesAppColors';
 // Google Map
 import {withGoogleMap, GoogleMap, Marker, Polygon, MarkerLabel} from "react-google-maps";
+// import withScriptjs from 'react-google-maps/lib/async/withScriptjs';
 // Elements
 import DeputiePoligon from './DeputiePoligon';
 import DeputieDialog from '../DeputieDialog/DeputieDialog';
