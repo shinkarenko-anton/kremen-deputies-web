@@ -6,6 +6,7 @@
 ;
 
 a{
+    transition: opacity .3s ease-in-out;
     &:link, 
     &:active,
     &:visited{

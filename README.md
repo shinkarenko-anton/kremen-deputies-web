@@ -1,8 +1,15 @@
 # Kremen Deputies
 
-All open inforamtion about Kremn's Deputies.
+All open inforamtion about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) deputies.
 
-[Table with deputies contacts](https://www.kremen.gov.ua/index.php/rozdil/miska_vlada/rada/grafik_rady)
+[Official information about Kremnchuk's deputies](https://www.kremen.gov.ua/index.php/rozdil/miska_vlada/rada/grafik_rady).
+
+## TODO
+
+- Add information about duties of deputies.
+- Change app image at metatags.
+- Create bot in telegram.
+- Create bot in facebook messager.
 
 ## Contacts
 

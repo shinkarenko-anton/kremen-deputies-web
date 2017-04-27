@@ -24,6 +24,7 @@ import {withGoogleMap, GoogleMap, Marker, Polygon, MarkerLabel} from "react-goog
 import DeputiePoligon from './DeputiePoligon';
 import DeputieDialog from '../DeputieDialog/DeputieDialog';
 import DeputieSidebar from './DeputieSidebar';
+import BrandsPanel from './BrandsPanel';
 // Firebase
 import {auth, database} from '../../Shared/Firebase/Firebase';
 // Configs
@@ -221,13 +222,6 @@ class DeputiesMap extends React.Component{
 
         return (
             <div {...newProps}>
-                <div style={{position: 'absolute', right: 20, top: 20}}>
-                    <FloatingActionButton
-                        iconStyle={{color: '#FFFFFF'}}
-                        mini={true} 
-                        iconClassName="fa fa-question"
-                        onClick={(e) => this.onOpenMenuClick(e)}/>
-                </div>
                 <KremenGoogleMap
                     ref={(el) => {this._map = el}}
                     containerElement={(<div style={mixings.fullScreen} />)}
@@ -256,6 +250,13 @@ class DeputiesMap extends React.Component{
                     onClose={(e) => this.onDeputieDialogClose(e)}
                 />
                 ) : null}
+                <div style={{position: 'absolute', right: 20, top: 20}}>
+                    <FloatingActionButton
+                        iconStyle={{color: '#FFFFFF'}}
+                        mini={true} 
+                        iconClassName="fa fa-question"
+                        onClick={(e) => this.onOpenMenuClick(e)}/>
+                </div>
                 <Drawer
                     docked={false}
                     openSecondary={true}
@@ -268,6 +269,9 @@ class DeputiesMap extends React.Component{
                             user={this.state.user} />
                     </div>
                 </Drawer>
+                <BrandsPanel 
+                    style={{position: 'absolute', width: 100, left: 0, bottom: 24}}
+                />
             </div>
         );
     }
