@@ -1,6 +1,6 @@
 # Kremen Deputies
 
-All open inforamtion about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) deputies.
+Web app with all open inforamtion about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) deputies. Visit [https://deputat.io.kr.ua/](https://deputat.io.kr.ua/) to checkout the app.
 
 [Official information about Kremnchuk's deputies](https://www.kremen.gov.ua/index.php/rozdil/miska_vlada/rada/grafik_rady).
 
