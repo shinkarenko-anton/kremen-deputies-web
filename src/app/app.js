@@ -22,6 +22,13 @@ import ConfigStorage from './Shared/Services/ConfigStorage';
 // Pages
 import DeputiesMap from './Components/DeputiesMap/DeputiesMap';
 
+// Init Log
+if((typeof ENV !== 'undefined') && (ENV === 'dev')){
+    log.enabled(true);
+}else{
+    log.enabled(false);
+}
+
 // Init State
 let savedState = ConfigStorage.get('state');
 let store = savedState ? createStore(reducers, savedState) : createStore(reducers);

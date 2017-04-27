@@ -15,6 +15,8 @@ let emit = (event, data) => {
     });
 }
 
+let _enabled = true;
+
 function logFactory(m){
 
     function logPref(symb){
@@ -25,25 +27,33 @@ function logFactory(m){
         log.debug(data);
     }
 
+    log.enabled = (val) => {
+        _enabled = val;
+    }
+
     log.debug = (data) => {
+        if(!_enabled) return;
         const pref = logPref('-');
         console.log(pref, data);
         log.emitLog(pref + ' ' + data);
     }
 
     log.info = (data) => {
+        if(!_enabled) return;
         const pref = logPref('+');
         console.info(pref, data);
         log.emitLog(pref + ' ' + data);
     }
 
     log.warn = (data) => {
+        if(!_enabled) return;
         const pref = logPref('!');
         console.warn(pref, data);
         log.emitLog(pref + ' ' + data);
     }
 
     log.error = (data) => {
+        if(!_enabled) return;
         const pref = logPref('x');
         console.error(pref, data);
         log.emitLog(pref + ' ' + data);
