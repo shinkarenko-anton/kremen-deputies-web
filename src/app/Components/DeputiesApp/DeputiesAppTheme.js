@@ -4,15 +4,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // Colors
-import {
-  cyan700,
-  grey700,
-  orange500,
-  pinkA100, pinkA200, pinkA400,
-  fullWhite,
-} from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
-import spacing from 'material-ui/styles/spacing';
 
 // Custom theme
 let customTheme = {

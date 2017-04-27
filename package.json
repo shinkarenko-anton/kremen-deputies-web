@@ -4,10 +4,10 @@
   "description": "All open inforamtion about Kremn's Deputies",
   "main": "dist/app/app.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base dist/",
+    "start": "ENV=dev webpack-dev-server --content-base dist/",
     "clear": "rm -rf dist coverage",
     "test": "jest --coverage --watch",
-    "dev": "webpack -d --watch",
+    "dev": "ENV=dev webpack -d --watch",
     "dist": "webpack -p --progress"
   },
   "author": "Jaroslav Khorishchenko <websnipter@gmail.com>",

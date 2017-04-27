@@ -1,7 +1,13 @@
 // React
 import React from "react";
+// Utils
+import _ from 'lodash';
 // UI
 import FlatButton from 'material-ui/FlatButton';
+// Theme
+import colors from '../DeputiesApp/DeputiesAppColors';
+// Assets
+import vestnikLogo from '../../../assets/img/logo/vestnik-logo-300w.png';
 
 const style = {
     container: {
@@ -34,6 +40,15 @@ const style = {
     version: {
         marginTop: 6,
         fontSize: 8
+    },
+    logoContainer: {
+        
+    },
+    logoLink: {
+        borderBottom: 'none'
+    },
+    logoImg: {
+        width: '160px'
     }
 }
 
@@ -53,15 +68,53 @@ export default class DeputieInfo extends React.Component{
                 <div style={style.content}>
                     <h3>Про додаток</h3>
                     <p>
-                        Карта виборчих округів та депутатів.
+                        Карта виборчих округів дозволяє вам дізнатись хто є депутатом вашого району та як з ним зв'язатись. 
+                    </p>
+                    <p>
+                        Додаток не є комерційним і створений за власної ініціати кременчуцьких програмістів місцевої IT-спільноти <a href="http://io.kr.ua/" target="__blank">IQ Hub</a>.
+                    </p>
+                    <p>
+                        Хочеш допомогти? Є ідеї або зауваження? Не вірна інформація? Пиши:
                     </p>
                     <p style={style.contactRow}>
-                        <span style={style.rowIcon}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.google})}>
                             <span className="fa fa-envelope"></span>
                         </span>
                         <span style={style.rowData}>
                             <a href="mailto:websnipter@gmail.com" target="__blank">websnipter@gmail.com</a>
                         </span>
+                    </p>
+                    <p style={style.contactRow}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.google})}>
+                            <span className="fa fa-envelope"></span>
+                        </span>
+                        <span style={style.rowData}>
+                            <a href="mailto:iqhub.org.ua@gmail.com" target="__blank">iqhub.org.ua@gmail.com</a>
+                        </span>
+                    </p>
+                    <p style={style.contactRow}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.facebook})}>
+                            <span className="fa fa-facebook-official"></span>
+                        </span>
+                        <span style={style.rowData}>
+                            <a href="https://www.facebook.com/io.kr.ua/" target="__blank">https://fb.com/io.kr.ua</a>
+                        </span>
+                    </p>
+                    <p style={style.contactRow}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.slack})}>
+                            <span className="fa fa-slack"></span>
+                        </span>
+                        <span style={style.rowData}>
+                            <a href="https://slack.io.kr.ua/" target="__blank">slack.io.kr.ua</a>
+                        </span>
+                    </p>
+                    <p>
+                        Партнери:
+                    </p>
+                    <p style={style.logoContainer}>
+                        <a href="https://vestnik.in.ua/" target="__blank" style={style.logoLink}>
+                            <img src={vestnikLogo} style={style.logoImg} />
+                        </a>
                     </p>
                 </div>
                 <div style={style.footer}>
