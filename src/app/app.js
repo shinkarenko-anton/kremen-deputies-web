@@ -23,7 +23,8 @@ import ConfigStorage from './Shared/Services/ConfigStorage';
 import DeputiesMap from './Components/DeputiesMap/DeputiesMap';
 
 // Init Log
-if((typeof ENV !== 'undefined') && (ENV === 'dev')){
+let logEnabled = ConfigStorage.get('log') || ((typeof ENV !== 'undefined') && (ENV === 'dev'));
+if(logEnabled){
     log.enabled(true);
 }else{
     log.enabled(false);
