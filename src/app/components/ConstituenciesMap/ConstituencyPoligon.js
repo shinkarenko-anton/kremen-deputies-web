@@ -1,10 +1,10 @@
 // React
 import React from "react";
 // Log
-import Log from '../../Shared/Services/Log';
-const log = Log.withModule('DeputiePoligon');
+import Log from '../../shared/Services/Log';
+const log = Log.withModule('ConstituencyPoligon');
 // Theme
-import colors from '../DeputiesApp/DeputiesAppColors';
+import colors from '../../shared/Theme/Colors';
 // Google Maps
 import {Polygon, Marker} from "react-google-maps";
 
@@ -22,8 +22,8 @@ const getPolygonCenter = (path) => {
     return {lat: center.lat(), lng: center.lng()};
 }
 
-// DeputiePoligon
-export default class DeputiePoligon extends React.Component{
+// ConstituencyPoligon
+export default class ConstituencyPoligon extends React.Component{
     constructor(props){
         super(props);
         this.state = {}
@@ -46,7 +46,7 @@ export default class DeputiePoligon extends React.Component{
         this._polygon = polygon;
         let path = polygon.getPath();
 
-        const updateDeputiePath = () => {
+        const updateConstituencyPath = () => {
             let newPath = pathToData(path);
             let deputie = this.props.deputie;
             deputie.path = newPath;
@@ -55,22 +55,22 @@ export default class DeputiePoligon extends React.Component{
         }
 
         path.addListener('set_at', () => {
-            updateDeputiePath();
+            updateConstituencyPath();
         });
 
         path.addListener('remove_at', () => {
-            updateDeputiePath();
+            updateConstituencyPath();
         });
 
         path.addListener('insert_at', () => {
-            updateDeputiePath();
+            updateConstituencyPath();
         });
     }
 
     // Render
 
     render(){
-        // Deputie
+        // Constituency
         let deputie = this.props.deputie;
         if(!deputie) return null;
 

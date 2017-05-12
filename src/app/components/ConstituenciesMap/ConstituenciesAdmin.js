@@ -2,18 +2,18 @@
 import React from "react";
 // Redux
 import {connect} from 'react-redux';
-import actions from '../../Shared/Redux/Actions';
+import actions from '../../shared/Redux/Actions';
 // UI
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 // Firebase
-import {auth} from '../../Shared/Firebase/Firebase';
+import {auth} from '../../shared/Firebase/Firebase';
 // Log
-import Log from '../../Shared/Services/Log';
+import Log from '../../shared/Services/Log';
 const log = Log.withModule('DeputieAdmin');
 // Configs
-import ConfigsKeys from '../../Shared/Configs/ConfigsKeys';
+import ConfigsKeys from '../../shared/Configs/ConfigsKeys';
 
 // Redux
 const mapStateToProps = (state) => ({
@@ -23,6 +23,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val))
 });
+
+// Style
+const style = {
+    row: {
+        marginTop: 10
+    }
+};
 
 // DeputieAdmin
 class DeputieAdmin extends React.Component{
@@ -65,20 +72,6 @@ class DeputieAdmin extends React.Component{
         if(!user) return null;
 
         let isAdmin = this.props.userRole === 'admin';
-
-        // var displayName = user.displayName;
-        // var email = user.email;
-        // var emailVerified = user.emailVerified;
-        // var photoURL = user.photoURL;
-        // var isAnonymous = user.isAnonymous;
-        // var uid = user.uid;
-        // var providerData = user.providerData;
-
-        const style = {
-            row: {
-                marginTop: 10
-            }
-        }
 
         return (
             <div>

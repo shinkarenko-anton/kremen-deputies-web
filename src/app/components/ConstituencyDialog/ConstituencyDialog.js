@@ -2,7 +2,7 @@
 import React from "react";
 // Utils
 import _ from 'lodash';
-import utils from '../../Shared/Services/Utils';
+import utils from '../../shared/Services/Utils';
 // UI
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -39,8 +39,8 @@ const style = {
     }
 }
 
-// DeputieDialog
-export default class DeputieDialog extends React.Component{
+// ConstituencyDialog
+export default class ConstituencyDialog extends React.Component{
     constructor(props){
         super(props);
         this.state = {}

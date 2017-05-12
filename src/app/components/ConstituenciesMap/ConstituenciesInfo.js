@@ -5,7 +5,7 @@ import _ from 'lodash';
 // UI
 import FlatButton from 'material-ui/FlatButton';
 // Theme
-import colors from '../DeputiesApp/DeputiesAppColors';
+import colors from '../../shared/Theme/Colors';
 // Assets
 import vestnikLogo from '../../../assets/img/logo/vestnik-logo-300w.png';
 

@@ -1,12 +1,12 @@
 // React
 import React from "react";
 // Elements
-import DeputieInfo from './DeputieInfo';
-import DeputieAuth from './DeputieAuth';
-import DeputieAdmin from './DeputieAdmin';
+import ConstituenciesInfo from './ConstituenciesInfo';
+import ConstituenciesAuth from './ConstituenciesAuth';
+import ConstituenciesAdmin from './ConstituenciesAdmin';
 
-// DeputieSidebar
-export default class DeputieSidebar extends React.Component{
+// ConstituenciesSidebar
+export default class ConstituenciesSidebar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -34,15 +34,15 @@ export default class DeputieSidebar extends React.Component{
         return (
             <div style={{height: '100%'}}>
                 {user ? (
-                    <DeputieAdmin 
+                    <ConstituenciesAdmin 
                         user={user}
                         userRole={this.props.userRole}/>
                 ) : (
                     this.state.showAuth ? (
-                        <DeputieAuth 
+                        <ConstituenciesAuth 
                             onGoBackClick={(e) => this.onGoBackClick(e)}/>
                     ) : (
-                        <DeputieInfo 
+                        <ConstituenciesInfo 
                             onLoginClick={(e) => this.onLoginClick(e)}/>
                     )
                 )}

@@ -5,10 +5,17 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 // Log
-import Log from '../../Shared/Services/Log';
+import Log from '../../shared/Services/Log';
 const log = Log.withModule('DeputiesAuth');
 // Firebase
-import {auth, fbAuthProvider, googleAuthProvider} from '../../Shared/Firebase/Firebase';
+import {auth, fbAuthProvider, googleAuthProvider} from '../../shared/Firebase/Firebase';
+
+// Style
+const style = {
+    row: {
+        marginTop: 10
+    }
+}
 
 // DeputiesAuth
 export default class DeputiesAuth extends React.Component{
@@ -18,16 +25,6 @@ export default class DeputiesAuth extends React.Component{
             email: '', 
             pass: ''
         }
-    }
-
-    // Lifecycle hooks
-
-    componentDidMount(){
-        
-    }
-
-    componentWillUnmount(){
-        
     }
 
     // Events
@@ -46,6 +43,7 @@ export default class DeputiesAuth extends React.Component{
             // let user = result.user;
         }).catch((err) => {
             log.err(err);
+            alert('Сталась помилка під час авторизації...');
             // let errorCode = err.code;
             // let errorMessage = err.message;
             // let email = err.email;
@@ -60,6 +58,7 @@ export default class DeputiesAuth extends React.Component{
             // let user = result.user;
         }).catch((err) => {
             log.err(err);
+            alert('Сталась помилка під час авторизації...');
             // let errorCode = err.code;
             // let errorMessage = err.message;
             // let email = err.email;
@@ -70,11 +69,6 @@ export default class DeputiesAuth extends React.Component{
     // Render
 
     render(){
-        const style = {
-            row: {
-                marginTop: 10
-            }
-        }
         return (
             <div>
                 <div><h3>Вхід</h3></div>
