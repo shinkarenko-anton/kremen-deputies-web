@@ -7,7 +7,8 @@
             "7-000-25"
         ],
         "photos": [
-            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/001.jpg?alt=media&token=a59271fb-c348-4c4b-8411-b221fd4c5f6d"
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-golovach-oleksandr-001.JPG?alt=media&token=b2d6942c-3853-44c1-b369-7a56caa2b4e6",
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-golovach-oleksandr-002.JPG?alt=media&token=aac108c5-adf6-44d9-bb20-04e5c358f4fa"
         ]
     },
     "kremen-shlyahova-olga": {
@@ -18,7 +19,9 @@
         "phones": [
             "70-11-34"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-shlyahova-olga-001.JPG?alt=media&token=27feec24-aee6-4ad2-a6a9-63086b7c8057"
+        ]
     },
     "kremen-prokop-oleksandr": {
         "name": "Прокоп Олександр Едуардович",
@@ -27,7 +30,9 @@
         "phones": [
             "(067) 532-51-86"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-prokop-oleksandr-001.jpg?alt=media&token=4d434806-7469-4a10-8ab3-63db7b59162e"
+        ]
     },
     "kremen-tatsenyuk-vitaly": {
         "fb": "https://www.facebook.com/profile.php?id=100010122459844",
@@ -37,7 +42,10 @@
         "phones": [
             "74-20-54"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-tatsenyuk-vitaly-001.JPG?alt=media&token=f4b88d5a-ca7c-4071-9a3b-3092227b281a"
+
+        ]
     },
     "kremen-kalashnik-viktor": {
         "fb": "https://www.facebook.com/profile.php?id=100013373417888",
@@ -47,7 +55,10 @@
         "phones": [
             "2-11-41"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kalashnik-viktor-001.jpg?alt=media&token=a134625d-7357-40f4-8734-fe9cc9d78aae",
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kalashnik-viktor-002.jpg?alt=media&token=be023e44-9297-447c-879b-b33f71836b78"
+        ]
     },
     "kremen-tereschenko-denis": {
         "fb": "https://www.facebook.com/DenisTereschenko1974",
@@ -57,7 +68,9 @@
         "phones": [
             "77-44-10"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-tatsenyuk-vitaly-002.JPG?alt=media&token=a306d436-275d-4993-a569-048eadebb06c"
+        ]
     },
     "kremen-shevchenko-mykola": {
         "fb": "https://www.facebook.com/nikolai.shevchenko.58",
@@ -68,7 +81,9 @@
         "phones": [
             "2-11-41"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-shevchenko-mykola-001.jpg?alt=media&token=71d3b37b-6052-4c35-8bdc-9efeea83670d"
+        ]
     },
     "kremen-kotlyar-vitaly": {
         "name": "Котляр Віталій Юрійович",
@@ -77,7 +92,9 @@
         "phones": [
             "(067) 444-25-00"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kotlyar-vitaly-001.JPG?alt=media&token=eb74051d-be28-47a8-b990-8749ac064b62"
+        ]
     },
     "kremen-bokovan-mykola": {
         "name": "Бокован Микола Володимирович",
@@ -88,7 +105,9 @@
         "phones": [
             "76-46-14"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-bokovan-mykola-001.JPG?alt=media&token=a648fa6b-8b55-4c33-9774-40ccba9adfaa"
+        ]
     },
     "kremen-ulyanov-ruslan": {
         "fb": "https://www.facebook.com/ru.ulyanovs",
@@ -98,7 +117,9 @@
         "phones": [
             "77-89-37"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-ulyanov-ruslan-001.JPG?alt=media&token=08acf672-071c-426a-ae65-440d21efa750"
+        ]
     },
     "kremen-kurchenko-gai-valentin": {
         "fb": "https://www.facebook.com/t100000001",
@@ -108,7 +129,9 @@
         "phones": [
             "(097) 050-65-65"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kurchenko-gai-valentin-001.JPG?alt=media&token=c38e181d-96ac-4895-80c3-8979004444cf"
+        ]
     },
     "kremen-shibashov-volodymir": {
         "fb": "https://www.facebook.com/v.shybashov",
@@ -118,7 +141,9 @@
         "phones": [
             "79-22-62"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-shibashov-volodymir-001.JPG?alt=media&token=c7799b70-58aa-4612-8062-4d3207fdf289"
+        ]
     },
     "kremen-yatsina-oleksandr": {
         "name": "Яцина Олександр Олександрович",
@@ -127,7 +152,9 @@
         "phones": [
             "77-09-01"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-yatsina-oleksandr-001.JPG?alt=media&token=e1ee1217-b1f2-497e-a3f9-92ac677c4755"
+        ]
     },
     "kremen-pochtovyuk-andryi": {
         "name": "Почтовюк Андрій Борисович",
@@ -137,9 +164,11 @@
             "3-60-70",
             "3-11-46"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-pochtovyuk-andryi-001.JPG?alt=media&token=f640bdfe-2cf3-4015-b8c5-3de631725c31"
+        ]
     },
-    "kremen-grіnchenko-volodymir": {
+    "kremen-grinchenko-volodymir": {
         "fb": "https://www.facebook.com/profile.php?id=100004116073710",
         "name": "Грінченко Володимир Вадимович",
         "schedule": "друга та остання п'ятниці щомісяця з 14.00 до 16.00 год.",
@@ -147,7 +176,9 @@
         "phones": [
             "(067) 171-65-00"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-gr%D1%96nchenko-volodymir-001.JPG?alt=media&token=1f328982-686d-4b45-9901-fc2735f15cbb"
+        ]
     },
     "kremen-litvinenko-maksim": {
         "fb": "https://www.facebook.com/profile.php?id=100008862815186",
@@ -158,7 +189,9 @@
             "77-09-01",
             "77-22-11"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-litvinenko-maksim-001.JPG?alt=media&token=914a6f66-122f-4f64-bd31-06256ebccfa1"
+        ]
     },
     "kremen-poritskii-mykola": {
         "fb": "https://www.facebook.com/profile.php?id=100002831335571",
@@ -168,7 +201,9 @@
         "phones": [
             "72-67-07"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-poritskii-mykola-001.JPG?alt=media&token=3fa2e472-628f-4323-bfb3-3b2e4f9dfea9"
+        ]
     },
     "kremen-fedorchenko-ruslan": {
         "fb": "https://www.facebook.com/fedorchenko.rusl",
@@ -179,9 +214,11 @@
             "76-66-95",
             "76-66-95"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-fedorchenko-ruslan-001.JPG?alt=media&token=a0618dc9-7cd5-4c6d-aafe-60eb1fdadb3b"
+        ]
     },
-    "kremen-pіddubna-oksana": {
+    "kremen-piddubna-oksana": {
         "fb": "https://www.facebook.com/oksanapiddubnaofficialpage",
         "name": "Піддубна Оксана Миколаївна",
         "schedule": "вівторок та субота щомісяця з 15.00 до 18.00 год. другий четвер щомісяця з 16.00 до 18.00 год.",
@@ -191,9 +228,11 @@
             "(067) 744-20-01",
             "(067) 744-20-01"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-p%D1%96ddubna-oksana-001.JPG?alt=media&token=2d1f4719-8fea-4b8d-828a-7e86e8d1c880"
+        ]
     },
-    "kremen-pogrіbnii-sergy": {
+    "kremen-pogribnii-sergy": {
         "fb": "https://www.facebook.com/sergey.pogrebnoy.14",
         "name": "Погрібний Сергій Миколайович",
         "schedule": "другий та четвертий четвер щомісяця з 16.00 до 18.00 год.",
@@ -202,7 +241,9 @@
             "5-34-11",
             "(067) 744-42-01"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-pogr%D1%96bnii-sergy-001.JPG?alt=media&token=67af181d-d69d-43f0-9bc3-c6f889199e14"
+        ]
     },
     "kremen-tereschenko-konstyantin": {
         "name": "Терещенко Костянтин Олександрович",
@@ -220,13 +261,15 @@
         "phones": [
             "75-00-56"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-rozhenko-oleksandr-001.JPG?alt=media&token=b5442681-d7c3-449f-aa31-e26dbfabb41b"
+        ]
     },
     "kremen-makarov-andry": {
         "fb": "https://www.facebook.com/andreu.makarov.7",
         "vk": "https://vk.com/makarovandreu",
         "photos": [
-            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/Fq8ZepWHPaI.jpg?alt=media&token=d31030e7-cd36-45d8-9996-74f6a15cdb15"
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-makarov-andry-001.jpg?alt=media&token=f476e453-c6f3-4ef1-9883-923d2593c11e"
         ],
         "name": "Макаров Андрій Ігорович",
         "schedule": "перший четвер щомісяця з 16.00 до 18.00 год.",
@@ -235,14 +278,16 @@
             "4-13-75"
         ]
     },
-    "kremen-kostromіnov-sergy": {
+    "kremen-kostrominov-sergy": {
         "name": "Костромінов Сергій Анатолійович",
         "schedule": "перший вівторок щомісяця з 15.00 до 17.00 год.",
         "address": "готель «Кремінь» м. Кременчук, вул. Ігоря Сердюка (вул. Жовтнева), 1, к. 134",
         "phones": [
             "(097) 050-65-65"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kostrom%D1%96nov-sergy-001.JPG?alt=media&token=08053896-2317-4e49-80eb-8eef2afc8098"
+        ]
     },
     "kremen-kotlyarenko-lyudmila": {
         "name": "Котляренко Людмила Григорівна",
@@ -251,7 +296,9 @@
         "phones": [
             "(067) 744-20-01"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kotlyarenko-lyudmila-001.JPG?alt=media&token=00a0f2e5-fcb4-485b-8c02-790e823b32be"
+        ]
     },
     "kremen-kalchenko-oleksandr": {
         "fb": "https://www.facebook.com/aleksandr.kalchenko.9",
@@ -265,18 +312,22 @@
             "(098) 374-15-25",
             "(067) 744-20-01"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kalchenko-oleksandr-001.JPG?alt=media&token=8390495b-5284-4deb-a039-3ee6de26cc29"
+        ]
     },
-    "kremen-korkіshko-oleksandr": {
+    "kremen-korkishko-oleksandr": {
         "name": "Коркішко Олександр Леонідович",
         "schedule": "перший вівторок щомісяця з 14.00 до 17.00 год.",
         "address": "ЦКСД «Нафтохімік», м. Кременчук, просп. Лесі Українки (просп. 50-річчя Жовтня), 33",
         "phones": [
             "(067) 744-20-01"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kork%D1%96shko-oleksandr-001.JPG?alt=media&token=0ff2abc6-6a2c-40bf-85a4-1acaac327510"
+        ]
     },
-    "kremen-mosіenko-olena": {
+    "kremen-mosienko-olena": {
         "fb": "https://www.facebook.com/elena.mosienko.10",
         "vk": "https://vk.com/elenmosienko",
         "name": "Мосієнко Олена Вікторівна",
@@ -285,9 +336,12 @@
         "phones": [
             "4-88-49"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-mos%D1%96enko-olena-001.JPG?alt=media&token=91076696-50e2-46a2-823c-c1795cf9eee2",
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-mos%D1%96enko-olena-002.JPG?alt=media&token=ccd9fd03-7b6b-4aca-aec5-87de2d80fea1"
+        ]
     },
-    "kremen-sіderka-tetyana": {
+    "kremen-siderka-tetyana": {
         "fb": "https://www.facebook.com/profile.php?id=100007987141262",
         "name": "Сідерка Тетяна Анатоліївна",
         "schedule": "перший четвер щомісяця з 16.00 до 18.00 год.",
@@ -295,7 +349,9 @@
         "phones": [
             "(097) 050-65-65"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-s%D1%96derka-tetyana-001.JPG?alt=media&token=b537e046-67a8-4bac-a2d2-7c8c0bd7176b"
+        ]
     },
     "kremen-poruch": {
         "vk": "https://vk.com/poruch_kremen",
@@ -315,7 +371,9 @@
         "phones": [
             "6-00-22"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kalashnik-oleksandr-001.JPG?alt=media&token=81aaafb8-3655-408a-b555-d9f2c9c5596b"
+        ]
     },
     "kremen-gordeeva-valentyna": {
         "fb": "https://www.facebook.com/valentina.dordeeva",
@@ -328,7 +386,9 @@
             "(098) 553-44-89",
             "(068) 743-02-55"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-gordeeva-valentyna-001.JPG?alt=media&token=09774e7b-542e-47c0-bf31-f7707a0a7988"
+        ]
     },
     "kremen-ridne-misto": {
         "name": "Прийом мешканців міста депутатами ПП «Рідне місто»",
@@ -340,7 +400,7 @@
         ],
         "photos": []
     },
-    "kremen-sergіenko-tetyana": {
+    "kremen-sergienko-tetyana": {
         "fb": "https://www.facebook.com/profile.php?id=100013802054014",
         "name": "Сергієнко Тетяна Павлівна",
         "schedule": "другий вівторок щомісяця з 16.00 до 18.00 год.",
@@ -348,7 +408,9 @@
         "phones": [
             "72-80-97"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-serg%D1%96enko-tetyana-001.JPG?alt=media&token=6588af89-0160-40d8-9c2a-6a706e8cf9f8"
+        ]
     },
     "kremen-golovko-valentina": {
         "name": "Головко Валентина Данилівна",
@@ -357,7 +419,9 @@
         "phones": [
             "6-21-38"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-golovko-valentina-001.JPG?alt=media&token=e0f65f60-a9d0-4f33-bba9-88dd60fdc17d"
+        ]
     },
     "kremen-opoblock": {
         "name": "Прийом мешканців міста депутатами ПП «Опозиційний блок»",
@@ -369,7 +433,7 @@
         ],
         "photos": []
     },
-    "kremen-ugnіch-grigory": {
+    "kremen-ugnich-grigory": {
         "fb": "https://www.facebook.com/profile.php?id=100008895275828",
         "name": "Угніч Григорій Анатолійович",
         "schedule": "четвертий четвер щомісяця з 16.00 до 18.00 год.",
@@ -377,7 +441,9 @@
         "phones": [
             "6-21-38"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-ugn%D1%96ch-grigory-001.JPG?alt=media&token=c2936b01-ef29-405c-9aa6-5bf8f610fdf4"
+        ]
     },
     "kremen-protsenko-zinaida": {
         "fb": "https://www.facebook.com/zinaida.protsenko",
@@ -387,7 +453,9 @@
         "phones": [
             "6-21-00"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-protsenko-zinaida-001.JPG?alt=media&token=104a5376-6965-47a0-9de1-8879231a7ee8"
+        ]
     },
     "kremen-lozovik-dmitro": {
         "fb": "https://www.facebook.com/profile.php?id=100002063405542",
@@ -397,7 +465,9 @@
         "phones": [
             "(067) 407-13-47"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-lozovik-dmitro-001.JPG?alt=media&token=15c28ecc-4614-41c1-a225-e466d74a8230"
+        ]
     },
     "kremen-melnik-sergy": {
         "name": "Мельник Сергій Вікторович",
@@ -406,7 +476,9 @@
         "phones": [
             "6-21-00"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-melnik-sergy-001.JPG?alt=media&token=c444aa0a-858a-4d30-8f1d-652ad7b30833"
+        ]
     },
     "kremen-pleskun-oleksandr": {
         "name": "Плескун Олександр Володимирович",
@@ -415,9 +487,11 @@
         "phones": [
             "6-21-00"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-pleskun-oleksandr-001.JPG?alt=media&token=f5aad501-b730-42bb-9a1a-a52f286a8481"
+        ]
     },
-    "kremen-іvanyan-genady": {
+    "kremen-ivanyan-genady": {
         "fb": "https://www.facebook.com/IvanyanGennadij",
         "name": "Іванян Геннадій Михайлович",
         "schedule": "понеділок, середа, п’ятниця з 10.00 до 12.00 год. вівторок, четвер з 15.00 до 17.00 год.",
@@ -425,7 +499,10 @@
         "phones": [
             "6-21-00"
         ],
-        "photos": []
+        "photos": [
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-%D1%96vanyan-genady-001.jpg?alt=media&token=5dc4073f-5e61-4210-9880-59f8e93fa28c",
+            "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-%D1%96vanyan-genady-002.JPG?alt=media&token=33fe7ff4-5a93-43e1-8ef9-ada79d5138df"
+        ]
     },
     "kremen-kavunnik-dmitro": {
         "name": "Кавунник Дмитро Вікторович (Прийом мешканців міста депутатами «Радикальна партія Олега Ляшка»)",
