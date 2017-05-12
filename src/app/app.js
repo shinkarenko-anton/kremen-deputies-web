@@ -20,7 +20,8 @@ import {Router, Route, Redirect, hashHistory} from 'react-router';
 // Configs
 import ConfigStorage from './shared/Services/ConfigStorage';
 // Pages
-import ConstituenciesMap from './components/ConstituenciesMap/ConstituenciesMap';
+import ConstituenciesPage from './components/ConstituenciesPage/ConstituenciesPage';
+
 
 // Init Log
 let logEnabled = ConfigStorage.get('log') || ((typeof ENV !== 'undefined') && (ENV === 'dev'));
@@ -30,9 +31,11 @@ if(logEnabled){
     log.enabled(false);
 }
 
+
 // Init State
 let savedState = ConfigStorage.get('state');
 let store = savedState ? createStore(reducers, savedState) : createStore(reducers);
+
 
 // Subscribing for updates
 store.subscribe(() => { 
@@ -40,13 +43,22 @@ store.subscribe(() => {
     ConfigStorage.set('state', store.getState());
 });
 
+
 // Firebase
 import {database, auth} from './shared/Firebase/Firebase';
+
 // Getting list of deputies
 let deputiesRef = database.ref('/deputies');
 deputiesRef.once('value').then(snap => {
-    const deputies = snap.val();
+    let deputies = snap.val();
     store.dispatch(actions.deputies.set(deputies));
+});
+
+// Getting list of constituencies
+let constituenciesRef = database.ref('/constituencies');
+constituenciesRef.once('value').then(snap => {
+    let constituencies = snap.val();
+    store.dispatch(actions.constituencies.set(constituencies));
 });
 
 class AppContainer extends React.Component {
@@ -54,7 +66,9 @@ class AppContainer extends React.Component {
         return (
             <Provider store={store}>
                 <AppTheme>
-                    <ConstituenciesMap style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}} />
+                    <ConstituenciesPage 
+                        style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}} 
+                    />
                 </AppTheme>
             </Provider>
         );

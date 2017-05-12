@@ -13,13 +13,8 @@ import _ from 'lodash';
 import utils from '../../shared/Services/Utils';
 // Theme
 import * as mixings from '../../shared/Style/mixings';
-import colors from '../../shared/Theme/Colors';
-// Google Map
-import {withGoogleMap, GoogleMap, Marker, Polygon, MarkerLabel} from "react-google-maps";
-// import withScriptjs from 'react-google-maps/lib/async/withScriptjs';
 // Elements
-import ConstituencyPoligon from './ConstituencyPoligon';
-import ConstituencyMarker from './ConstituencyMarker';
+import ConstituenciesMap from './ConstituenciesMap';
 import ConstituencyDialog from '../ConstituencyDialog/ConstituencyDialog';
 import ConstituenciesSidebar from './ConstituenciesSidebar';
 import BrandsPanel from '../Brands/BrandsPanel';
@@ -29,7 +24,7 @@ import {auth, database} from '../../shared/Firebase/Firebase';
 import ConfigsKeys from '../../shared/Configs/ConfigsKeys';
 // Log
 import Log from '../../shared/Services/Log';
-const log = Log.withModule('ConstituenciesMap');
+const log = Log.withModule('ConstituenciesPage');
 
 // Consts
 const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
@@ -37,55 +32,18 @@ const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
 // Redux
 const mapStateToProps = (state) => ({
     deputies: state.deputies,
+    constituencies: state.constituencies,
     configs: state.configs
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onDeputieChange: (item) => dispatch(actions.deputies.change(item)),
+    onConstituencyChange: (item) => dispatch(actions.deputies.change(item)),
+    onConstituencieChange: (item) => dispatch(actions.constituencies.change(item)),
     onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val))
 });
 
-// Map
-const KremenGoogleMap = withGoogleMap(props => {
-    return (
-        <GoogleMap
-            ref={(map) => props.onMapLoad(map)}
-
-            defaultZoom={props.defaultZoom || 12}
-            defaultCenter={props.defaultCenter || CITY_LOC}
-
-            options= {{
-                mapTypeControlOptions: {
-                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                    position: google.maps.ControlPosition.TOP_LEFT
-                }
-            }}
-
-            onClick={(e) => props.onMapClick(e)}
-            onResize={(e) => props.onMapResize(e)}
-            onCenterChanged={(e) => props.onMapCenterChanged(e)}
-            onZoomChanged={(e) => props.onMapZoomChanged(e)}>
-            {_.map(props.deputies, deputie => {
-                return [
-                deputie.path ? (<ConstituencyPoligon 
-                    key={"polygon-" + deputie.id}
-                    deputie={deputie}
-                    editable={props.editable}
-                    onChange={(e, path) => props.onDeputieChange(e, deputie)}
-                    onClick={(e, deputie) => props.onDeputieClick(e, deputie)}
-                    onDblClick={(e, deputie) => props.onDeputieDblClick(e, deputie)}/>) : null,
-                deputie.center ? (<Marker
-                    key={"marker-" + deputie.id}
-                    position={deputie.center}
-                    label={deputie.locationId.toString()}/>) : null
-                ];
-            })}
-        </GoogleMap>
-    );
-});
-
-// ConstituenciesMap
-class ConstituenciesMap extends React.Component{
+// ConstituenciesPage
+class ConstituenciesPage extends React.Component{
     // Constructor
     constructor(props){
         super(props);
@@ -93,7 +51,7 @@ class ConstituenciesMap extends React.Component{
             user: null,
             userRole: null,
             selected: null,
-            deputieDialog: {open: false, item: null, key: utils.id.genId()},
+            constituencyDialog: {open: false, item: null, key: utils.id.genId()},
             drawer: {open: false}
         }
     }
@@ -166,29 +124,29 @@ class ConstituenciesMap extends React.Component{
         }
     }
 
-    onDeputieClick(e, deputie){
-        log('deputie click: ' + deputie.name);
-        if(this.isEditMode) return;
-        this.setState({deputieDialog: {open: true, item: deputie, key: null}});
+    onConstituencyClick(e, constituency){
+        log('constituency click: ' + constituency.id + ' at location ' + JSON.stringify(e.latLng));
+        // if(this.isEditMode) return;
+        // this.setState({constituencyDialog: {open: true, item: deputie, key: null}});
     }
 
-    onDeputieDblClick(e, deputie){
-        log('deputie double click: ' + deputie.name);
-        this.setState({selected: deputie});
+    onConstituencyDblClick(e, constituency){
+        log('constituency double click: ' + constituency.id + ' at location ' + JSON.stringify(e.latLng));
+        // this.setState({selected: deputie});
     }
 
-    onDeputieChange(e, deputie){
-        log('deputie change: ' + deputie.name);
-        this.props.onDeputieChange(deputie);
+    onConstituencyChange(e, constituency){
+        log('constituency change: ' + constituency.id);
+        // this.props.onConstituencyChange(deputie);
         // Updating firebase
-        let id = deputie.id;
-        let data = _.cloneDeep(deputie);
-        if(data.id) delete data.id;
-        database.ref('/deputies/' + id).set(data);
+        // let id = deputie.id;
+        // let data = _.cloneDeep(deputie);
+        // if(data.id) delete data.id;
+        // database.ref('/deputies/' + id).set(data);
     }
 
     onConstituencyDialogClose(e){
-        this.setState(prev => ({deputieDialog: {open: false, item: prev.deputieDialog.item, key: prev.deputieDialog.key}}));
+        this.setState(prev => ({constituencyDialog: {open: false, item: prev.constituencyDialog.item, key: prev.constituencyDialog.key}}));
     }
 
     onOpenMenuClick(e){
@@ -198,16 +156,24 @@ class ConstituenciesMap extends React.Component{
     // Render
     render(){ 
         // Props
+        
         let newProps = _.clone(this.props);
         if(newProps.deputies) delete newProps.deputies;
+        if(newProps.constituencies) delete newProps.constituencies;
         if(newProps.configs) delete newProps.configs;
-        if(newProps.onDeputieChange) delete newProps.onDeputieChange;
+        if(newProps.onConstituencyChange) delete newProps.onConstituencyChange;
+        if(newProps.onConstituencieChange) delete newProps.onConstituencieChange;
         if(newProps.onConfigsChange) delete newProps.onConfigsChange;
 
         // Edit mode
         let editable = this.isEditMode;
 
-        // Mod deputies data
+        // Mod  data
+        let constituencies = _.map(this.props.constituencies, (item, id) => {
+            item = _.clone(item);
+            item.id = id;
+            return item;
+        });
         let deputies = _.map(this.props.deputies, (item, id) => {
             item = _.clone(item);
             item.id = id;
@@ -220,7 +186,7 @@ class ConstituenciesMap extends React.Component{
 
         return (
             <div {...newProps}>
-                <KremenGoogleMap
+                <ConstituenciesMap
                     ref={(el) => {this._map = el}}
                     containerElement={(<div style={mixings.fullScreen} />)}
                     mapElement={(<div style={mixings.fullScreen} />)}
@@ -229,22 +195,23 @@ class ConstituenciesMap extends React.Component{
                     defaultZoom={this.props.configs[ConfigsKeys.MAP_ZOOM]}
                     
                     editable={editable}
-                    deputies={deputies}
+                    constituencies={constituencies}
 
                     onMapLoad={(map) => this.onMapLoad(map)}
                     onMapClick={(e) => this.onMapClick(e)}
-                    onDeputieClick={(e, deputie) => this.onDeputieClick(e, deputie)}
-                    onDeputieDblClick={(e, deputie) => this.onDeputieDblClick(e, deputie)}
-                    onDeputieChange={(e, deputie) => this.onDeputieChange(e, deputie)}
                     onMapResize={(e) => this.onMapResize(e)}
                     onMapCenterChanged={(e) => this.onMapCenterChanged(e)}
                     onMapZoomChanged={(e) => this.onMapZoomChanged(e)}
+
+                    onConstituencyClick={(e, constituency) => this.onConstituencyClick(e, constituency)}
+                    onConstituencyDblClick={(e, constituency) => this.onConstituencyDblClick(e, constituency)}
+                    onConstituencyChange={(e, constituency) => this.onConstituencyChange(e, constituency)}
                 />
-                {this.state.deputieDialog.item ? (
+                {this.state.constituencyDialog.item ? (
                 <ConstituencyDialog 
-                    key={this.state.deputieDialog.key}
-                    open={this.state.deputieDialog.open}
-                    item={this.state.deputieDialog.item}
+                    key={this.state.constituencyDialog.key}
+                    open={this.state.constituencyDialog.open}
+                    item={this.state.constituencyDialog.item}
                     onClose={(e) => this.onConstituencyDialogClose(e)}
                 />
                 ) : null}
@@ -267,12 +234,10 @@ class ConstituenciesMap extends React.Component{
                             user={this.state.user} />
                     </div>
                 </Drawer>
-                <BrandsPanel 
-                    style={{position: 'absolute', width: 100, left: 0, bottom: 24}}
-                />
+                <BrandsPanel style={{position: 'absolute', width: 100, left: 0, bottom: 24}}/>
             </div>
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConstituenciesMap); 
+export default connect(mapStateToProps, mapDispatchToProps)(ConstituenciesPage); 

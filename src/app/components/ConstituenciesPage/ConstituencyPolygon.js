@@ -48,10 +48,7 @@ export default class ConstituencyPoligon extends React.Component{
 
         const updateConstituencyPath = () => {
             let newPath = pathToData(path);
-            let deputie = this.props.deputie;
-            deputie.path = newPath;
-            deputie.center = getPolygonCenter(newPath);
-            this.props.onChange(null, deputie);
+            this.props.onChange(null, path);
         }
 
         path.addListener('set_at', () => {
@@ -71,13 +68,21 @@ export default class ConstituencyPoligon extends React.Component{
 
     render(){
         // Constituency
-        let deputie = this.props.deputie;
-        if(!deputie) return null;
+        let polygon = this.props.polygon;
+        if(!polygon) return null;
+
+        let paths = [];
+        if(polygon.outer){
+            paths.push(polygon.outer);
+        }
+        if(polygon.inner){
+            paths.push(polygon.inner);
+        }
 
         return (
             <Polygon 
-                ref={(polygon) => this.handlePolygon(polygon)}
-                paths={deputie.path}
+                ref={(el) => this.handlePolygon(el)}
+                paths={paths}
                 editable={this.props.editable}
                 draggable={false}
                 options={{
@@ -87,8 +92,8 @@ export default class ConstituencyPoligon extends React.Component{
                     fillColor: colors.blue,
                     fillOpacity: 0.1
                 }}
-                onClick={(e) => this.props.onClick(e, deputie)}
-                onDblClick={(e) => this.props.onDblClick(e, deputie)}
+                onClick={(e) => this.props.onClick(e)}
+                onDblClick={(e) => this.props.onDblClick(e)}
             />
         );
     }

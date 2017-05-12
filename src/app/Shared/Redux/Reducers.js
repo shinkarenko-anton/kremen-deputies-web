@@ -7,9 +7,7 @@ const log = Log.withModule('Reducers');
 // Redux
 import { combineReducers } from 'redux';
 
-// ########################
 // Deputies
-// ########################
 
 function deputies(state = {}, action){
     switch (action.type){
@@ -31,6 +29,30 @@ function deputies(state = {}, action){
     }
 }
 
+// Constituencies
+
+function constituencies(state = {}, action){
+    switch (action.type){
+        case actionTypes.CONSTITUENCIES_SET:
+            return action.constituencies; 
+        case actionTypes.CONSTITUENCIES_CHANGE:
+            let item = action.item;
+            if(!item) return state;
+            // Clonging just in case
+            item = _.clone(item);
+            // Getting id from object and remove this id from object
+            var id = item.id;
+            delete item.id;
+            // update state
+            state[id] = item;
+            return state; 
+        default:
+            return state;
+    }
+}
+
+// Consfigs
+
 function configs(state = {}, action){
     switch (action.type){
         case actionTypes.CONFIGS_CHANGE:
@@ -41,6 +63,8 @@ function configs(state = {}, action){
             return state;
     }
 }
+
+// Main reducer
 
 function mainReducer(state = {}, action){
     log(action);
@@ -54,7 +78,8 @@ function mainReducer(state = {}, action){
     // New state
     state =  {
         deputies: deputies(state.deputies, action),
-        configs: configs(state.configs, action)
+        configs: configs(state.configs, action),
+        constituencies: constituencies(state.constituencies, action)
     }
     
     return state;

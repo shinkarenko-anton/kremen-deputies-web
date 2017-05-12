@@ -1,5 +1,7 @@
 // React
 import React from "react";
+// UI
+import {Marker} from "react-google-maps";
 
 // ConstituencyMarker
 export default class ConstituencyMarker extends React.Component{
@@ -8,21 +10,14 @@ export default class ConstituencyMarker extends React.Component{
         this.state = {}
     }
 
-    // Lifecycle hooks
-
-    componentDidMount(){
-        
-    }
-
-    componentWillUnmount(){
-        
-    }
-
     // Render
 
     render(){
         return (
-            <div>{this.props.children}</div>
+            <Marker
+                position={this.props.position}
+                label={this.props.label}
+            />
         );
     }
 }
