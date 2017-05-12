@@ -4,10 +4,6 @@
             "deputies": [
                 "kremen-golovach-oleksandr"
             ],
-            "center": {
-                "lat": 49.06356617224582,
-                "lng": 33.41110284905881
-            },
             "number": 1,
             "path": [
                 {
@@ -182,16 +178,18 @@
                     "id": 531041,
                     "numberOfVoters": 1823
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.06356617224582,
+                    "lng": 33.41110284905881
+                }
             ]
         },
         "kremen-constituency-002": {
             "deputies": [
                 "kremen-shlyahova-olga"
             ],
-            "center": {
-                "lat": 49.063706446259005,
-                "lng": 33.405905248255294
-            },
             "number": 2,
             "path": [
                 {
@@ -454,6 +452,12 @@
                     "id": 531043,
                     "numberOfVoters": 1639
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.063706446259005,
+                    "lng": 33.405905248255294
+                }
             ]
         },
         "kremen-constituency-003": {
@@ -461,10 +465,6 @@
                 "kremen-prokop-oleksandr",
                 "kremen-tatsenyuk-vitaly"
             ],
-            "center": {
-                "lat": 49.06755739936969,
-                "lng": 33.403904009610415
-            },
             "number": 3,
             "path": [
                 {
@@ -652,16 +652,18 @@
                     "id": 531046,
                     "numberOfVoters": 1332
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.06755739936969,
+                    "lng": 33.403904009610415
+                }
             ]
         },
         "kremen-constituency-004": {
             "deputies": [
                 "kremen-kalashnik-viktor"
             ],
-            "center": {
-                "lat": 49.078705722622686,
-                "lng": 33.3986721932888
-            },
             "number": 4,
             "path": [
                 {
@@ -1413,16 +1415,18 @@
                     "id": 531049,
                     "numberOfVoters": 833
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.078705722622686,
+                    "lng": 33.3986721932888
+                }
             ]
         },
         "kremen-constituency-005": {
             "deputies": [
                 "kremen-tereschenko-denis"
             ],
-            "center": {
-                "lat": 49.08790580478093,
-                "lng": 33.397665882948786
-            },
             "number": 5,
             "path": [
                 {
@@ -2262,16 +2266,18 @@
                     "id": 531052,
                     "numberOfVoters": 656
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.08790580478093,
+                    "lng": 33.397665882948786
+                }
             ]
         },
         "kremen-constituency-006": {
             "deputies": [
                 "kremen-shevchenko-mykola"
             ],
-            "center": {
-                "lat": 49.074726606293794,
-                "lng": 33.41392859816551
-            },
             "number": 6,
             "path": [
                 {
@@ -2418,16 +2424,18 @@
                     "id": 531054,
                     "numberOfVoters": 1680
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.074726606293794,
+                    "lng": 33.41392859816551
+                }
             ]
         },
         "kremen-constituency-007": {
             "deputies": [
                 "kremen-kotlyar-vitaly"
             ],
-            "center": {
-                "lat": 49.08125240956352,
-                "lng": 33.42030425090343
-            },
             "number": 7,
             "path": [
                 {
@@ -2766,6 +2774,12 @@
                     "id": 531058,
                     "numberOfVoters": 2388
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.08125240956352,
+                    "lng": 33.42030425090343
+                }
             ]
         },
         "kremen-constituency-008": {
@@ -2773,10 +2787,6 @@
                 "kremen-bokovan-mykola",
                 "kremen-ulyanov-ruslan"
             ],
-            "center": {
-                "lat": 49.088779363253465,
-                "lng": 33.4176426679187
-            },
             "number": 8,
             "path": [
                 {
@@ -2987,16 +2997,18 @@
                     "id": 531057,
                     "numberOfVoters": 2237
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.088779363253465,
+                    "lng": 33.4176426679187
+                }
             ]
         },
         "kremen-constituency-009": {
             "deputies": [
                 "kremen-poruch"
             ],
-            "center": {
-                "lat": 49.103281913946596,
-                "lng": 33.4112423658371
-            },
             "number": 9,
             "path": [
                 {
@@ -3379,16 +3391,18 @@
                     "id": 531061,
                     "numberOfVoters": 2295
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.103281913946596,
+                    "lng": 33.4112423658371
+                }
             ]
         },
         "kremen-constituency-010": {
             "deputies": [
                 "kremen-kurchenko-gai-valentin"
             ],
-            "center": {
-                "lat": 49.09657356235407,
-                "lng": 33.419832540967036
-            },
             "number": 10,
             "path": [
                 {
@@ -3635,16 +3649,18 @@
                     "id": 531063,
                     "numberOfVoters": 2332
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.09657356235407,
+                    "lng": 33.419832540967036
+                }
             ]
         },
         "kremen-constituency-011": {
             "deputies": [
                 "kremen-poruch"
             ],
-            "center": {
-                "lat": 49.09335746186416,
-                "lng": 33.42946091433987
-            },
             "number": 11,
             "path": [
                 {
@@ -3799,16 +3815,18 @@
                     "id": 531065,
                     "numberOfVoters": 2034
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.09335746186416,
+                    "lng": 33.42946091433987
+                }
             ]
         },
         "kremen-constituency-012": {
             "deputies": [
                 "kremen-shibashov-volodymir"
             ],
-            "center": {
-                "lat": 49.08750405126253,
-                "lng": 33.42809445457533
-            },
             "number": 12,
             "path": [
                 {
@@ -4131,16 +4149,18 @@
                     "id": 531071,
                     "numberOfVoters": 2008
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.08750405126253,
+                    "lng": 33.42809445457533
+                }
             ]
         },
         "kremen-constituency-013": {
             "deputies": [
                 "kremen-yatsina-oleksandr"
             ],
-            "center": {
-                "lat": 49.10045731325651,
-                "lng": 33.427276611328125
-            },
             "number": 13,
             "path": [
                 {
@@ -4231,16 +4251,18 @@
                     "id": 531068,
                     "numberOfVoters": 1972
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.10045731325651,
+                    "lng": 33.427276611328125
+                }
             ]
         },
         "kremen-constituency-014": {
             "deputies": [
                 "kremen-pochtovyuk-andryi"
             ],
-            "center": {
-                "lat": 49.08631880435722,
-                "lng": 33.43804418031493
-            },
             "number": 14,
             "path": [
                 {
@@ -4615,16 +4637,18 @@
                     "id": 531074,
                     "numberOfVoters": 1127
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.08631880435722,
+                    "lng": 33.43804418031493
+                }
             ]
         },
         "kremen-constituency-015": {
             "deputies": [
                 "kremen-grіnchenko-volodymir"
             ],
-            "center": {
-                "lat": 49.09477921770096,
-                "lng": 33.43715397306369
-            },
             "number": 15,
             "path": [
                 {
@@ -4863,16 +4887,18 @@
                     "id": 531076,
                     "numberOfVoters": 1515
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.09477921770096,
+                    "lng": 33.43715397306369
+                }
             ]
         },
         "kremen-constituency-016": {
             "deputies": [
                 "kremen-litvinenko-maksim"
             ],
-            "center": {
-                "lat": 49.100662177143604,
-                "lng": 33.434500973671675
-            },
             "number": 16,
             "path": [
                 {
@@ -5027,16 +5053,18 @@
                     "id": 531078,
                     "numberOfVoters": 1875
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.100662177143604,
+                    "lng": 33.434500973671675
+                }
             ]
         },
         "kremen-constituency-017": {
             "deputies": [
                 "kremen-poritskii-mykola"
             ],
-            "center": {
-                "lat": 49.099576829593026,
-                "lng": 33.45693558938183
-            },
             "number": 17,
             "path": [
                 {
@@ -5375,16 +5403,18 @@
                     "id": 531077,
                     "numberOfVoters": 2128
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.099576829593026,
+                    "lng": 33.45693558938183
+                }
             ]
         },
         "kremen-constituency-018": {
             "deputies": [
                 "kremen-fedorchenko-ruslan"
             ],
-            "center": {
-                "lat": 49.12435203142906,
-                "lng": 33.42446844326332
-            },
             "number": 18,
             "path": [
                 {
@@ -5671,16 +5701,18 @@
                     "id": 531070,
                     "numberOfVoters": 2436
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.12435203142906,
+                    "lng": 33.42446844326332
+                }
             ]
         },
         "kremen-constituency-019": {
             "deputies": [
                 "kremen-pіddubna-oksana"
             ],
-            "center": {
-                "lat": 49.111176508092925,
-                "lng": 33.46867013722658
-            },
             "number": 19,
             "path": [
                 {
@@ -6003,16 +6035,18 @@
                     "id": 531080,
                     "numberOfVoters": 2305
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.111176508092925,
+                    "lng": 33.46867013722658
+                }
             ]
         },
         "kremen-constituency-020": {
             "deputies": [
                 "kremen-pogrіbnii-sergy"
             ],
-            "center": {
-                "lat": 49.119104203914034,
-                "lng": 33.43960538506508
-            },
             "number": 20,
             "path": [
                 {
@@ -6183,16 +6217,18 @@
                     "id": 531082,
                     "numberOfVoters": 2112
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.119104203914034,
+                    "lng": 33.43960538506508
+                }
             ]
         },
         "kremen-constituency-021": {
             "deputies": [
                 "kremen-tereschenko-konstyantin"
             ],
-            "center": {
-                "lat": 49.12635125620747,
-                "lng": 33.440643124922644
-            },
             "number": 21,
             "path": [
                 {
@@ -6619,16 +6655,18 @@
                     "id": 531088,
                     "numberOfVoters": 1967
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.12635125620747,
+                    "lng": 33.440643124922644
+                }
             ]
         },
         "kremen-constituency-022": {
             "deputies": [
                 "kremen-rozhenko-oleksandr"
             ],
-            "center": {
-                "lat": 49.13079201434111,
-                "lng": 33.44601720571518
-            },
             "number": 22,
             "path": [
                 {
@@ -6799,16 +6837,18 @@
                     "id": 531085,
                     "numberOfVoters": 2289
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.13079201434111,
+                    "lng": 33.44601720571518
+                }
             ]
         },
         "kremen-constituency-023": {
             "deputies": [
                 "kremen-makarov-andry"
             ],
-            "center": {
-                "lat": 49.13357446641217,
-                "lng": 33.44537481665611
-            },
             "number": 23,
             "path": [
                 {
@@ -6931,6 +6971,12 @@
                     "id": 531087,
                     "numberOfVoters": 2258
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.13357446641217,
+                    "lng": 33.44537481665611
+                }
             ]
         },
         "kremen-constituency-024": {
@@ -6938,10 +6984,6 @@
                 "kremen-kostromіnov-sergy",
                 "kremen-kotlyarenko-lyudmila"
             ],
-            "center": {
-                "lat": 49.13406134441283,
-                "lng": 33.43793202191591
-            },
             "number": 24,
             "path": [
                 {
@@ -7068,16 +7110,18 @@
                     "id": 531090,
                     "numberOfVoters": 2182
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.13406134441283,
+                    "lng": 33.43793202191591
+                }
             ]
         },
         "kremen-constituency-025": {
             "deputies": [
                 "kremen-kalchenko-oleksandr"
             ],
-            "center": {
-                "lat": 49.13926755388269,
-                "lng": 33.44319820404053
-            },
             "number": 25,
             "path": [
                 {
@@ -7208,16 +7252,18 @@
                     "id": 531098,
                     "numberOfVoters": 2142
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.13926755388269,
+                    "lng": 33.44319820404053
+                }
             ]
         },
         "kremen-constituency-026": {
             "deputies": [
                 "kremen-korkіshko-oleksandr"
             ],
-            "center": {
-                "lat": 49.13975876061737,
-                "lng": 33.43371589318849
-            },
             "number": 26,
             "path": [
                 {
@@ -7404,16 +7450,18 @@
                     "id": 531093,
                     "numberOfVoters": 2379
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.13975876061737,
+                    "lng": 33.43371589318849
+                }
             ]
         },
         "kremen-constituency-027": {
             "deputies": [
                 "kremen-mosіenko-olena"
             ],
-            "center": {
-                "lat": 49.14473764419543,
-                "lng": 33.429057598114014
-            },
             "number": 27,
             "path": [
                 {
@@ -7568,16 +7616,18 @@
                     "id": 531095,
                     "numberOfVoters": 2437
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.14473764419543,
+                    "lng": 33.429057598114014
+                }
             ]
         },
         "kremen-constituency-028": {
             "deputies": [
                 "kremen-sіderka-tetyana"
             ],
-            "center": {
-                "lat": 49.147278173931895,
-                "lng": 33.43735836446285
-            },
             "number": 28,
             "path": [
                 {
@@ -7660,16 +7710,18 @@
                     "id": 531097,
                     "numberOfVoters": 1968
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.147278173931895,
+                    "lng": 33.43735836446285
+                }
             ]
         },
         "kremen-constituency-029": {
             "deputies": [
                 "kremen-poruch"
             ],
-            "center": {
-                "lat": 49.06373239816948,
-                "lng": 33.42059254646301
-            },
             "number": 29,
             "path": [
                 {
@@ -8017,16 +8069,18 @@
                     "id": 531103,
                     "numberOfVoters": 1988
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.06373239816948,
+                    "lng": 33.42059254646301
+                }
             ]
         },
         "kremen-constituency-030": {
             "deputies": [
                 "kremen-poruch"
             ],
-            "center": {
-                "lat": 49.06888865009481,
-                "lng": 33.41844832006643
-            },
             "number": 30,
             "path": [
                 {
@@ -8306,16 +8360,18 @@
                     "id": 531106,
                     "numberOfVoters": 1182
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.06888865009481,
+                    "lng": 33.41844832006643
+                }
             ]
         },
         "kremen-constituency-031": {
             "deputies": [
                 "kremen-ridne-misto"
             ],
-            "center": {
-                "lat": 49.072653862628755,
-                "lng": 33.41485798358917
-            },
             "number": 31,
             "path": [
                 {
@@ -8426,16 +8482,18 @@
                     "id": 531108,
                     "numberOfVoters": 1544
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.072653862628755,
+                    "lng": 33.41485798358917
+                }
             ]
         },
         "kremen-constituency-032": {
             "deputies": [
                 "kremen-kalashnik-oleksandr"
             ],
-            "center": {
-                "lat": 49.075403877670794,
-                "lng": 33.42935498803854
-            },
             "number": 32,
             "path": [
                 {
@@ -8790,16 +8848,18 @@
                     "id": 531110,
                     "numberOfVoters": 2023
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.075403877670794,
+                    "lng": 33.42935498803854
+                }
             ]
         },
         "kremen-constituency-033": {
             "deputies": [
                 "kremen-gordeeva-valentyna"
             ],
-            "center": {
-                "lat": 49.06301027213928,
-                "lng": 33.43358902260661
-            },
             "number": 33,
             "path": [
                 {
@@ -9066,16 +9126,18 @@
                     "id": 531113,
                     "numberOfVoters": 2200
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.06301027213928,
+                    "lng": 33.43358902260661
+                }
             ]
         },
         "kremen-constituency-034": {
             "deputies": [
                 "kremen-ridne-misto"
             ],
-            "center": {
-                "lat": 49.07048025764755,
-                "lng": 33.443939685530495
-            },
             "number": 34,
             "path": [
                 {
@@ -9539,16 +9601,18 @@
                     "id": 531115,
                     "numberOfVoters": 1019
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.07048025764755,
+                    "lng": 33.443939685530495
+                }
             ]
         },
         "kremen-constituency-035": {
             "deputies": [
                 "kremen-sergіenko-tetyana"
             ],
-            "center": {
-                "lat": 49.08353569406467,
-                "lng": 33.45364607870579
-            },
             "number": 35,
             "path": [
                 {
@@ -9767,16 +9831,18 @@
                     "id": 531117,
                     "numberOfVoters": 1906
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.08353569406467,
+                    "lng": 33.45364607870579
+                }
             ]
         },
         "kremen-constituency-036": {
             "deputies": [
                 "kremen-golovko-valentina"
             ],
-            "center": {
-                "lat": 49.036868740689115,
-                "lng": 33.428005010574
-            },
             "number": 36,
             "path": [
                 {
@@ -10084,16 +10150,18 @@
                     "id": 531122,
                     "numberOfVoters": 1416
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.036868740689115,
+                    "lng": 33.428005010574
+                }
             ]
         },
         "kremen-constituency-037": {
             "deputies": [
                 "kremen-opoblock"
             ],
-            "center": {
-                "lat": 49.01735826313667,
-                "lng": 33.42257722528302
-            },
             "number": 37,
             "path": [
                 {
@@ -10489,16 +10557,18 @@
                     "id": 531125,
                     "numberOfVoters": 1440
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.01735826313667,
+                    "lng": 33.42257722528302
+                }
             ]
         },
         "kremen-constituency-038": {
             "deputies": [
                 "kremen-ugnіch-grigory"
             ],
-            "center": {
-                "lat": 49.03240033153653,
-                "lng": 33.44599382020533
-            },
             "number": 38,
             "path": [
                 {
@@ -10854,16 +10924,18 @@
                     "id": 531126,
                     "numberOfVoters": 1512
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.03240033153653,
+                    "lng": 33.44599382020533
+                }
             ]
         },
         "kremen-constituency-039": {
             "deputies": [
                 "kremen-protsenko-zinaida"
             ],
-            "center": {
-                "lat": 49.02598798733082,
-                "lng": 33.460569258313626
-            },
             "number": 39,
             "path": [
                 {
@@ -11150,6 +11222,12 @@
                     "id": 531128,
                     "numberOfVoters": 2331
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.02598798733082,
+                    "lng": 33.460569258313626
+                }
             ]
         },
         "kremen-constituency-040": {
@@ -11157,10 +11235,6 @@
                 "kremen-lozovik-dmitro",
                 "kremen-melnik-sergy"
             ],
-            "center": {
-                "lat": 49.02481918969602,
-                "lng": 33.464236749568954
-            },
             "number": 40,
             "name": "Мельник Сергій Вікторович",
             "path": [
@@ -11424,16 +11498,18 @@
                     "id": 531130,
                     "numberOfVoters": 1501
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.02481918969602,
+                    "lng": 33.464236749568954
+                }
             ]
         },
         "kremen-constituency-041": {
             "deputies": [
                 "kremen-pleskun-oleksandr"
             ],
-            "center": {
-                "lat": 49.021244841475294,
-                "lng": 33.465944408699215
-            },
             "number": 41,
             "path": [
                 {
@@ -11809,16 +11885,18 @@
                     "id": 531133,
                     "numberOfVoters": 1534
                 }
+            ],
+            "markers": [
+                {
+                    "lat": 49.021244841475294,
+                    "lng": 33.465944408699215
+                }
             ]
         },
         "kremen-constituency-042": {
             "deputies": [
                 "kremen-іvanyan-genady"
             ],
-            "center": {
-                "lat": 49.014975822731174,
-                "lng": 33.46330488100648
-            },
             "number": 42,
             "path": [
                 {
@@ -12116,6 +12194,12 @@
                     "addresses": "Центр – вул. Шкільна, 16, м. Кременчук, Полтавська обл., 39625 (школа №22, хол) м. Кременчук – вул. Республіканська: 95; вул. Східна: 20–20Б, 22, 24, 26, 28, 30, 32, 34, 36–38; вул. Правобережна (вул. Червоноармійська): 57/2–57/33; вул. Шкільна: 13/10–17; пров. Грушевий, пров. Січовий (пров. Дніпропетровський, пров. Правобережний (пров. Червоноармійський): 4, 12;",
                     "id": 531135,
                     "numberOfVoters": 1905
+                }
+            ],
+            "markers": [
+                {
+                    "lat": 49.014975822731174,
+                    "lng": 33.46330488100648
                 }
             ]
         }
