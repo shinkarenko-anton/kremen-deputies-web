@@ -74,7 +74,7 @@ export default function DeputieInfo(props){
                 {deputie.fb ? (
                 <div style={deputieStyle.row}>
                     <div style={deputieStyle.rowIcon}><i className="fa fa-facebook-official"></i></div>
-                    <div style={_.assign({}, deputieStyle.rowData, threeDots)}>
+                    <div style={_.assign({}, deputieStyle.rowData)}>
                         <a href={deputie.fb} target="__blank">{deputie.fb}</a>
                     </div>
                 </div>

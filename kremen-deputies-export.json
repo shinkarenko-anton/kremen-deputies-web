@@ -1875,8 +1875,8 @@
     "kremen-constituency-007" : {
       "deputies" : [ "kremen-kotlyar-vitaly" ],
       "markers" : [ {
-        "lat" : 49.08125240956352,
-        "lng" : 33.42030425090343
+        "lat" : 49.08089370915046,
+        "lng" : 33.42341423034668
       } ],
       "number" : 7,
       "polygons" : [ {
@@ -8407,8 +8407,8 @@
     "kremen-constituency-039" : {
       "deputies" : [ "kremen-protsenko-zinaida" ],
       "markers" : [ {
-        "lat" : 49.02598798733082,
-        "lng" : 33.460569258313626
+        "lat" : 49.02689463635926,
+        "lng" : 33.45937728881836
       } ],
       "number" : 39,
       "polygons" : [ {
@@ -8838,8 +8838,8 @@
     "kremen-constituency-041" : {
       "deputies" : [ "kremen-pleskun-oleksandr" ],
       "markers" : [ {
-        "lat" : 49.021244841475294,
-        "lng" : 33.465944408699215
+        "lat" : 49.02053463679231,
+        "lng" : 33.46615791320801
       } ],
       "number" : 41,
       "polygons" : [ {
@@ -9379,7 +9379,7 @@
       "schedule" : "останній четвер щомісяця з 15.00 до 18.00 год. вівторок та четвер щомісяця з 15.00 до 18.00 год. (прийом веде помічник депутата)"
     },
     "kremen-golovach-oleksandr" : {
-      "address" : "ТЦ «Бізнес-букет», м. Кременчук, вул. Першотравне-ва, 20, каб. 210",
+      "address" : "ТЦ «Бізнес-букет», м. Кременчук, вул. Першотравнева, 20, каб. 210",
       "name" : "Головач Олександр Леонідович (Прийом мешканців міста депутатами ВО «Батьківщина»)",
       "phones" : [ "7-000-25" ],
       "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-golovach-oleksandr-001.JPG?alt=media&token=b2d6942c-3853-44c1-b369-7a56caa2b4e6", "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-golovach-oleksandr-002.JPG?alt=media&token=aac108c5-adf6-44d9-bb20-04e5c358f4fa" ],
@@ -9401,7 +9401,7 @@
       "schedule" : "кожний вівторок щомісяця з 12.00 до 14.00 год."
     },
     "kremen-grinchenko-volodymir" : {
-      "address" : "м. Кременчук, пров. Льва Толсто- го, 32",
+      "address" : "м. Кременчук, пров. Льва Толстого, 32",
       "fb" : "https://www.facebook.com/profile.php?id=100004116073710",
       "name" : "Грінченко Володимир Вадимович",
       "phones" : [ "(067) 171-65-00" ],
@@ -9409,7 +9409,7 @@
       "schedule" : "друга та остання п'ятниці щомісяця з 14.00 до 16.00 год."
     },
     "kremen-ivanyan-genady" : {
-      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республі-канська, 81",
+      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республіканська, 81",
       "fb" : "https://www.facebook.com/IvanyanGennadij",
       "name" : "Іванян Геннадій Михайлович",
       "phones" : [ "6-21-00" ],
@@ -9436,7 +9436,7 @@
       "address" : "приміщення ради громадськості мікрорайону № 11, м. Кременчук, вул. Володимира Великого (вул. Тельмана), 26 ЦКСД «Нафтохімік», м. Кременчук, просп. Лесі Українки (просп. 50-річчя Жовтня), 33",
       "fb" : "https://www.facebook.com/aleksandr.kalchenko.9",
       "name" : "Кальченко Олександр Вікторович",
-      "phones" : [ "4-88-49", "(098) 374-15-25", "(067) 744-20-01", "(098) 374-15-25", "(067) 744-20-01" ],
+      "phones" : [ "4-88-49", "(098) 374-15-25", "(067) 744-20-01" ],
       "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-kalchenko-oleksandr-001.JPG?alt=media&token=8390495b-5284-4deb-a039-3ee6de26cc29" ],
       "schedule" : "перший четвер щомісяця з 17.30 до 18.30 год. перший вівторок щомісяця з 17.30 до 18.30 год."
     },
@@ -9508,7 +9508,7 @@
       "vk" : "https://vk.com/makarovandreu"
     },
     "kremen-melnik-sergy" : {
-      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республі-канська, 81",
+      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республіканська, 81",
       "name" : "Мельник Сергій Вікторович",
       "phones" : [ "6-21-00" ],
       "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-melnik-sergy-001.JPG?alt=media&token=c444aa0a-858a-4d30-8f1d-652ad7b30833" ],
@@ -9539,12 +9539,12 @@
       "address" : "м. Кременчук, вул. 29 вересня, 7 м. Кременчук, пров. Давіда Гурамішвілі, 1",
       "fb" : "https://www.facebook.com/oksanapiddubnaofficialpage",
       "name" : "Піддубна Оксана Миколаївна",
-      "phones" : [ "79-94-41", "(067) 744-20-01", "(067) 744-20-01" ],
+      "phones" : [ "79-94-41", "(067) 744-20-01" ],
       "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-p%D1%96ddubna-oksana-001.JPG?alt=media&token=2d1f4719-8fea-4b8d-828a-7e86e8d1c880" ],
       "schedule" : "вівторок та субота щомісяця з 15.00 до 18.00 год. другий четвер щомісяця з 16.00 до 18.00 год."
     },
     "kremen-pleskun-oleksandr" : {
-      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республі-канська, 81",
+      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республіканська, 81",
       "name" : "Плескун Олександр Володимирович",
       "phones" : [ "6-21-00" ],
       "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-pleskun-oleksandr-001.JPG?alt=media&token=f5aad501-b730-42bb-9a1a-a52f286a8481" ],
@@ -9588,7 +9588,7 @@
       "schedule" : "другий та четвертий четвер щомісяця з 16.00 до 18.00 год."
     },
     "kremen-protsenko-zinaida" : {
-      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республі-канська, 81",
+      "address" : "приміщення ради громадськості мікрорайону № 13, м. Кременчук, вул. Республіканська, 81",
       "fb" : "https://www.facebook.com/zinaida.protsenko",
       "name" : "Проценко Зінаїда Валеріївна",
       "phones" : [ "6-21-00" ],
@@ -9650,7 +9650,7 @@
       "schedule" : "перший четвер щомісяця з 16.00 до 18.00 год."
     },
     "kremen-tatsenyuk-vitaly" : {
-      "address" : "офіс ТОВ «Кременчуцька торгова гільдія», м. Кременчук, вул. Першотравне-ва, 43",
+      "address" : "офіс ТОВ «Кременчуцька торгова гільдія», м. Кременчук, вул. Першотравнева, 43",
       "fb" : "https://www.facebook.com/profile.php?id=100010122459844",
       "name" : "Таценюк Віталій Дмитрович",
       "phones" : [ "74-20-54" ],
@@ -9662,7 +9662,7 @@
       "fb" : "https://www.facebook.com/DenisTereschenko1974",
       "name" : "Терещенко Денис Юрійович",
       "phones" : [ "77-44-10" ],
-      "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-tatsenyuk-vitaly-002.JPG?alt=media&token=a306d436-275d-4993-a569-048eadebb06c" ],
+      "photos" : [ "https://firebasestorage.googleapis.com/v0/b/kremen-deputies.appspot.com/o/photos%2Fkremen-tereschenko-denis-001.JPG?alt=media&token=e92e7dd8-0950-460c-9e33-25987c718e1b" ],
       "schedule" : "друга субота щомісяця з 10.00 до 12.00 год. четверта субота щомісяця з 10.00 до 12.00 год."
     },
     "kremen-tereschenko-konstyantin" : {
@@ -9673,7 +9673,7 @@
       "schedule" : "останній четвер щомісяця з 15.00 до 17.00 год."
     },
     "kremen-ugnich-grigory" : {
-      "address" : "приміщення ради громадськості мікрорайону № 12, м. Кременчук, вул. І. Приходь- ка, 91",
+      "address" : "приміщення ради громадськості мікрорайону № 12, м. Кременчук, вул. І. Приходька, 91",
       "fb" : "https://www.facebook.com/profile.php?id=100008895275828",
       "name" : "Угніч Григорій Анатолійович",
       "phones" : [ "6-21-38" ],

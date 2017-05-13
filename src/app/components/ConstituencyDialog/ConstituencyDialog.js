@@ -71,15 +71,13 @@ class ConstituencyDialog extends React.Component{
                 modal={false}
                 open={this.props.open}
                 onRequestClose={() => this.props.onClose()}>
-                <div style={{height: '70vh', overflowY: 'scroll', overflowX: 'hidden'}}>
-                    {_.map(deputies, (deputie, index) => (
-                        <DeputieInfo 
-                            key={index}
-                            deputie={deputie}
-                            style={ index > 0 ? {marginTop: 20, paddingTop: 20, borderTop: '1px dashed rgba(0, 0, 0, .4)'} : null}
-                        />
-                    ))}
-                </div>
+                {_.map(deputies, (deputie, index) => (
+                    <DeputieInfo 
+                        key={index}
+                        deputie={deputie}
+                        style={ index > 0 ? {marginTop: 20, paddingTop: 20, borderTop: '1px dashed rgba(0, 0, 0, .4)'} : null}
+                    />
+                ))}
             </Dialog>
         );
     }

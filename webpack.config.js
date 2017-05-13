@@ -1,9 +1,14 @@
-let path = require('path');
-let webpack = require('webpack');
-let pack = require('./package.json');
-let CopyWebpackPlugin = require('copy-webpack-plugin');
-let distPath = path.resolve(__dirname, 'dist');
-let appPath = path.resolve(__dirname, 'src/app');
+// Require
+const path = require('path');
+const webpack = require('webpack');
+// Plugins
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+// Data
+const package = require('./package.json');
+const distPath = path.resolve(__dirname, 'dist');
+const appPath = path.resolve(__dirname, 'src/app');
+// Configs
 let config = {
     entry: {
         'app': appPath + '/app.js'
@@ -21,15 +26,28 @@ let config = {
         ]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Карта виборчих округів м. Кременчук',
+            prefix: 'IQ Hub',
+            descr: 'Карта виборчих округів дозволяє вам дізнатись хто є депутатом вашого району та як з ним зв\'язатись',
+            url: 'https://deputat.kr.io.ua/',
+            filename: 'index.html',
+            template: 'src/assets/templates/index.ejs',
+            hash: true,
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true
+            }
+        }),
         new CopyWebpackPlugin([
-            {from: 'src/index.html'},
             {context: 'src', from: 'assets/img/fav/*'},
             {context: 'src', from: 'assets/img/baner/*'}
         ]),
         new webpack.DefinePlugin({
-            VERSION: JSON.stringify(pack.version),
+            VERSION: JSON.stringify(package.version),
             ENV: JSON.stringify(process.env.ENV)
         })
     ]
 }
+// Exports
 module.exports = config;
