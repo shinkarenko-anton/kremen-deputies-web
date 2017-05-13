@@ -9,9 +9,6 @@ import colors from '../../shared/Theme/Colors';
 import {Polygon, Marker} from "react-google-maps";
 
 // Helpers
-const pathToData = (path) => (
-    _.map(path.getArray(), (item, index) => ({ lat: item.lat(), lng: item.lng()}))
-);
 
 const getPolygonCenter = (path) => {
     var bound = new google.maps.LatLngBounds();
@@ -44,24 +41,33 @@ export default class ConstituencyPoligon extends React.Component{
     handlePolygon(polygon){
         if(!polygon) return;
         this._polygon = polygon;
-        let path = polygon.getPath();
-
-        const updateConstituencyPath = () => {
-            let newPath = pathToData(path);
-            this.props.onChange(null, {outer: newPath});
+        
+        let updateConstituencyPath = () => {
+            let newPolygonData = {};
+            _.each(polygon.getPaths().getArray(), (path, index) => {
+                let newPath = _.map(path.getArray(), (item, index) => ({ lat: item.lat(), lng: item.lng()}));
+                if(index == 0) newPolygonData.outer = newPath;
+                if(index == 1) newPolygonData.inner = newPath;
+            });
+            
+            this.props.onChange(null, newPolygonData);
         }
 
-        path.addListener('set_at', () => {
-            updateConstituencyPath();
-        });
+        _.each(polygon.getPaths().getArray(), (path, index) => {
+            path.addListener('set_at', () => {
+                updateConstituencyPath();
+            });
 
-        path.addListener('remove_at', () => {
-            updateConstituencyPath();
-        });
+            path.addListener('remove_at', () => {
+                updateConstituencyPath();
+            });
 
-        path.addListener('insert_at', () => {
-            updateConstituencyPath();
+            path.addListener('insert_at', () => {
+                updateConstituencyPath();
+            });
         });
+        
+
     }
 
     // Render

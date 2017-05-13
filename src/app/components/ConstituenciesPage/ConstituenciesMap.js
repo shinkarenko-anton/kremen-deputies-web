@@ -47,7 +47,7 @@ export default withGoogleMap(props => {
                             key={"polygon-" + item.id + "-" + index}
                             polygon={polygon}
                             editable={props.editable && selected && (selected.id == item.id)}
-                            onChange={(e, path) => {item.polygons[index] = path; props.onConstituencyChange(e, item)}}
+                            onChange={(e, path) => {let newItem = _.clone(item); newItem.polygons[index] = path; props.onConstituencyChange(e, newItem)}}
                             onClick={(e) => props.onConstituencyClick(e, item)}
                             onDblClick={(e) => props.onConstituencyDblClick(e, item)}
                         />
