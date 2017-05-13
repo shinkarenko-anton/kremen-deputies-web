@@ -1,14 +1,18 @@
 {
-  "name": "kremen-deputies",
+  "name": "iqhub-deputies",
   "version": "1.4.1",
-  "description": "All open inforamtion about Kremn's Deputies",
-  "main": "dist/app/app.js",
+  "title": "Карта виборчих округів м. Кременчук",
+  "description": "Карта виборчих округів дозволяє вам дізнатись хто є депутатом вашого району та як з ним зв'язатись",
+  "company": "IQ Hub",
+  "url": "https://deputat.kr.io.ua/",
+  "main": "src/app/app.js",
   "scripts": {
     "start": "ENV=dev webpack-dev-server",
     "clear": "rm -rf dist coverage",
     "test": "jest --coverage --watch",
     "dev": "ENV=dev webpack -d --watch",
-    "dist": "webpack -p --progress"
+    "dist": "webpack -p --progress",
+    "deploy": "firebase deploy --only hosting"
   },
   "author": "Jaroslav Khorishchenko <websnipter@gmail.com>",
   "license": "ISC",

@@ -15,7 +15,7 @@ let config = {
     },
     output: {
         path: distPath,
-        filename: 'app/[name].js'
+        filename: '[name].js'
     },
     module: {
         loaders: [
@@ -27,16 +27,17 @@ let config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Карта виборчих округів м. Кременчук',
-            prefix: 'IQ Hub',
-            descr: 'Карта виборчих округів дозволяє вам дізнатись хто є депутатом вашого району та як з ним зв\'язатись',
-            url: 'https://deputat.kr.io.ua/',
+            title: package.title,
+            company: package.company,
+            description: package.description,
+            url: package.url,
             filename: 'index.html',
             template: 'src/assets/templates/index.ejs',
             hash: true,
             minify: {
                 collapseWhitespace: true,
-                removeComments: true
+                removeComments: true,
+                minifyJS: true
             }
         }),
         new CopyWebpackPlugin([
