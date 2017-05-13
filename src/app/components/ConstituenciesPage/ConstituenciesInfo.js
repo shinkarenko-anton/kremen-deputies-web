@@ -85,6 +85,14 @@ export default class DeputieInfo extends React.Component{
                         </span>
                     </p>
                     <p style={style.contactRow}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.google})}>
+                            <span className="fa fa-envelope"></span>
+                        </span>
+                        <span style={style.rowData}>
+                            <a href="mailto:visnyk.kremenchuka@gmail.com" target="__blank">visnyk.kremenchuka@gmail.com</a>
+                        </span>
+                    </p>
+                    <p style={style.contactRow}>
                         <span style={_.assign({}, style.rowIcon, {color: colors.facebook})}>
                             <span className="fa fa-facebook-official"></span>
                         </span>
@@ -101,7 +109,7 @@ export default class DeputieInfo extends React.Component{
                         </span>
                     </p>
                     <p>
-                        Допомога з контентом:
+                        Партнер проекту:
                     </p>
                     <p style={style.logoContainer}>
                         <a href="https://vestnik.in.ua/" target="__blank" style={style.logoLink}>
