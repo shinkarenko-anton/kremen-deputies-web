@@ -5,3 +5,16 @@ export const fullScreen = {
     top: 0,
     bottom: 0
 }
+
+export const screenCenter = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(-50%)'
+}
+
+export const threeDots = {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden !important',
+    textOverflow: 'ellipsis'
+}

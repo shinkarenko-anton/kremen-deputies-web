@@ -31,14 +31,12 @@ const CITY_LOC = {lat: 49.0589964, lng: 33.403250199999995};
 
 // Redux
 const mapStateToProps = (state) => ({
-    deputies: state.deputies,
     constituencies: state.constituencies,
     configs: state.configs
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onConstituencyChange: (item) => dispatch(actions.deputies.change(item)),
-    onConstituencieChange: (item) => dispatch(actions.constituencies.change(item)),
+    onConstituencyChange: (item) => dispatch(actions.constituencies.change(item)),
     onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val))
 });
 
@@ -92,8 +90,7 @@ class ConstituenciesPage extends React.Component{
     }
 
     onMapClick(e){
-        let location = e.latLng;
-        log('map click: ' + JSON.stringify(location));
+        log('map click: ' + JSON.stringify(e.latLng));
         this.setState({selected: null});
     }
 
@@ -114,7 +111,6 @@ class ConstituenciesPage extends React.Component{
     }
 
     onMapZoomChanged(e){
-        // log('on zoom changed');
         if(this._map){
             let map = this._map.state.map;
             if(map){
@@ -126,27 +122,39 @@ class ConstituenciesPage extends React.Component{
 
     onConstituencyClick(e, constituency){
         log('constituency click: ' + constituency.id + ' at location ' + JSON.stringify(e.latLng));
-        // if(this.isEditMode) return;
-        // this.setState({constituencyDialog: {open: true, item: deputie, key: null}});
+        if(this.isEditMode) return;
+        this.setState({
+            constituencyDialog: {
+                open: true, 
+                item: constituency, 
+                key: utils.id.genId()
+            }
+        });
     }
 
     onConstituencyDblClick(e, constituency){
         log('constituency double click: ' + constituency.id + ' at location ' + JSON.stringify(e.latLng));
-        // this.setState({selected: deputie});
+        this.setState({selected: constituency});
     }
 
     onConstituencyChange(e, constituency){
         log('constituency change: ' + constituency.id);
-        // this.props.onConstituencyChange(deputie);
+        this.props.onConstituencyChange(constituency);
         // Updating firebase
-        // let id = deputie.id;
-        // let data = _.cloneDeep(deputie);
-        // if(data.id) delete data.id;
-        // database.ref('/deputies/' + id).set(data);
+        let id = constituency.id;
+        let data = _.cloneDeep(constituency);
+        if(constituency.id) delete constituency.id;
+        database.ref('/constituencies/' + id).set(data);
     }
 
     onConstituencyDialogClose(e){
-        this.setState(prev => ({constituencyDialog: {open: false, item: prev.constituencyDialog.item, key: prev.constituencyDialog.key}}));
+        this.setState(prev => ({
+            constituencyDialog: {
+                open: false, 
+                item: prev.constituencyDialog.item, 
+                key: prev.constituencyDialog.key
+            }
+        }));
     }
 
     onOpenMenuClick(e){
@@ -158,11 +166,10 @@ class ConstituenciesPage extends React.Component{
         // Props
         
         let newProps = _.clone(this.props);
-        if(newProps.deputies) delete newProps.deputies;
         if(newProps.constituencies) delete newProps.constituencies;
         if(newProps.configs) delete newProps.configs;
         if(newProps.onConstituencyChange) delete newProps.onConstituencyChange;
-        if(newProps.onConstituencieChange) delete newProps.onConstituencieChange;
+        if(newProps.onConstituencyChange) delete newProps.onConstituencyChange;
         if(newProps.onConfigsChange) delete newProps.onConfigsChange;
 
         // Edit mode
@@ -174,15 +181,6 @@ class ConstituenciesPage extends React.Component{
             item.id = id;
             return item;
         });
-        let deputies = _.map(this.props.deputies, (item, id) => {
-            item = _.clone(item);
-            item.id = id;
-            return item;
-        });
-
-        if(editable && this.state.selected){
-            deputies = _.filter(deputies, item => item.id == this.state.selected.id);
-        }
 
         return (
             <div {...newProps}>
@@ -195,6 +193,7 @@ class ConstituenciesPage extends React.Component{
                     defaultZoom={this.props.configs[ConfigsKeys.MAP_ZOOM]}
                     
                     editable={editable}
+                    selected={this.state.selected}
                     constituencies={constituencies}
 
                     onMapLoad={(map) => this.onMapLoad(map)}

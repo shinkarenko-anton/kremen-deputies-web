@@ -18,6 +18,7 @@ const KREMEN_CENTER_LOCATION = {lat: 49.0589964, lng: 33.403250199999995};
 export default withGoogleMap(props => {
 
     let constituencies = props.constituencies;
+    let selected = props.selected;
 
     return (
         <GoogleMap
@@ -45,7 +46,7 @@ export default withGoogleMap(props => {
                         <ConstituencyPolygon 
                             key={"polygon-" + item.id + "-" + index}
                             polygon={polygon}
-                            editable={props.editable}
+                            editable={props.editable && selected && (selected.id == item.id)}
                             onChange={(e, path) => {item.polygons[index] = path; props.onConstituencyChange(e, item)}}
                             onClick={(e) => props.onConstituencyClick(e, item)}
                             onDblClick={(e) => props.onConstituencyDblClick(e, item)}

@@ -15,7 +15,7 @@ let config = {
     module: {
         loaders: [
             { test: /\.jsx?/, use: 'babel-loader', include: appPath },
-            { test: /\.(png|woff|woff2|eot|ttf|svg)/, use: 'url-loader?limit=100000' },
+            { test: /\.(png|woff|woff2|eot|ttf|svg|gif)/, use: 'url-loader?limit=100000' },
             { test: /\.css$/, use: ["style-loader", "css-loader"] },
             { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] }
         ]

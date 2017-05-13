@@ -48,7 +48,7 @@ export default class ConstituencyPoligon extends React.Component{
 
         const updateConstituencyPath = () => {
             let newPath = pathToData(path);
-            this.props.onChange(null, path);
+            this.props.onChange(null, {outer: newPath});
         }
 
         path.addListener('set_at', () => {
