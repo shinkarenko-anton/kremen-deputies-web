@@ -12,7 +12,7 @@ import Log from '../../shared/Services/Log';
 const log = Log.withModule('ConstituenciesMap');
 
 // Consts
-const KREMEN_CENTER_LOCATION = {lat: 49.0589964, lng: 33.403250199999995};
+const KREMEN_CENTER_LOCATION = {lat: 49.07041247214882, lng: 33.42281959697266};
 
 // ConstituenciesMap
 export default withGoogleMap(props => {
@@ -24,7 +24,7 @@ export default withGoogleMap(props => {
         <GoogleMap
             ref={(map) => props.onMapLoad(map)}
 
-            defaultZoom={props.defaultZoom || 12}
+            defaultZoom={props.defaultZoom || 13}
             defaultCenter={props.defaultCenter || KREMEN_CENTER_LOCATION}
 
             options= {{
