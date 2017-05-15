@@ -2,18 +2,18 @@
 import React from "react";
 // Redux
 import {connect} from 'react-redux';
-import actions from '../../shared/Redux/Actions';
+import actions from '../../../shared/Redux/Actions';
 // UI
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 // Firebase
-import {auth} from '../../shared/Firebase/Firebase';
+import {auth} from '../../../shared/Firebase/Firebase';
 // Log
-import Log from '../../shared/Services/Log';
+import Log from '../../../shared/Services/Log';
 const log = Log.withModule('DeputieAdmin');
 // Configs
-import ConfigsKeys from '../../shared/Configs/ConfigsKeys';
+import ConfigsKeys from '../../../shared/Configs/ConfigsKeys';
 
 // Redux
 const mapStateToProps = (state) => ({

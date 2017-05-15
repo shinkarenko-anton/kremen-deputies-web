@@ -5,10 +5,10 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 // Log
-import Log from '../../shared/Services/Log';
+import Log from '../../../shared/Services/Log';
 const log = Log.withModule('DeputiesAuth');
 // Firebase
-import {auth, fbAuthProvider, googleAuthProvider} from '../../shared/Firebase/Firebase';
+import {auth, fbAuthProvider, googleAuthProvider} from '../../../shared/Firebase/Firebase';
 
 // Style
 const style = {

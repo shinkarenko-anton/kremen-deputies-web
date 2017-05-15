@@ -14,9 +14,9 @@ import utils from '../../shared/Services/Utils';
 // Theme
 import * as mixings from '../../shared/Style/mixings';
 // Elements
-import ConstituenciesMap from './ConstituenciesMap';
+import ConstituenciesMap from './Map/ConstituenciesMap';
+import ConstituenciesSidebar from './Sidebar/ConstituenciesSidebar';
 import ConstituencyDialog from '../ConstituencyDialog/ConstituencyDialog';
-import ConstituenciesSidebar from './ConstituenciesSidebar';
 import BrandsPanel from '../Brands/BrandsPanel';
 // Firebase
 import {auth, database} from '../../shared/Firebase/Firebase';
@@ -49,7 +49,7 @@ class ConstituenciesPage extends React.Component{
             user: null,
             userRole: null,
             selected: null,
-            constituencyDialog: {open: false, item: null, key: utils.id.genId()},
+            constituencyDialog: {open: false, item: null},
             drawer: {open: false}
         }
     }
@@ -148,11 +148,11 @@ class ConstituenciesPage extends React.Component{
     }
 
     onConstituencyDialogClose(e){
+        log('dialog close');
         this.setState(prev => ({
             constituencyDialog: {
                 open: false, 
-                item: prev.constituencyDialog.item, 
-                key: prev.constituencyDialog.key
+                item: prev.constituencyDialog.item
             }
         }));
     }
@@ -208,7 +208,6 @@ class ConstituenciesPage extends React.Component{
                 />
                 {this.state.constituencyDialog.item ? (
                 <ConstituencyDialog 
-                    key={this.state.constituencyDialog.key}
                     open={this.state.constituencyDialog.open}
                     item={this.state.constituencyDialog.item}
                     onClose={(e) => this.onConstituencyDialogClose(e)}

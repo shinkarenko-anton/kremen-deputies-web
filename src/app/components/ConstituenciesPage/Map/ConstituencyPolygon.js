@@ -1,10 +1,10 @@
 // React
 import React from "react";
 // Log
-import Log from '../../shared/Services/Log';
+import Log from '../../../shared/Services/Log';
 const log = Log.withModule('ConstituencyPoligon');
 // Theme
-import colors from '../../shared/Theme/Colors';
+import colors from '../../../shared/Theme/Colors';
 // Google Maps
 import {Polygon, Marker} from "react-google-maps";
 

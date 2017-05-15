@@ -8,7 +8,7 @@ import {withGoogleMap, GoogleMap} from "react-google-maps";
 import ConstituencyPolygon from './ConstituencyPolygon';
 import ConstituencyMarker from './ConstituencyMarker';
 // Log
-import Log from '../../shared/Services/Log';
+import Log from '../../../shared/Services/Log';
 const log = Log.withModule('ConstituenciesMap');
 
 // Consts
