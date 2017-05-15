@@ -14,5 +14,6 @@ export default {
 
 	facebook: '#3b5998',
 	google: '#ea4335',
-	slack: '#3eb991'
+	slack: '#3eb991',
+	github: '#333'
 }

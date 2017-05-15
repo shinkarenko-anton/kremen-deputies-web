@@ -119,6 +119,14 @@ export default class DeputieInfo extends React.Component{
                             <a href="https://slack.io.kr.ua/" target="__blank">slack.io.kr.ua</a>
                         </span>
                     </p>
+                    <p style={style.contactRow}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.github})}>
+                            <span className="fa fa-github"></span>
+                        </span>
+                        <span style={style.rowData}>
+                            <a href="https://github.com/iq-hub/kremen-constituencies-web" target="__blank">github.com</a>
+                        </span>
+                    </p>
                     <p style={{textAlign: 'center'}}>
                         Партнер проекту
                     </p>
