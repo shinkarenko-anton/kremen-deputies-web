@@ -5,61 +5,6 @@ import _ from 'lodash';
 // UI
 import Paper from 'material-ui/Paper';
 
-
-// Style
-const containerStyle = {
-    position: 'fixed',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1050,
-    outline: 0,
-    overflowX: 'hidden',
-    overflowY: 'auto',
-    transition: 'all .3s ease-in-out',
-    backgroundColor: 'rgba(0, 0, 0, 0)'
-}
-
-const containerHiddenStyle = {
-    display: 'none',
-    backgroundColor: 'rgba(0, 0, 0, 0)'
-}
-
-const containerOpenStyle = {
-    display: 'block',
-    backgroundColor: 'rgba(0, 0, 0, .5)'
-}
-
-const styleTitle = {
-    padding: '0 0 20px 0',
-    margin: '0 0 0 0',
-    fontSize: '20px'
-}
-
-const containerWrapStyle = {
-    position: 'relative',
-    margin: '30px auto',
-    maxWidth: '600px',
-    transition: 'all .3s ease-in-out'
-}
-
-const contentStyle = {
-    padding: '24px'
-}
-
-const actionsContainerStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingTop: '20px',
-    justifyContent: 'flex-end'
-}
-
-const actionsStyle = {
-    paddingLeft: '10px',
-    paddingRight: '10px'
-}
-
 // Dialog
 export default class Dialog extends React.Component{
     constructor(props){
@@ -79,30 +24,27 @@ export default class Dialog extends React.Component{
     // Render
     render(){
 
-        const calcContainerStyel = _.assign({}, 
-            containerStyle,
-            this.props.open ? containerOpenStyle : containerHiddenStyle
-        );
-
-        const calcContainerWrapStyel = _.assign({}, 
-            containerWrapStyle,
-            this.props.open ? {} : {}
-        );
+        let contClassName = "sa-modal-dialog";
+        if(this.props.open) contClassName += ' sa-modal-dialog-open';
+        else contClassName += ' sa-modal-dialog-close';
 
         return (
-            <div style={calcContainerStyel} onClick={(e) => this.onContainerClick(e)}>
-                <div style={calcContainerWrapStyel}>
-                    <Paper style={contentStyle}>
+            <div 
+                className={contClassName} 
+                onClick={(e) => this.onContainerClick(e)}
+            >
+                <div className="sa-modal-dialog__wrap">
+                    <Paper className="sa-modal-dialog__container">
                         {this.props.title ? (
-                        <h2 style={styleTitle}>
+                        <h2 className="sa-modal-dialog__title">
                             {this.props.title}
                         </h2>
                         ) : null}
                         {this.props.children}
                         {this.props.actions ? (
-                        <div style={actionsContainerStyle}>
+                        <div className="sa-modal-dialog__actions">
                         {_.map(this.props.actions, (action, key) => (
-                            <div key={key} style={actionsStyle}>
+                            <div key={key} className="sa-modal-dialog__action">
                                 {action}
                             </div>
                         ))}

@@ -8,37 +8,11 @@ import DeputiePhotosSlider from './DeputiePhotosSlider';
 // Theme
 import {threeDots} from '../../shared/Style/mixings';
 
-// Style
-const deputieStyle = {
-    container: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    name: {
-        fontWeight: 'bold',
-        fontSize: '18px'
-    },
-    avatar: {
-        width: 240,
-        marginRight: 12
-    },
-    dataContainer: {
-        flex: 1
-    },
-    row: {
-        marginBottom: 12,
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    rowIcon: {
-        display: 'inline-block',
-        width: 20,
-        marginRight: 6,
-        textAlign: 'center'
-    },
-    rowData: {
-        flex: 1
+const add3Dots = (string, limit) => {
+    if(string.length > limit){
+        string = string.substring(0,limit) + "...";
     }
+    return string;
 }
 
 // DeputieInfo
@@ -47,59 +21,59 @@ export default function DeputieInfo(props){
     if(!deputie) return null;
 
     return (
-        <div style={_.assign({}, deputieStyle.container, style)}>
+        <div style={style} className="deputie-info">
             {deputie.photos && deputie.photos.length ? (
-            <div style={deputieStyle.avatar}>
+            <div className="deputie-info__photos">
                 <DeputiePhotosSlider photos={deputie.photos} />
             </div>
             ) : null}
-            <div style={deputieStyle.dataContainer}>
-                <div style={deputieStyle.row}>
-                    <div style={deputieStyle.name}>
+            <div className="deputie-info__info">
+                <div className="deputie-info__row">
+                    <div className="deputie-info__name">
                         {deputie.name}
                     </div>
                 </div>
                 {deputie.schedule ? (
-                <div style={deputieStyle.row}>
-                    <div style={deputieStyle.rowIcon}><i className="fa fa-calendar"></i></div>
-                    <div style={deputieStyle.rowData}>{utils.str.capitalizeFirstLetter(deputie.schedule)}</div>
+                <div className="deputie-info__row">
+                    <div className="deputie-info__rowicon"><i className="fa fa-calendar"></i></div>
+                    <div className="deputie-info__rowdata">{utils.str.capitalizeFirstLetter(deputie.schedule)}</div>
                 </div>
                 ) : null}
                 {deputie.address ? (
-                <div style={deputieStyle.row}>
-                    <div style={deputieStyle.rowIcon}><i className="fa fa-map-marker"></i></div>
-                    <div style={deputieStyle.rowData}>{utils.str.capitalizeFirstLetter(deputie.address)}</div>
+                <div className="deputie-info__row">
+                    <div className="deputie-info__rowicon"><i className="fa fa-map-marker"></i></div>
+                    <div className="deputie-info__rowdata">{utils.str.capitalizeFirstLetter(deputie.address)}</div>
                 </div>
                 ) : null}
                 {deputie.fb ? (
-                <div style={deputieStyle.row}>
-                    <div style={deputieStyle.rowIcon}><i className="fa fa-facebook-official"></i></div>
-                    <div style={_.assign({}, deputieStyle.rowData)}>
+                <div className="deputie-info__row">
+                    <div className="deputie-info__rowicon"><i className="fa fa-facebook-official"></i></div>
+                    <div className="deputie-info__rowdata" style={_.assign({}, threeDots, {width: 260})}>
                         <a href={deputie.fb} target="__blank">{deputie.fb}</a>
                     </div>
                 </div>
                 ) : null}
                 {deputie.twitter ? (
-                <div style={deputieStyle.row}>
-                    <div style={deputieStyle.rowIcon}><i className="fa fa-twitter"></i></div>
-                    <div style={deputieStyle.rowData}>
+                <div className="deputie-info__row">
+                    <div className="deputie-info__rowicon"><i className="fa fa-twitter"></i></div>
+                    <div className="deputie-info__rowdata">
                         <a href={deputie.twitter} target="__blank">{deputie.twitter}</a>
                     </div>
                 </div>
                 ) : null}
                 {deputie.vk ? (
-                <div style={deputieStyle.row}>
-                    <div style={deputieStyle.rowIcon}><i className="fa fa-vk"></i></div>
-                    <div style={deputieStyle.rowData}>
+                <div className="deputie-info__row">
+                    <div className="deputie-info__rowicon"><i className="fa fa-vk"></i></div>
+                    <div className="deputie-info__rowdata">
                         <a href={deputie.vk} target="__blank">{deputie.vk}</a>
                     </div>
                 </div>
                 ) : null}
                 {deputie.phones && deputie.phones.length ? (
                     _.map(deputie.phones, (phonedeputie, key) => (
-                        <div key={key} style={deputieStyle.row}>
-                            <div style={deputieStyle.rowIcon}><i className="fa fa-phone"></i></div>
-                            <div style={deputieStyle.rowData}>
+                        <div key={key} className="deputie-info__row">
+                            <div className="deputie-info__rowicon"><i className="fa fa-phone"></i></div>
+                            <div className="deputie-info__rowdata">
                                 <a href={"tel:" + phonedeputie} target="__blank">{phonedeputie}</a>
                             </div>
                         </div>

@@ -7,9 +7,8 @@ import actions from '../../shared/Redux/Actions';
 import _ from 'lodash';
 import utils from '../../shared/Services/Utils';
 // UI
-import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import MyDialog from '../Dialog/Dialog';
+import Dialog from '../Dialog/Dialog';
 // Elements
 import DeputieInfo from './DeputieInfo';
 
@@ -66,10 +65,9 @@ class ConstituencyDialog extends React.Component{
         });
 
         return (
-            <MyDialog
+            <Dialog
                 title={"Виборчий округ №" + constituency.number + " (" + votersCount + " чоловік)"}
                 actions={actions}
-                modal={false}
                 open={this.props.open}
                 onRequestClose={() => this.props.onClose()}>
                 {_.map(deputies, (deputie, index) => (
@@ -79,7 +77,7 @@ class ConstituencyDialog extends React.Component{
                         style={ index > 0 ? {marginTop: 20, paddingTop: 20, borderTop: '1px dashed rgba(0, 0, 0, .4)'} : null}
                     />
                 ))}
-            </MyDialog>
+            </Dialog>
         );
     }
 }

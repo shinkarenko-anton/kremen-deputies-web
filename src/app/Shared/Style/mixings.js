@@ -15,6 +15,6 @@ export const screenCenter = {
 
 export const threeDots = {
     whiteSpace: 'nowrap',
-    overflow: 'hidden !important',
+    overflow: 'hidden',
     textOverflow: 'ellipsis'
 }
