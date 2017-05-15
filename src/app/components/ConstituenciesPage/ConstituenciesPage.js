@@ -223,7 +223,7 @@ class ConstituenciesPage extends React.Component{
                 <Drawer
                     docked={false}
                     openSecondary={true}
-                    width={300}
+                    width={360}
                     open={this.state.drawer.open}
                     onRequestChange={(open) => this.setState({drawer: {open: false}})}>
                     <div style={{padding: 20, height: '100%'}}>

@@ -48,7 +48,10 @@ let config = {
             VERSION: JSON.stringify(package.version),
             ENV: JSON.stringify(process.env.ENV)
         })
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true
+    }
 }
 // Exports
 module.exports = config;

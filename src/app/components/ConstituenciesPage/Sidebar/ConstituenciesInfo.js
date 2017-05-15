@@ -74,6 +74,9 @@ export default class DeputieInfo extends React.Component{
                         Додаток не є комерційним і створений за власної ініціати кременчуцьких програмістів місцевої IT-спільноти <a href="http://io.kr.ua/" target="__blank">IQ Hub</a>.
                     </p>
                     <p>
+                        <a href="/rights">Права, обов‘язки та відповідальність депутата</a>
+                    </p>
+                    <p>
                         Хочеш допомогти? Є ідеї або зауваження? Не вірна інформація? Пиши:
                     </p>
                     <p style={style.contactRow}>
@@ -90,6 +93,14 @@ export default class DeputieInfo extends React.Component{
                         </span>
                         <span style={style.rowData}>
                             <a href="mailto:visnyk.kremenchuka@gmail.com" target="__blank">visnyk.kremenchuka@gmail.com</a>
+                        </span>
+                    </p>
+                    <p style={style.contactRow}>
+                        <span style={_.assign({}, style.rowIcon, {color: colors.facebook})}>
+                            <span className="fa fa-facebook-official"></span>
+                        </span>
+                        <span style={style.rowData}>
+                            <a href="https://www.facebook.com/snipter/" target="__blank">https://fb.com/snipter</a>
                         </span>
                     </p>
                     <p style={style.contactRow}>

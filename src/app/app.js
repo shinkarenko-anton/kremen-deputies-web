@@ -5,22 +5,28 @@ import '../../node_modules/font-awesome/css/font-awesome.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-// Log
-import Log from './shared/Services/Log';
-const log = Log.withModule('app');
-// Theme
-import AppTheme from './shared/Theme/Theme';
 // Redux
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from './shared/Redux/Reducers';
 import actions from './shared/Redux/Actions';
 // Router
-import {Router, Route, Redirect, hashHistory} from 'react-router';
+import {
+    BrowserRouter as Router, 
+    Route,
+    Redirect,
+    Switch
+} from 'react-router-dom';
+// Log
+import Log from './shared/Services/Log';
+const log = Log.withModule('app');
+// Theme
+import AppTheme from './shared/Theme/Theme';
 // Configs
 import ConfigStorage from './shared/Services/ConfigStorage';
 // Pages
 import ConstituenciesPage from './components/ConstituenciesPage/ConstituenciesPage';
+import RightsPage from './components/RightsPage/RightsPage';
 
 
 // Init Log
@@ -66,9 +72,14 @@ class AppContainer extends React.Component {
         return (
             <Provider store={store}>
                 <AppTheme>
-                    <ConstituenciesPage 
-                        style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}} 
-                    />
+                    <Router>
+                        <Switch>
+                            <Route exact path="/" render={props => (
+                                <ConstituenciesPage style={{position: 'fixed', left: 0, right: 0, top: 0, bottom: 0}}/>
+                            )}/>
+                            <Route path="/rights" component={RightsPage} />
+                        </Switch>
+                    </Router>
                 </AppTheme>
             </Provider>
         );
