@@ -1,35 +1,31 @@
-# Kremen Deputies
+# Kremen Constituencies
 
-Web app with all open inforamtion about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) deputies. Visit [https://deputat.io.kr.ua/](https://deputat.io.kr.ua/) to checkout the app.
+Web app with all open inforamtion about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) constituencies and deputies. Visit [https://deputat.io.kr.ua/](https://deputat.io.kr.ua/) to checkout the app.
 
-[Official information about Kremnchuk's deputies](https://www.kremen.gov.ua/index.php/rozdil/miska_vlada/rada/grafik_rady).
+[Official information about Kremnchuk's constituencies](https://www.kremen.gov.ua/index.php/rozdil/miska_vlada/rada/grafik_rady).
 
 ## Development
 
 Clone project and run:
 
 ```bash
-npm i
-```
-
-Then run:
-
-```
+npm install
 npm start
 ```
 
-Wait for compiling will finish. Visit: `http://localhost:8080/`. Now you can start to edit source code. After each change source code will recompile and browser window will refresh.
+Wait for compiling will finish. Then visit: `http://localhost:8080/`. Now you can start to edit source code. After each change source code will recompile and browser window will refresh.
+
+The app uses [Firebase](https://firebase.google.com/) for storing data and host files.
 
 ## TODO
 
-- Add information about duties of deputies.
-- Change app image at metatags.
-- Create bot in telegram.
-- Create bot in facebook messager.
+- Bot in telegram.
+- Bot in facebook messager.
+- Add declarations information.
 
 ## Contacts
 
-- Jaroslav Khorishchenko: [websnipter@gmail.com](mailto:websnipter@gmail.com)
-- IQ Hub (email): [iqhub.org.ua@gmail.com](mailto:iqhub.org.ua@gmail.com)
-- IQ Hub (facebook): [https://fb.com/io.kr.ua](https://fb.com/io.kr.ua)
 - IQ Hub (slack): [Slack](https://slack.io.kr.ua/)
+- IQ Hub (facebook): [https://fb.com/io.kr.ua](https://fb.com/io.kr.ua)
+- IQ Hub (email): [iqhub.org.ua@gmail.com](mailto:iqhub.org.ua@gmail.com)
+- Jaroslav Khorishchenko: [websnipter@gmail.com](mailto:websnipter@gmail.com)
