@@ -42,7 +42,7 @@ let config = {
         }),
         new CopyWebpackPlugin([
             {context: 'src', from: 'assets/img/fav/*'},
-            {context: 'src', from: 'assets/img/baner/*'}
+            {context: 'src', from: 'assets/img/banner/*'}
         ]),
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(package.version),

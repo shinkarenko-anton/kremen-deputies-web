@@ -4,7 +4,7 @@
   "title": "Карта виборчих округів м. Кременчук",
   "description": "Карта виборчих округів дозволяє вам дізнатись хто є депутатом вашого району та як з ним зв'язатись",
   "company": "IQ Hub",
-  "url": "https://deputat.kr.io.ua/",
+  "url": "https://deputat.io.kr.ua/",
   "main": "src/app/app.js",
   "scripts": {
     "start": "ENV=dev webpack-dev-server",
