@@ -1,6 +1,6 @@
 # Kremen Constituencies
 
-Web app with all open inforamtion about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) constituencies and deputies. Checkout the app at [https://deputat.io.kr.ua/](https://deputat.io.kr.ua/).
+Web app with all open information about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) constituencies and deputies. Checkout the app at [https://deputat.io.kr.ua/](https://deputat.io.kr.ua/).
 
 [Official information about Kremnchuk's constituencies](https://www.kremen.gov.ua/index.php/rozdil/miska_vlada/rada/grafik_rady).
 
