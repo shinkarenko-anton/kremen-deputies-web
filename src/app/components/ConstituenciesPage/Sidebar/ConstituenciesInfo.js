@@ -42,7 +42,7 @@ const style = {
         fontSize: 8
     },
     logoContainer: {
-        
+        textAlign: 'center'
     },
     logoLink: {
         borderBottom: 'none'
@@ -108,8 +108,8 @@ export default class DeputieInfo extends React.Component{
                             <a href="https://slack.io.kr.ua/" target="__blank">slack.io.kr.ua</a>
                         </span>
                     </p>
-                    <p>
-                        Партнер проекту:
+                    <p style={{textAlign: 'center'}}>
+                        Партнер проекту
                     </p>
                     <p style={style.logoContainer}>
                         <a href="https://vestnik.in.ua/" target="__blank" style={style.logoLink}>
