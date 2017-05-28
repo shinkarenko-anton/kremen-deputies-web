@@ -8,6 +8,7 @@ import FlatButton from 'material-ui/FlatButton';
 import colors from '../../../shared/Theme/Colors';
 // Assets
 import vestnikLogo from '../../../../assets/img/logo/vestnik-logo-300w.png';
+import googlePlayLogo from '../../../../assets/img/logo/google-play-logo-vector.svg';
 
 const style = {
     container: {
@@ -133,6 +134,14 @@ export default class DeputieInfo extends React.Component{
                     <p style={style.logoContainer}>
                         <a href="https://vestnik.in.ua/" target="__blank" style={style.logoLink}>
                             <img src={vestnikLogo} style={style.logoImg} />
+                        </a>
+                    </p>
+                    <p style={{textAlign: 'center'}}>
+                        Додатки
+                    </p>
+                    <p style={style.logoContainer}>
+                        <a href="https://play.google.com/store/apps/details?id=constituencies.kremen.ua" target="__blank" style={style.logoLink}>
+                            <img src={googlePlayLogo} style={style.logoImg} />
                         </a>
                     </p>
                 </div>

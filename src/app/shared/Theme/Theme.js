@@ -5,13 +5,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // Colors
 import {fade} from 'material-ui/utils/colorManipulator';
+import Colors from './Colors';
 
 // Custom theme
 let customTheme = {
   palette: {
-    primary1Color: '#468df0',
-    primary2Color: '#468df0',
-    primary3Color: '#468df0',
+    primary1Color: Colors.blue,
+    primary2Color: Colors.blue,
+    primary3Color: Colors.blue,
     accent1Color: '#0060bd',
     accent2Color: '#0060bd',
     accent3Color: '#0060bd',

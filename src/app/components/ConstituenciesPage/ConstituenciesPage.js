@@ -232,7 +232,7 @@ class ConstituenciesPage extends React.Component{
                             user={this.state.user} />
                     </div>
                 </Drawer>
-                <BrandsPanel style={{position: 'absolute', width: 100, left: 0, bottom: 24}}/>
+                <BrandsPanel style={{position: 'absolute', width: 140, left: 0, bottom: 24}}/>
             </div>
         );
     }
