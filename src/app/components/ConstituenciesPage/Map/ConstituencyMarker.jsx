@@ -1,12 +1,22 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 // UI
 import { Marker } from 'react-google-maps';
-// Theme
-import Colors from '../../../shared/Theme/Colors';
+
+// PropTypes
+const propTypes = {
+  position: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+};
+
+// DefaultProps
+const defaultProps = {
+
+};
 
 // ConstituencyMarker
-export default class ConstituencyMarker extends React.Component {
+class ConstituencyMarker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -23,3 +33,8 @@ export default class ConstituencyMarker extends React.Component {
     );
   }
 }
+
+ConstituencyMarker.propTypes = propTypes;
+ConstituencyMarker.defaultProps = defaultProps;
+
+export default ConstituencyMarker;

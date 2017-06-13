@@ -10,6 +10,7 @@
         "window": true,
         "document": true,
         "localStorage": true,
+        "google": true,
         "VERSION": true,
         "ENV": true
     },

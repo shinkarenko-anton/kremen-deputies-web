@@ -1,26 +1,29 @@
 // React
 import React from 'react';
-// Log
-import Log from '../../../shared/Services/Log';
-const log = Log.withModule('ConstituencyPoligon');
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+// Google Maps
+import { Polygon } from 'react-google-maps';
 // Theme
 import colors from '../../../shared/Theme/Colors';
-// Google Maps
-import { Polygon, Marker } from 'react-google-maps';
 
-// Helpers
+// PropTypes
+const propTypes = {
+  polygon: PropTypes.object.isRequired,
+  editable: PropTypes.bool,
 
-const getPolygonCenter = (path) => {
-  const bound = new google.maps.LatLngBounds();
-  _.each(path, (item) => {
-    bound.extend(new google.maps.LatLng(item.lat, item.lng));
-  });
-  const center = bound.getCenter();
-  return { lat: center.lat(), lng: center.lng() };
+  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onDblClick: PropTypes.func.isRequired,
+};
+
+// DefaultProps
+const defaultProps = {
+  editable: false,
 };
 
 // ConstituencyPoligon
-export default class ConstituencyPoligon extends React.Component {
+class ConstituencyPoligon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -33,27 +36,29 @@ export default class ConstituencyPoligon extends React.Component {
   }
 
   componentWillUnmount() {
-    this._polygon = null;
+    this.polygon = null;
   }
 
     // Element
 
   handlePolygon(polygon) {
     if (!polygon) return;
-    this._polygon = polygon;
+    this.polygon = polygon;
 
     const updateConstituencyPath = () => {
       const newPolygonData = {};
       _.each(polygon.getPaths().getArray(), (path, index) => {
-        const newPath = _.map(path.getArray(), (item, index) => ({ lat: item.lat(), lng: item.lng() }));
-        if (index == 0) newPolygonData.outer = newPath;
-        if (index == 1) newPolygonData.inner = newPath;
+        const newPath = _.map(path.getArray(), item => (
+          { lat: item.lat(), lng: item.lng() }
+        ));
+        if (index === 0) newPolygonData.outer = newPath;
+        if (index === 1) newPolygonData.inner = newPath;
       });
 
       this.props.onChange(null, newPolygonData);
     };
 
-    _.each(polygon.getPaths().getArray(), (path, index) => {
+    _.each(polygon.getPaths().getArray(), (path) => {
       path.addListener('set_at', () => {
         updateConstituencyPath();
       });
@@ -102,3 +107,9 @@ export default class ConstituencyPoligon extends React.Component {
     );
   }
 }
+
+ConstituencyPoligon.propTypes = propTypes;
+ConstituencyPoligon.defaultProps = defaultProps;
+
+export default ConstituencyPoligon;
+
