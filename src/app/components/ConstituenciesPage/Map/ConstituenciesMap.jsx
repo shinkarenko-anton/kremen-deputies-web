@@ -15,6 +15,7 @@ const KREMEN_CENTER_LOCATION = { lat: 49.07041247214882, lng: 33.42281959697266 
 // PropTypes
 const propTypes = {
   constituencies: PropTypes.array.isRequired,
+  selected: PropTypes.bool,
   defaultZoom: PropTypes.number,
   defaultCenter: PropTypes.object,
 
@@ -33,12 +34,18 @@ const propTypes = {
 const defaultProps = {
   defaultZoom: 13,
   defaultCenter: KREMEN_CENTER_LOCATION,
+  selected: false,
 };
 
 // ConstituenciesMap
 function ConstituenciesMap(props) {
-  const constituencies = props.constituencies;
-  const selected = props.selected;
+  const {
+    constituencies,
+    selected,
+    onConstituencyClick,
+    onConstituencyDblClick,
+    onConstituencyChange,
+  } = props;
 
   const mapOptions = {
     mapTypeControlOptions: {
@@ -60,12 +67,12 @@ function ConstituenciesMap(props) {
           onChange={(e, path) => {
             const newItem = _.clone(item);
             newItem.polygons[index] = path;
-            props.onConstituencyChange(e, newItem);
+            onConstituencyChange(e, newItem);
           }}
-          onClick={e => props.onConstituencyClick(e, item)}
-          onDblClick={e => props.onConstituencyDblClick(e, item)}
+          onClick={e => onConstituencyClick(e, item)}
+          onDblClick={e => onConstituencyDblClick(e, item)}
         />
-        );
+      );
       elements.push(constituencyPolygon);
     });
     _.each(item.markers, (marker, index) => {
@@ -75,7 +82,7 @@ function ConstituenciesMap(props) {
           position={marker}
           label={item.number.toString()}
         />
-        );
+      );
       elements.push(constituencyMarker);
     });
   });
@@ -91,7 +98,6 @@ function ConstituenciesMap(props) {
       onCenterChanged={e => props.onMapCenterChanged(e)}
       onZoomChanged={e => props.onMapZoomChanged(e)}
     >
-
       {elements}
     </GoogleMap>
   );

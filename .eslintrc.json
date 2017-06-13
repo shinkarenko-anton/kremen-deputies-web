@@ -9,6 +9,7 @@
     "globals": {
         "window": true,
         "document": true,
+        "alert": true,
         "localStorage": true,
         "google": true,
         "VERSION": true,
@@ -21,6 +22,7 @@
         }
     },
     "rules": {
-        "import/newline-after-import": "off"
+        "import/newline-after-import": "off",
+        "no-alert": "off"
     }
 }

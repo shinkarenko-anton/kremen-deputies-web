@@ -1,12 +1,25 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 // Elements
 import ConstituenciesInfo from './ConstituenciesInfo';
 import ConstituenciesAuth from './ConstituenciesAuth';
 import ConstituenciesAdmin from './ConstituenciesAdmin';
 
+// PropTypes
+const propTypes = {
+  user: PropTypes.object,
+  userRole: PropTypes.string,
+};
+
+// DefaultProps
+const defaultProps = {
+  user: null,
+  userRole: null,
+};
+
 // ConstituenciesSidebar
-export default class ConstituenciesSidebar extends React.Component {
+class ConstituenciesSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +27,7 @@ export default class ConstituenciesSidebar extends React.Component {
     };
   }
 
-    // Events
+  // Events
 
   onLoginClick(e) {
     e.stopPropagation();
@@ -26,11 +39,21 @@ export default class ConstituenciesSidebar extends React.Component {
     this.setState({ showAuth: false });
   }
 
-
-    // Render
+  // Render
 
   render() {
     const user = this.props.user;
+
+    const notAuthContent = this.state.showAuth ? (
+      <ConstituenciesAuth
+        onGoBackClick={e => this.onGoBackClick(e)}
+      />
+    ) : (
+      <ConstituenciesInfo
+        onLoginClick={e => this.onLoginClick(e)}
+      />
+    );
+
     return (
       <div style={{ height: '100%' }}>
         {user ? (
@@ -38,18 +61,13 @@ export default class ConstituenciesSidebar extends React.Component {
             user={user}
             userRole={this.props.userRole}
           />
-                ) : (
-                    this.state.showAuth ? (
-                      <ConstituenciesAuth
-                        onGoBackClick={e => this.onGoBackClick(e)}
-                      />
-                    ) : (
-                      <ConstituenciesInfo
-                        onLoginClick={e => this.onLoginClick(e)}
-                      />
-                    )
-                )}
+        ) : (notAuthContent)}
       </div>
     );
   }
 }
+
+ConstituenciesSidebar.propTypes = propTypes;
+ConstituenciesSidebar.defaultProps = defaultProps;
+
+export default ConstituenciesSidebar;

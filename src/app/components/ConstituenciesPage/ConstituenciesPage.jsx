@@ -1,13 +1,11 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
-import actions from '../../shared/Redux/Actions';
 // UI
-import IconButton from 'material-ui/IconButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 // Utils
 import _ from 'lodash';
 import utils from '../../shared/Services/Utils';
@@ -20,14 +18,27 @@ import ConstituencyDialog from '../ConstituencyDialog/ConstituencyDialog';
 import BrandsPanel from '../Brands/BrandsPanel';
 // Firebase
 import { auth, database } from '../../shared/Firebase/Firebase';
+// Redux Actions
+import actions from '../../shared/Redux/Actions';
 // Configs
 import ConfigsKeys from '../../shared/Configs/ConfigsKeys';
 // Log
 import Log from '../../shared/Services/Log';
 const log = Log.withModule('ConstituenciesPage');
 
-// Consts
-const CITY_LOC = { lat: 49.0589964, lng: 33.403250199999995 };
+// PropTypes
+const propTypes = {
+  constituencies: PropTypes.object.isRequired,
+  configs: PropTypes.object.isRequired,
+
+  onConstituencyChange: PropTypes.func.isRequired,
+  onConfigsChange: PropTypes.func.isRequired,
+};
+
+// DefaultProps
+const defaultProps = {
+
+};
 
 // Redux
 const mapStateToProps = state => ({
@@ -72,36 +83,17 @@ class ConstituenciesPage extends React.Component {
     });
   }
 
-    // Properties
-
-  get isEditMode() {
-    return this.state.user &&
-               this.state.userRole === 'admin' &&
-               this.props.configs &&
-               this.props.configs[ConfigsKeys.EDIT_MODE] === true;
-  }
-
-    // Events
-
-  onMapLoad(map) {
-    if (!map || this._mapComponent) return;
-    log('map loaded');
-    this._mapComponent = map;
-  }
+  // Events
 
   onMapClick(e) {
     log(`map click: ${JSON.stringify(e.latLng)}`);
     this.setState({ selected: null });
   }
 
-  onMapResize(e) {
-        // log('on map resize');
-  }
-
-  onMapCenterChanged(e) {
-        // log('on center changed');
-    if (this._map) {
-      const map = this._map.state.map;
+  onMapCenterChanged() {
+    // log('on center changed');
+    if (this.map) {
+      const map = this.map.state.map;
       if (map) {
         const center = map.getCenter();
         const centerData = { lat: center.lat(), lng: center.lng() };
@@ -110,9 +102,9 @@ class ConstituenciesPage extends React.Component {
     }
   }
 
-  onMapZoomChanged(e) {
-    if (this._map) {
-      const map = this._map.state.map;
+  onMapZoomChanged() {
+    if (this.map) {
+      const map = this.map.state.map;
       if (map) {
         const zoom = map.getZoom();
         this.props.onConfigsChange(ConfigsKeys.MAP_ZOOM, zoom);
@@ -140,14 +132,14 @@ class ConstituenciesPage extends React.Component {
   onConstituencyChange(e, constituency) {
     log(`constituency change: ${constituency.id}`);
     this.props.onConstituencyChange(constituency);
-        // Updating firebase
+    // Updating firebase
     const id = constituency.id;
     const data = _.cloneDeep(constituency);
-    if (constituency.id) delete constituency.id;
+    if (data.id) delete data.id;
     database.ref(`/constituencies/${id}`).set(data);
   }
 
-  onConstituencyDialogClose(e) {
+  onConstituencyDialogClose() {
     log('dialog close');
     this.setState(prev => ({
       constituencyDialog: {
@@ -157,35 +149,51 @@ class ConstituenciesPage extends React.Component {
     }));
   }
 
-  onOpenMenuClick(e) {
+  onOpenMenuClick() {
     this.setState({ drawer: { open: true } });
   }
 
-    // Render
+  // Properties
+
+  get isEditMode() {
+    return this.state.user &&
+           this.state.userRole === 'admin' &&
+           this.props.configs &&
+           this.props.configs[ConfigsKeys.EDIT_MODE] === true;
+  }
+
+  // Render
   render() {
-        // Props
+    // Props
 
     const newProps = _.clone(this.props);
     if (newProps.constituencies) delete newProps.constituencies;
     if (newProps.configs) delete newProps.configs;
     if (newProps.onConstituencyChange) delete newProps.onConstituencyChange;
-    if (newProps.onConstituencyChange) delete newProps.onConstituencyChange;
     if (newProps.onConfigsChange) delete newProps.onConfigsChange;
 
-        // Edit mode
+    // Edit mode
     const editable = this.isEditMode;
 
-        // Mod  data
+    // Mod  data
     const constituencies = _.map(this.props.constituencies, (item, id) => {
-      item = _.clone(item);
-      item.id = id;
-      return item;
+      const newItem = _.clone(item);
+      newItem.id = id;
+      return newItem;
     });
+
+    const onMapLoad = () => {
+      log('map loaded');
+    };
+
+    const onMapResize = () => {
+      // log('on map resize');
+    };
 
     return (
       <div {...newProps}>
         <ConstituenciesMap
-          ref={(el) => { this._map = el; }}
+          ref={(el) => { this.map = el; }}
           containerElement={(<div style={mixings.fullScreen} />)}
           mapElement={(<div style={mixings.fullScreen} />)}
 
@@ -196,9 +204,9 @@ class ConstituenciesPage extends React.Component {
           selected={this.state.selected}
           constituencies={constituencies}
 
-          onMapLoad={map => this.onMapLoad(map)}
+          onMapLoad={map => onMapLoad(map)}
           onMapClick={e => this.onMapClick(e)}
-          onMapResize={e => this.onMapResize(e)}
+          onMapResize={e => onMapResize(e)}
           onMapCenterChanged={e => this.onMapCenterChanged(e)}
           onMapZoomChanged={e => this.onMapZoomChanged(e)}
 
@@ -226,7 +234,7 @@ class ConstituenciesPage extends React.Component {
           openSecondary
           width={360}
           open={this.state.drawer.open}
-          onRequestChange={open => this.setState({ drawer: { open: false } })}
+          onRequestChange={() => this.setState({ drawer: { open: false } })}
         >
           <div style={{ padding: 20, height: '100%' }}>
             <ConstituenciesSidebar
@@ -240,5 +248,8 @@ class ConstituenciesPage extends React.Component {
     );
   }
 }
+
+ConstituenciesPage.propTypes = propTypes;
+ConstituenciesPage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConstituenciesPage);

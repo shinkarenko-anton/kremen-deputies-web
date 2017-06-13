@@ -1,19 +1,36 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
-import actions from '../../../shared/Redux/Actions';
 // UI
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 // Firebase
 import { auth } from '../../../shared/Firebase/Firebase';
+// Redux
+import actions from '../../../shared/Redux/Actions';
+// Configs
+import ConfigsKeys from '../../../shared/Configs/ConfigsKeys';
 // Log
 import Log from '../../../shared/Services/Log';
 const log = Log.withModule('DeputieAdmin');
-// Configs
-import ConfigsKeys from '../../../shared/Configs/ConfigsKeys';
+
+// PropTypes
+const propTypes = {
+  configs: PropTypes.object,
+  user: PropTypes.object,
+  userRole: PropTypes.string,
+
+  onConfigsChange: PropTypes.func.isRequired,
+};
+
+// DefaultProps
+const defaultProps = {
+  configs: {},
+  user: null,
+  userRole: null,
+};
 
 // Redux
 const mapStateToProps = state => ({
@@ -38,38 +55,28 @@ class DeputieAdmin extends React.Component {
     this.state = {};
   }
 
-    // Lifecycle hooks
-
-  componentDidMount() {
-
-  }
-
-  componentWillUnmount() {
-
-  }
-
-    // Events
+  // Events
 
   onEditModeToggle(e, val) {
     e.stopPropagation();
     this.props.onConfigsChange(ConfigsKeys.EDIT_MODE, val);
   }
 
-  onLogoutClick(e) {
-    e.stopPropagation();
-    log('logout click');
-    auth.signOut().then(() => {
-      log('user logouted');
-    }).catch((err) => {
-      log.err(err);
-    });
-  }
-
-    // Render
+  // Render
 
   render() {
     const user = this.props.user;
     if (!user) return null;
+
+    const onLogoutClick = (e) => {
+      e.stopPropagation();
+      log('logout click');
+      auth.signOut().then(() => {
+        log('user logouted');
+      }).catch((err) => {
+        log.err(err);
+      });
+    };
 
     const isAdmin = this.props.userRole === 'admin';
 
@@ -94,12 +101,15 @@ class DeputieAdmin extends React.Component {
             label="Вийти"
             primary
             fullWidth
-            onClick={e => this.onLogoutClick(e)}
+            onClick={e => onLogoutClick(e)}
           />
         </div>
       </div>
     );
   }
 }
+
+DeputieAdmin.propTypes = propTypes;
+DeputieAdmin.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeputieAdmin);

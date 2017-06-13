@@ -1,5 +1,6 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 // Utils
 import _ from 'lodash';
 // UI
@@ -10,6 +11,17 @@ import colors from '../../../shared/Theme/Colors';
 import vestnikLogo from '../../../../assets/img/logo/vestnik-logo-300w.png';
 import googlePlayLogo from '../../../../assets/img/logo/google-play-logo-vector.svg';
 
+// PropTypes
+const propTypes = {
+  onLoginClick: PropTypes.func.isRequired,
+};
+
+// DefaultProps
+const defaultProps = {
+
+};
+
+// Style
 const style = {
   container: {
     height: '100%', display: 'flex', flexDirection: 'column',
@@ -54,13 +66,13 @@ const style = {
 };
 
 // DeputieInfo
-export default class DeputieInfo extends React.Component {
+class DeputieInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-    // Render
+  // Render
 
   render() {
     return (
@@ -68,17 +80,21 @@ export default class DeputieInfo extends React.Component {
         <div style={style.content}>
           <h3>Про додаток</h3>
           <p>
-                        Карта виборчих округів дозволяє вам дізнатись хто є депутатом вашого району та як з ним зв'язатись.
-                    </p>
+            Карта виборчих округів дозволяє вам
+            дізнатись хто є депутатом вашого району
+            та як з ним зв&#39;язатись.
+          </p>
           <p>
-                        Додаток не є комерційним і створений за власної ініціати кременчуцьких програмістів місцевої IT-спільноти <a href="http://io.kr.ua/" target="__blank">IQ Hub</a>.
-                    </p>
+            Додаток не є комерційним і створений за
+            власної ініціати кременчуцьких програмістів
+            місцевої IT-спільноти <a href="http://io.kr.ua/" target="__blank">IQ Hub</a>.
+          </p>
           <p>
             <a href="/rights">Права, обов‘язки та відповідальність депутата</a>
           </p>
           <p>
-                        Хочеш допомогти? Є ідеї або зауваження? Не вірна інформація? Пиши:
-                    </p>
+            Хочеш допомогти? Є ідеї або зауваження? Не вірна інформація? Пиши:
+          </p>
           <p style={style.contactRow}>
             <span style={_.assign({}, style.rowIcon, { color: colors.google })}>
               <span className="fa fa-envelope" />
@@ -92,7 +108,9 @@ export default class DeputieInfo extends React.Component {
               <span className="fa fa-envelope" />
             </span>
             <span style={style.rowData}>
-              <a href="mailto:visnyk.kremenchuka@gmail.com" target="__blank">visnyk.kremenchuka@gmail.com</a>
+              <a href="mailto:visnyk.kremenchuka@gmail.com" target="__blank">
+                visnyk.kremenchuka@gmail.com
+              </a>
             </span>
           </p>
           <p style={style.contactRow}>
@@ -128,33 +146,42 @@ export default class DeputieInfo extends React.Component {
             </span>
           </p>
           <p style={{ textAlign: 'center' }}>
-                        Партнер проекту
-                    </p>
+              Партнер проекту
+          </p>
           <p style={style.logoContainer}>
             <a href="https://vestnik.in.ua/" target="__blank" style={style.logoLink}>
-              <img src={vestnikLogo} style={style.logoImg} />
+              <img
+                src={vestnikLogo}
+                style={style.logoImg}
+                alt="Вісник Кременчука"
+              />
             </a>
           </p>
           <p style={{ textAlign: 'center' }}>
-                        Додатки
-                    </p>
+              Додатки
+          </p>
           <p style={style.logoContainer}>
             <a href="https://play.google.com/store/apps/details?id=constituencies.kremen.ua" target="__blank" style={style.logoLink}>
-              <img src={googlePlayLogo} style={style.logoImg} />
+              <img
+                src={googlePlayLogo}
+                style={style.logoImg}
+                alt="Карта виборчих округів Кременчука в Google Play"
+              />
             </a>
           </p>
         </div>
         <div style={style.footer}>
           <div>
             <FlatButton
-              label="Увійти" primary
+              primary
+              label="Увійти"
               onClick={e => this.props.onLoginClick(e)}
             />
           </div>
           <div style={style.copyright}>
             <a href="http://io.kr.ua/" target="__blank" style={{ borderBottom: 'none' }}>
-                            IQ Hub &copy; 2017 рік.
-                        </a>
+                IQ Hub &copy; 2017 рік.
+            </a>
           </div>
           <div style={style.version}>
             {`v${VERSION}`}
@@ -164,3 +191,8 @@ export default class DeputieInfo extends React.Component {
     );
   }
 }
+
+DeputieInfo.propTypes = propTypes;
+DeputieInfo.defaultProps = defaultProps;
+
+export default DeputieInfo;

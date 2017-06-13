@@ -17,6 +17,14 @@ Wait for compiling will finish. Then visit: `http://localhost:8080/`. Now you ca
 
 The app uses [Firebase](https://firebase.google.com/) for storing data and host files.
 
+## Style Guide
+
+We are using [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) in order to make code pretty and safe. Please run linter and check your code before pull request:
+
+```
+npm run lint
+``
+
 ## TODO
 
 - Bot in telegram.

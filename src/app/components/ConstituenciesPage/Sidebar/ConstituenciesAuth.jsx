@@ -1,14 +1,25 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 // UI
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+// Firebase
+import { auth, fbAuthProvider, googleAuthProvider } from '../../../shared/Firebase/Firebase';
 // Log
 import Log from '../../../shared/Services/Log';
 const log = Log.withModule('DeputiesAuth');
-// Firebase
-import { auth, fbAuthProvider, googleAuthProvider } from '../../../shared/Firebase/Firebase';
+
+// PropTypes
+const propTypes = {
+  onGoBackClick: PropTypes.func.isRequired,
+};
+
+// DefaultProps
+const defaultProps = {
+
+};
 
 // Style
 const style = {
@@ -18,7 +29,7 @@ const style = {
 };
 
 // DeputiesAuth
-export default class DeputiesAuth extends React.Component {
+class DeputiesAuth extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,48 +38,48 @@ export default class DeputiesAuth extends React.Component {
     };
   }
 
-    // Events
+  // Events
 
-  onLoginWithEmailClick(e) {
+  onLoginWithEmailClick() {
     log('login with email click');
     auth.signInWithEmailAndPassword(this.state.email, this.state.pass).catch((err) => {
-      if (err) return log.err(err);
+      if (err) log.err(err);
     });
   }
 
-  onLoginWithGoogleClick(e) {
-    log('login with google click');
-    auth.signInWithPopup(googleAuthProvider).then((result) => {
-            // let token = result.credential.accessToken;
-            // let user = result.user;
-    }).catch((err) => {
-      log.err(err);
-      alert('Сталась помилка під час авторизації...');
-            // let errorCode = err.code;
-            // let errorMessage = err.message;
-            // let email = err.email;
-            // let credential = err.credential;
-    });
-  }
-
-  onLoginWithFacebookClick(e) {
-    log('login with facebook click');
-    auth.signInWithPopup(fbAuthProvider).then((result) => {
-            // let token = result.credential.accessToken;
-            // let user = result.user;
-    }).catch((err) => {
-      log.err(err);
-      alert('Сталась помилка під час авторизації...');
-            // let errorCode = err.code;
-            // let errorMessage = err.message;
-            // let email = err.email;
-            // let credential = err.credential;
-    });
-  }
-
-    // Render
+  // Render
 
   render() {
+    const onLoginWithGoogleClick = () => {
+      log('login with google click');
+      auth.signInWithPopup(googleAuthProvider).then(() => {
+        // let token = result.credential.accessToken;
+        // let user = result.user;
+      }).catch((err) => {
+        log.err(err);
+        alert('Сталась помилка під час авторизації...');
+        // let errorCode = err.code;
+        // let errorMessage = err.message;
+        // let email = err.email;
+        // let credential = err.credential;
+      });
+    };
+
+    const onLoginWithFacebookClick = () => {
+      log('login with facebook click');
+      auth.signInWithPopup(fbAuthProvider).then(() => {
+              // let token = result.credential.accessToken;
+              // let user = result.user;
+      }).catch((err) => {
+        log.err(err);
+        alert('Сталась помилка під час авторизації...');
+              // let errorCode = err.code;
+              // let errorMessage = err.message;
+              // let email = err.email;
+              // let credential = err.credential;
+      });
+    };
+
     return (
       <div>
         <div><h3>Вхід</h3></div>
@@ -106,7 +117,7 @@ export default class DeputiesAuth extends React.Component {
             backgroundColor="#dd4b39"
             icon={<i className="fa fa-google" style={{ color: '#ffffff' }} />}
             fullWidth
-            onClick={e => this.onLoginWithGoogleClick(e)}
+            onClick={e => onLoginWithGoogleClick(e)}
           />
         </div>
         <div style={style.row}>
@@ -116,7 +127,7 @@ export default class DeputiesAuth extends React.Component {
             backgroundColor="#3b5998"
             icon={<i className="fa fa-facebook" style={{ color: '#ffffff' }} />}
             fullWidth
-            onClick={e => this.onLoginWithFacebookClick(e)}
+            onClick={e => onLoginWithFacebookClick(e)}
           />
         </div>
         <div style={{ textAlign: 'center', marginTop: 20 }}>
@@ -129,3 +140,8 @@ export default class DeputiesAuth extends React.Component {
     );
   }
 }
+
+DeputiesAuth.propTypes = propTypes;
+DeputiesAuth.defaultProps = defaultProps;
+
+export default DeputiesAuth;
