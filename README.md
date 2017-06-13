@@ -23,7 +23,7 @@ We are using [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascrip
 
 ```
 npm run lint
-``
+```
 
 ## TODO
 
