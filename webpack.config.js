@@ -13,11 +13,14 @@ const appPath = path.resolve(__dirname, 'src/app');
 module.exports = function webpackStuff(env) {
     return {
         entry: {
-            'app': appPath + '/app.js'
+            'app': appPath + '/app.jsx'
         },
         output: {
             path: distPath,
             filename: '[name].js'
+        },
+        resolve: {
+            extensions: ['.js', '.jsx']
         },
         module: {
             loaders: [

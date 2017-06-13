@@ -4,11 +4,11 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // Colors
-import {fade} from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/utils/colorManipulator';
 import Colors from './Colors';
 
 // Custom theme
-let customTheme = {
+const customTheme = {
   palette: {
     primary1Color: Colors.blue,
     primary2Color: Colors.blue,
@@ -27,8 +27,10 @@ let customTheme = {
   },
 };
 
-export default (props) => (
-    <MuiThemeProvider muiTheme={getMuiTheme(customTheme)}>
-        {props.children}
-    </MuiThemeProvider>
-)
+/* eslint-disable react/prop-types */
+export default props => (
+  <MuiThemeProvider muiTheme={getMuiTheme(customTheme)}>
+    {props.children}
+  </MuiThemeProvider>
+);
+/* eslint-enable react/prop-types */

@@ -1,0 +1,25 @@
+{
+    "extends": "airbnb",
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "node": true
+        }
+    },
+    "globals": {
+        "window": true,
+        "document": true,
+        "localStorage": true,
+        "VERSION": true,
+        "ENV": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "import/newline-after-import": "off"
+    }
+}

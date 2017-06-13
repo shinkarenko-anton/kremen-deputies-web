@@ -1,88 +1,92 @@
-// Redux components
-import {actionTypes} from './Actions';
 // Utils
 import _ from 'lodash';
+// Redux
+import { actionTypes } from './Actions';
+// Log
 import Log from '../Services/Log';
 const log = Log.withModule('Reducers');
-// Redux
-import { combineReducers } from 'redux';
 
 // Deputies
 
-function deputies(state = {}, action){
-    switch (action.type){
-        case actionTypes.DEPUTIES_CHANGE:
-            let item = action.item;
-            if(!item) return state;
-            // Clonging just in case
-            item = _.clone(item);
-            // Getting id from object and remove this id from object
-            var id = item.id;
-            delete item.id;
-            // update state
-            state[id] = item;
-            return state;
-        case actionTypes.DEPUTIES_SET:
-            return action.deputies;  
-        default:
-            return state;
+function deputies(state = {}, action) {
+  const newState = state;
+  switch (action.type) {
+    case actionTypes.DEPUTIES_CHANGE: {
+      let item = action.item;
+      if (!item) return newState;
+      // Clonging just in case
+      item = _.clone(item);
+      // Getting id from object and remove this id from object
+      const id = item.id;
+      delete item.id;
+      // update state
+      newState[id] = item;
+      return newState;
     }
+    case actionTypes.DEPUTIES_SET:
+      return action.deputies;
+    default:
+      return newState;
+  }
 }
 
 // Constituencies
 
-function constituencies(state = {}, action){
-    switch (action.type){
-        case actionTypes.CONSTITUENCIES_SET:
-            return action.constituencies; 
-        case actionTypes.CONSTITUENCIES_CHANGE:
-            let item = action.item;
-            if(!item) return state;
-            // Clonging just in case
-            item = _.clone(item);
-            // Getting id from object and remove this id from object
-            var id = item.id;
-            delete item.id;
-            // update state
-            state[id] = item;
-            return state; 
-        default:
-            return state;
+function constituencies(state = {}, action) {
+  const newState = state;
+  switch (action.type) {
+    case actionTypes.CONSTITUENCIES_SET:
+      return action.constituencies;
+    case actionTypes.CONSTITUENCIES_CHANGE: {
+      let item = action.item;
+      if (!item) return newState;
+      // Clonging just in case
+      item = _.clone(item);
+      // Getting id from object and remove this id from object
+      const id = item.id;
+      delete item.id;
+      // update state
+      newState[id] = item;
+      return newState;
     }
+    default:
+      return newState;
+  }
 }
 
 // Consfigs
 
-function configs(state = {}, action){
-    switch (action.type){
-        case actionTypes.CONFIGS_CHANGE:
-            state = _.clone(state);
-            state[action.name] = action.val;
-            return state;
-        default:
-            return state;
-    }
+function configs(state = {}, action) {
+  let newState = state;
+  switch (action.type) {
+    case actionTypes.CONFIGS_CHANGE:
+      newState = _.clone(newState);
+      newState[action.name] = action.val;
+      return newState;
+    default:
+      return newState;
+  }
 }
 
 // Main reducer
 
-function mainReducer(state = {}, action){
-    log(action);
+function mainReducer(state = {}, action) {
+  let newState = state;
+  log(action);
+  // Setting store data action
+  if (action.type === actionTypes.STORE_SET_STATE) {
+    log('setting new state');
+    newState = { ...newState, ...action.state };
+  }
 
-    // Setting store data action
-    if(action.type == actionTypes.STORE_SET_STATE){
-        log('setting new state');
-        state = _.assign({}, state, action.state);
-    }
+  // New state
+  newState = {
+    deputies: deputies(newState.deputies, action),
+    configs: configs(newState.configs, action),
+    constituencies: constituencies(newState.constituencies, action),
+  };
 
-    // New state
-    state =  {
-        deputies: deputies(state.deputies, action),
-        configs: configs(state.configs, action),
-        constituencies: constituencies(state.constituencies, action)
-    }
-    
-    return state;
+  return newState;
 }
 
 export default mainReducer;
