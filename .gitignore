@@ -9,3 +9,5 @@ npm-debug.log
 compile
 .firebaserc
 mod.js
+.idea
+*-lock.json
