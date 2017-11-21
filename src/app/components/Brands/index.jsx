@@ -33,8 +33,8 @@ const imgStyle = {
   width: '100%',
 };
 
-// BrandsPanel
-class BrandsPanel extends React.Component {
+// Brands
+class Brands extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -89,7 +89,8 @@ class BrandsPanel extends React.Component {
   }
 }
 
-BrandsPanel.propTypes = propTypes;
-BrandsPanel.defaultProps = defaultProps;
+// Attach prop types
+Brands.propTypes = propTypes;
+Brands.defaultProps = defaultProps;
 
-export default BrandsPanel;
+export default Brands;

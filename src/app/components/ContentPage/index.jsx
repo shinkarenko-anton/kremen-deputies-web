@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// UI
+// Components
 import Paper from 'material-ui/Paper';
 
 // PropTypes
@@ -19,7 +19,7 @@ function ContentPage(props) {
   return (
     <div className="content-page">
       <Paper className="content-page__content">
-        {props.children}
+        { props.children }
       </Paper>
     </div>
   );

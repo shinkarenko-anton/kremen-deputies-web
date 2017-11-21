@@ -1,15 +1,15 @@
+// Utils
+import _ from 'lodash';
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// Utils
-import _ from 'lodash';
 // UI
 import FlatButton from 'material-ui/FlatButton';
-// Theme
-import colors from '../../../shared/Theme/Colors';
+// Styles
+import { colors } from 'styles';
 // Assets
-import vestnikLogo from '../../../../assets/img/logo/vestnik-logo-300w.png';
-import googlePlayLogo from '../../../../assets/img/logo/google-play-logo-vector.svg';
+import vestnikLogo from 'assets/img/logo/vestnik-logo-300w.png';
+import googlePlayLogo from 'assets/img/logo/google-play-logo-vector.svg';
 
 // PropTypes
 const propTypes = {
@@ -19,50 +19,6 @@ const propTypes = {
 // DefaultProps
 const defaultProps = {
 
-};
-
-// Style
-const style = {
-  container: {
-    height: '100%', display: 'flex', flexDirection: 'column',
-  },
-  contactRow: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  rowIcon: {
-    display: 'inline-block',
-    width: 20,
-    marginRight: 6,
-    textAlign: 'center',
-  },
-  rowData: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-  },
-  footer: {
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  copyright: {
-    marginTop: 10,
-    fontSize: '10px',
-  },
-  version: {
-    marginTop: 6,
-    fontSize: 8,
-  },
-  logoContainer: {
-    textAlign: 'center',
-  },
-  logoLink: {
-    borderBottom: 'none',
-  },
-  logoImg: {
-    width: '160px',
-  },
 };
 
 // DeputieInfo
@@ -192,6 +148,51 @@ class DeputieInfo extends React.Component {
   }
 }
 
+// Style
+const style = {
+  container: {
+    height: '100%', display: 'flex', flexDirection: 'column',
+  },
+  contactRow: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  rowIcon: {
+    display: 'inline-block',
+    width: 20,
+    marginRight: 6,
+    textAlign: 'center',
+  },
+  rowData: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+  },
+  footer: {
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  copyright: {
+    marginTop: 10,
+    fontSize: '10px',
+  },
+  version: {
+    marginTop: 6,
+    fontSize: 8,
+  },
+  logoContainer: {
+    textAlign: 'center',
+  },
+  logoLink: {
+    borderBottom: 'none',
+  },
+  logoImg: {
+    width: '160px',
+  },
+};
+
+// Attach prop types
 DeputieInfo.propTypes = propTypes;
 DeputieInfo.defaultProps = defaultProps;
 

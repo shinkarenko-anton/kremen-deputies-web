@@ -6,8 +6,8 @@ import _ from 'lodash';
 import utils from '../../shared/Services/Utils';
 // UI
 import DeputiePhotosSlider from './DeputiePhotosSlider';
-// Theme
-import { threeDots } from '../../shared/Style/mixings';
+// Styles
+import { mixings } from 'styles';
 
 // PropTypes
 const propTypes = {
@@ -57,7 +57,7 @@ function DeputieInfo(props) {
         {deputie.fb ? (
           <div className="deputie-info__row">
             <div className="deputie-info__rowicon"><i className="fa fa-facebook-official" /></div>
-            <div className="deputie-info__rowdata" style={_.assign({}, threeDots, { width: 260 })}>
+            <div className="deputie-info__rowdata" style={_.assign({}, mixings.threeDots, { width: 260 })}>
               <a href={deputie.fb} target="__blank">{deputie.fb}</a>
             </div>
           </div>

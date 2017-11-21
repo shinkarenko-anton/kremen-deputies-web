@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 // UI
 import FlatButton from 'material-ui/FlatButton';
-import Dialog from '../Dialog/Dialog';
+import Dialog from 'components/Dialog';
 // Elements
 import DeputieInfo from './DeputieInfo';
 

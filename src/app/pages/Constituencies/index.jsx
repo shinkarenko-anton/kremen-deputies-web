@@ -9,13 +9,13 @@ import Drawer from 'material-ui/Drawer';
 // Utils
 import _ from 'lodash';
 import utils from '../../shared/Services/Utils';
-// Theme
-import * as mixings from '../../shared/Style/mixings';
-// Elements
-import ConstituenciesMap from './Map/ConstituenciesMap';
-import ConstituenciesSidebar from './Sidebar/ConstituenciesSidebar';
-import ConstituencyDialog from '../ConstituencyDialog/ConstituencyDialog';
-import BrandsPanel from '../Brands/BrandsPanel';
+// Styles
+import { mixings } from 'styles';
+// Components
+import ConstituenciesMap from './Map';
+import ConstituenciesSidebar from './Sidebar';
+import ConstituencyDialog from 'components/ConstituencyDialog';
+import BrandsPanel from 'components/Brands';
 // Firebase
 import { auth, database } from '../../shared/Firebase/Firebase';
 // Redux Actions

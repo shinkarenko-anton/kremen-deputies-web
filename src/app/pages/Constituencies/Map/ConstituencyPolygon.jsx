@@ -1,11 +1,12 @@
+// Utils
+import _ from 'lodash';
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 // Google Maps
 import { Polygon } from 'react-google-maps';
-// Theme
-import colors from '../../../shared/Theme/Colors';
+// Styles
+import { colors } from 'styles';
 
 // PropTypes
 const propTypes = {

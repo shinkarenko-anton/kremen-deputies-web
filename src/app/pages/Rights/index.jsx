@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 // UI
-import ContentPage from '../ContentPage/ContentPage';
+import ContentPage from 'components/ContentPage';
 
 // RightsPage
 /* eslint-disable max-len */

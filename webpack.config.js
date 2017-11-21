@@ -6,8 +6,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // Data
 const package = require('./package.json');
-const distPath = path.resolve(__dirname, 'dist');
 const appPath = path.resolve(__dirname, 'src/app');
+const distPath = path.resolve(__dirname, 'dist');
+const assetsPath = path.resolve(__dirname, 'src/assets');
 
 // Exports
 module.exports = function webpackStuff(env) {
@@ -20,6 +21,16 @@ module.exports = function webpackStuff(env) {
             filename: '[name].js'
         },
         resolve: {
+            alias: {
+                components: appPath + '/components',
+                pages: appPath + '/pages',
+                views: appPath + '/views',
+                store: appPath + '/store',
+                navigation: appPath + '/navigation',
+                styles: appPath + '/styles',
+                utils: appPath + '/utils',
+                assets: assetsPath
+            },
             extensions: ['.js', '.jsx']
         },
         module: {
