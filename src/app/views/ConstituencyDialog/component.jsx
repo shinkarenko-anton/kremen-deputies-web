@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
@@ -40,7 +40,8 @@ const constituencyToVotersCount = (constituency) => {
 };
 
 // ConstituencyDialog
-class ConstituencyDialog extends React.Component {
+
+class ConstituencyDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {};

@@ -9,7 +9,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Drawer from 'material-ui/Drawer';
 import Map from './Map';
 import Sidebar from './Sidebar';
-import ConstituencyDialog from 'components/ConstituencyDialog';
+import ConstituencyDialog from 'views/ConstituencyDialog';
 import BrandsPanel from 'components/Brands';
 // Styles
 import { mixings } from 'styles';
