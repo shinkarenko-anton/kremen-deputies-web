@@ -177,6 +177,9 @@ class ConstituenciesPage extends Component {
     const { coordinates } = data;
     const addressMarker = coordinates;
     const addressRegion = regionWithPoint(regions, coordinates) || null;
+    if(!addressRegion){
+      alert('За заданою адресою виборчий округ не знайдено');
+    }
     this.setState({
       addressMarker, 
       addressRegion,
