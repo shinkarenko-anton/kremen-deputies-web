@@ -59,7 +59,7 @@ class DeputieAdmin extends React.Component {
 
   onEditModeToggle(e, val) {
     e.stopPropagation();
-    this.props.onConfigsChange(ConfigsKeys.EDIT_MODE, val);
+    this.props.onConfigsChange(CONFIG_KEYS.EDIT_MODE, val);
   }
 
   // Render
@@ -90,7 +90,7 @@ class DeputieAdmin extends React.Component {
             <div style={style.row}>
               <Toggle
                 label="Режим редагування"
-                toggled={this.props.configs[ConfigsKeys.EDIT_MODE]}
+                toggled={this.props.configs[CONFIG_KEYS.EDIT_MODE]}
                 onToggle={(e, val) => this.onEditModeToggle(e, val)}
               />
             </div>
@@ -108,6 +108,8 @@ class DeputieAdmin extends React.Component {
     );
   }
 }
+
+// Attach prop types
 
 DeputieAdmin.propTypes = propTypes;
 DeputieAdmin.defaultProps = defaultProps;

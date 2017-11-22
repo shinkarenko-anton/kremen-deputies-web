@@ -7,13 +7,14 @@ import Navigation from 'navigation';
 // Redux
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react'
 // Firebase
 import { database } from 'services/firebase';
 // Styles
 import './app.scss';
 import '../../node_modules/font-awesome/css/font-awesome.css';
 // State
-import { store, actions } from 'store';
+import { store, actions, persistor } from 'store';
 // Styles
 import { Theme } from 'styles';
 // Configs
@@ -29,17 +30,6 @@ if (logEnabled) {
 } else {
   log.enabled(false);
 }
-
-
-// Init State
-const savedState = ConfigStorage.get('state');
-
-
-// Subscribing for updates
-store.subscribe(() => {
-    // Cache state
-  ConfigStorage.set('state', store.getState());
-});
 
 // Getting list of deputies
 const deputiesRef = database.ref('/deputies');
@@ -59,9 +49,11 @@ constituenciesRef.once('value').then((snap) => {
 function AppContainer() {
   return (
     <Provider store={store}>
-      <Theme>
-        <Navigation />
-      </Theme>
+      <PersistGate persistor={persistor}>
+        <Theme>
+          <Navigation />
+        </Theme>
+      </PersistGate>
     </Provider>
   );
 }

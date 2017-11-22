@@ -105,6 +105,8 @@ function ConstituenciesMap(props) {
   );
 }
 
+// Attach prop types
+
 ConstituenciesMap.propTypes = propTypes;
 ConstituenciesMap.defaultProps = defaultProps;
 

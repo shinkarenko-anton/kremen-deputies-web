@@ -205,9 +205,9 @@ class ConstituenciesPage extends Component {
             onClose={e => this.onConstituencyDialogClose(e)}
           />
                 ) : null}
-        <div style={{ position: 'absolute', right: 20, top: 20 }}>
+        <div style={styles.actionBtnWrap}>
           <FloatingActionButton
-            iconStyle={{ color: '#FFFFFF' }}
+            iconStyle={styles.actionBtn}
             mini
             iconClassName="fa fa-question"
             onClick={e => this.onOpenMenuClick(e)}
@@ -220,17 +220,40 @@ class ConstituenciesPage extends Component {
           open={this.state.drawer.open}
           onRequestChange={() => this.setState({ drawer: { open: false } })}
         >
-          <div style={{ padding: 20, height: '100%' }}>
+          <div style={styles.sidebarWrap}>
             <Sidebar
               userRole={this.state.userRole}
               user={this.state.user}
             />
           </div>
         </Drawer>
-        <BrandsPanel style={{ position: 'absolute', width: 140, left: 0, bottom: 24 }} />
+        <BrandsPanel style={styles.brand} />
       </div>
     );
   }
+}
+
+// Styles
+
+const styles = {
+  actionBtnWrap: {
+    position: 'absolute',
+    right: 20,
+    top: 20
+  },
+  actionBtn: {
+    color: '#FFFFFF'
+  },
+  sidebarWrap: {
+    padding: 20,
+    height: '100%',
+  },
+  brands: {
+    position: 'absolute',
+    width: 140,
+    left: 0,
+    bottom: 24,
+  },
 }
 
 // Attach prop types

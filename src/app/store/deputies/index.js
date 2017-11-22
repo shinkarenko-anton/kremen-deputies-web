@@ -16,7 +16,7 @@ export const actions = {
 
 // Selectros
 export const selectors = {
-  data: state => _.get(state, ['deputies'], {}),
+  get: state => _.get(state, ['deputies'], {}),
 }
 
 // Reducer
