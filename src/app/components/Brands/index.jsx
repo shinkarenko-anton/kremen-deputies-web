@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  style: {},
+  style: null,
 };
 
 // Brands
