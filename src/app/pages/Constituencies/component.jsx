@@ -5,13 +5,14 @@ import utils from 'utils';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Components
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Drawer from 'material-ui/Drawer';
 import Map from './Map';
 import Sidebar from './Sidebar';
 import ConstituencyDialog from 'views/ConstituencyDialog';
 import BrandsPanel from 'components/Brands';
+import SearchBar from './SearchBar';
 // Styles
+import Radium from 'radium';
 import { mixings } from 'styles';
 // Firebase
 import { auth, database } from 'services/firebase';
@@ -69,12 +70,12 @@ class ConstituenciesPage extends Component {
 
   // Events
 
-  onMapClick(e) {
+  onMapClick = (e) => {
     log(`map click: ${JSON.stringify(e.latLng)}`);
     this.setState({ selected: null });
   }
 
-  onMapCenterChanged() {
+  onMapCenterChanged = () => {
     // log('on center changed');
     if(!this.map) return;
     const map = this.map.state.map;
@@ -85,7 +86,7 @@ class ConstituenciesPage extends Component {
     }
   }
 
-  onMapZoomChanged() {
+  onMapZoomChanged = () => {
     if(!this.map) return;
     const map = this.map.state.map;
     if (map) {
@@ -94,7 +95,7 @@ class ConstituenciesPage extends Component {
     }
   }
 
-  onConstituencyClick(e, constituency) {
+  onConstituencyClick = (e, constituency) => {
     log(`constituency click: ${constituency.id} at location ${JSON.stringify(e.latLng)}`);
     if (this.isEditMode) return;
     this.setState({
@@ -106,12 +107,12 @@ class ConstituenciesPage extends Component {
     });
   }
 
-  onConstituencyDblClick(e, constituency) {
+  onConstituencyDblClick = (e, constituency) => {
     log(`constituency double click: ${constituency.id} at location ${JSON.stringify(e.latLng)}`);
     this.setState({ selected: constituency });
   }
 
-  onConstituencyChange(e, constituency) {
+  onConstituencyChange = (e, constituency) => {
     log(`constituency change: ${constituency.id}`);
     this.props.onConstituencyChange(constituency);
     // Updating firebase
@@ -121,7 +122,7 @@ class ConstituenciesPage extends Component {
     database.ref(`/constituencies/${id}`).set(data);
   }
 
-  onConstituencyDialogClose() {
+  onConstituencyDialogClose = () =>  {
     log('dialog close');
     this.setState(prev => ({
       constituencyDialog: {
@@ -131,8 +132,12 @@ class ConstituenciesPage extends Component {
     }));
   }
 
-  onOpenMenuClick() {
+  onOpenMenuClick = () => {
     this.setState({ drawerOpen: true });
+  }
+
+  onDrawerRequestChange = () => {
+    this.setState({ drawerOpen: false });
   }
 
   // Properties
@@ -165,6 +170,10 @@ class ConstituenciesPage extends Component {
     // Render
     return (
       <div style={[styles.container, style]}>
+        <SearchBar 
+          style={styles.searchBar}
+          onMenuClick={this.onOpenMenuClick}
+        />
         <Map
           ref={(el) => { this.map = el; }}
           containerElement={(<div style={mixings.fullScreen} />)}
@@ -177,42 +186,32 @@ class ConstituenciesPage extends Component {
           selected={selected}
           items={constArr}
 
-          onMapClick={e => this.onMapClick(e)}
-          onMapCenterChanged={e => this.onMapCenterChanged(e)}
-          onMapZoomChanged={e => this.onMapZoomChanged(e)}
+          onMapClick={this.onMapClick}
+          onMapCenterChanged={this.onMapCenterChanged}
+          onMapZoomChanged={this.onMapZoomChanged}
 
-          onConstituencyClick={(e, constituency) => this.onConstituencyClick(e, constituency)}
-          onConstituencyDblClick={(e, constituency) => this.onConstituencyDblClick(e, constituency)}
-          onConstituencyChange={(e, constituency) => this.onConstituencyChange(e, constituency)}
+          onConstituencyClick={this.onConstituencyClick}
+          onConstituencyDblClick={this.onConstituencyDblClick}
+          onConstituencyChange={this.onConstituencyChange}
         />
         {constituencyDialog.item ? (
           <ConstituencyDialog
             open={constituencyDialog.open}
             item={constituencyDialog.item}
-            onClose={e => this.onConstituencyDialogClose(e)}
+            onClose={this.onConstituencyDialogClose}
           />
-                ) : null}
-        <div style={styles.actionBtnWrap}>
-          <FloatingActionButton
-            iconStyle={styles.actionBtn}
-            mini
-            iconClassName="fa fa-question"
-            onClick={e => this.onOpenMenuClick(e)}
-          />
-        </div>
+        ) : null}
         <Drawer
           docked={false}
-          openSecondary
           width={360}
           open={drawerOpen}
-          onRequestChange={() => this.setState({ drawerOpen: false })}
+          onRequestChange={this.onDrawerRequestChange}
         >
-          <div style={styles.sidebarWrap}>
-            <Sidebar
-              userRole={this.state.userRole}
-              user={this.state.user}
-            />
-          </div>
+        <Sidebar
+          style={styles.sidebarWrap}
+          user={user}
+          userRole={userRole}
+        />
         </Drawer>
         <BrandsPanel 
           style={styles.brands}
@@ -228,13 +227,11 @@ const styles = {
   container: {
 
   },
-  actionBtnWrap: {
+  searchBar: {
     position: 'absolute',
-    right: 20,
     top: 20,
-  },
-  actionBtn: {
-    color: '#FFFFFF',
+    left: 20,
+    zIndex: 1,
   },
   sidebarWrap: {
     padding: 20,
@@ -252,4 +249,4 @@ const styles = {
 ConstituenciesPage.propTypes = propTypes;
 ConstituenciesPage.defaultProps = defaultProps;
 
-export default ConstituenciesPage;
+export default Radium(ConstituenciesPage);

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import InfoBlock from './infoBlock';
 import AuthBlock from './authBlock';
 import AdminBlock from './adminBlock';
+// Styles
+import Radium from 'radium';
 
 // Prop types
 
@@ -85,4 +87,4 @@ const styles = {
 ConstituenciesSidebar.propTypes = propTypes;
 ConstituenciesSidebar.defaultProps = defaultProps;
 
-export default ConstituenciesSidebar;
+export default Radium(ConstituenciesSidebar);

@@ -3,17 +3,21 @@ import _ from 'lodash';
 // React
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// Styles
+import Radium from 'radium';
+
 // Assets
+
 import vestnikLogo from 'assets/img/logo/vestnik-logo-300w.png';
 import iqHubLogo from 'assets/img/logo/iqhub-logo-300w.png';
 import googlePlayLogo from 'assets/img/logo/google-play-logo-vector.svg';
 
 // PropTypes
+
 const propTypes = {
   style: PropTypes.object,
 };
 
-// DefaultProps
 const defaultProps = {
   style: {},
 };
@@ -29,9 +33,14 @@ class Brands extends Component {
   // Render
 
   render() {
+    // Props
+    const {
+      style,
+    } = this.props;
+    // Render
     return (
-      <div style={_.assign({}, styles.container, this.props.style)}>
-        <div style={{ padding: '5px' }}>
+      <div style={[styles.container, style]}>
+        <div style={styles.item}>
           <a
             href="https://play.google.com/store/apps/details?id=constituencies.kremen.ua"
             target="__blank"
@@ -44,7 +53,7 @@ class Brands extends Component {
             />
           </a>
         </div>
-        <div style={{ padding: '5px' }}>
+        <div style={styles.item}>
           <a
             href="http://io.kr.ua/"
             target="__blank"
@@ -57,7 +66,7 @@ class Brands extends Component {
             />
           </a>
         </div>
-        <div style={{ padding: '5px' }}>
+        <div style={styles.item}>
           <a
             href="http://vestnik.in.ua/"
             target="__blank"
@@ -82,6 +91,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
+  item: { 
+    padding: '5px',
+  },
   link: {
     borderBottom: 'none',
     cursor: 'pointer',
@@ -96,4 +108,4 @@ const styles = {
 Brands.propTypes = propTypes;
 Brands.defaultProps = defaultProps;
 
-export default Brands;
+export default Radium(Brands);
