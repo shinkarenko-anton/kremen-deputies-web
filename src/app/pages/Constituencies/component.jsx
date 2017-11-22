@@ -9,7 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import Map from './Map';
 import Sidebar from './Sidebar';
 import ConstituencyDialog from 'views/ConstituencyDialog';
-import BrandsPanel from 'components/Brands';
+import BrandsPanel from 'views/Brands';
 import SearchBar from './SearchBar';
 // Styles
 import Radium from 'radium';
@@ -140,6 +140,11 @@ class ConstituenciesPage extends Component {
     this.setState({ drawerOpen: false });
   }
 
+  onPlaceSelected = (placeData) => {
+    log('place selected');
+    log(placeData);
+  }
+
   // Properties
 
   get isEditMode() {
@@ -173,6 +178,7 @@ class ConstituenciesPage extends Component {
         <SearchBar 
           style={styles.searchBar}
           onMenuClick={this.onOpenMenuClick}
+          onPlaceSelected={this.onPlaceSelected}
         />
         <Map
           ref={(el) => { this.map = el; }}
@@ -214,7 +220,7 @@ class ConstituenciesPage extends Component {
         />
         </Drawer>
         <BrandsPanel 
-          style={styles.brands}
+          style={{...mixings.horizontalCenter, ...styles.brands}}
         />
       </div>
     );
@@ -225,12 +231,12 @@ class ConstituenciesPage extends Component {
 
 const styles = {
   container: {
-
+    
   },
   searchBar: {
     position: 'absolute',
-    top: 20,
-    left: 20,
+    top: 10,
+    left: 10,
     zIndex: 1,
   },
   sidebarWrap: {
@@ -239,9 +245,7 @@ const styles = {
   },
   brands: {
     position: 'absolute',
-    width: 140,
-    left: 0,
-    bottom: 24,
+    bottom: '10px',
   },
 };
 

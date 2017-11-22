@@ -74,10 +74,13 @@ class Brands extends Component {
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   item: { 
-    padding: '5px',
+    paddingLeft: '5px',
+    paddingRight: '5px',
   },
   link: {
     borderBottom: 'none',

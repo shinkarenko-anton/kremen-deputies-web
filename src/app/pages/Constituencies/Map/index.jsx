@@ -5,12 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Google Map
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
-// Elements
+// Components
 import Polygon from './polygon';
 import Marker from './marker';
-
 // Consts
-const KREMEN_CENTER_LOCATION = { lat: 49.07041247214882, lng: 33.42281959697266 };
+import { COORDINATES } from 'consts';
 
 // Prop types
 
@@ -32,7 +31,7 @@ const propTypes = {
 const defaultProps = {
   items: [],
   defaultZoom: 13,
-  defaultCenter: KREMEN_CENTER_LOCATION,
+  defaultCenter: COORDINATES.KREMENCHUK,
   selected: false,
   onMapClick: () => {},
   onMapCenterChanged: () => {},
@@ -60,8 +59,7 @@ function ConstituenciesMap(props) {
       position: google.maps.ControlPosition.TOP_RIGHT,
     },
   };
-
-
+  // Elements
   const elements = [];
 
   _.each(items, (item) => {

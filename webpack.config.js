@@ -30,6 +30,7 @@ module.exports = function webpackStuff(env) {
                 services: appPath + '/services',
                 styles: appPath + '/styles',
                 utils: appPath + '/utils',
+                consts: appPath + '/consts',
                 assets: assetsPath
             },
             extensions: ['.js', '.jsx']

@@ -13,6 +13,12 @@ export const screenCenter = {
   transform: 'translateX(-50%) translateY(-50%)',
 };
 
+export const horizontalCenter = {
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+}
+
 export const threeDots = {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
@@ -30,6 +36,7 @@ export const fullFixedScreen = {
 export default {
   fullScreen,
   screenCenter,
+  horizontalCenter,
   threeDots,
   fullFixedScreen,
 };
