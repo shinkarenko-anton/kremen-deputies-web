@@ -17,6 +17,7 @@ const propTypes = {
 const defaultProps = {
   style: null,
   onPlaceSelected: () => {},
+  onPlaceChanged: () => {},
 };
 
 // Places
@@ -42,6 +43,7 @@ class Places extends Component{
 
   onInputChange = (value) => {
     this.setState({value});
+    this.props.onPlaceChanged(value);
   }
 
   onSelect = (value, placeId) => {

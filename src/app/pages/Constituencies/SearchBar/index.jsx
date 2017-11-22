@@ -38,6 +38,7 @@ class SearchBar extends Component{
       style,
       onMenuClick,
       onPlaceSelected,
+      onPlaceChanged,
     } = this.props;
     // State
     const {
@@ -54,6 +55,7 @@ class SearchBar extends Component{
           <Places 
             style={styles.search}
             onPlaceSelected={onPlaceSelected}
+            onPlaceChanged={onPlaceChanged}
           />
         </Paper>
       </div>

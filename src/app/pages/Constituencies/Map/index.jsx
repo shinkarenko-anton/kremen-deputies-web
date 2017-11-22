@@ -1,13 +1,14 @@
 // Utils
 import _ from 'lodash';
 // React
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Google Map
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 // Components
 import Polygon from './polygon';
-import Marker from './marker';
+import ConstMarker from './marker';
+import { Marker } from 'react-google-maps';
 // Consts
 import { COORDINATES } from 'consts';
 
@@ -43,69 +44,96 @@ const defaultProps = {
 
 // ConstituenciesMap
 
-function ConstituenciesMap(props) {
-  // Props
-  const {
-    items,
-    selected,
-    onConstituencyClick,
-    onConstituencyDblClick,
-    onConstituencyChange,
-  } = props;
-  // Options
-  const mapOptions = {
-    mapTypeControlOptions: {
-      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-      position: google.maps.ControlPosition.TOP_RIGHT,
-    },
-  };
-  // Elements
-  const elements = [];
+class ConstituenciesMap extends Component{
+  constructor(props){
+    super(props);
+  }
 
-  _.each(items, (item) => {
-    _.each(item.polygons, (polygon, index) => {
-      const polygonComponent = (
-        <Polygon
-          key={`polygon-${item.id}-${index}`}
-          polygon={polygon}
-          editable={props.editable && selected && (selected.id === item.id)}
-          onChange={(e, path) => {
-            const newItem = _.clone(item);
-            newItem.polygons[index] = path;
-            onConstituencyChange(e, newItem);
-          }}
-          onClick={e => onConstituencyClick(e, item)}
-          onDblClick={e => onConstituencyDblClick(e, item)}
-        />
-      );
-      elements.push(polygonComponent);
-    });
-    _.each(item.markers, (marker, index) => {
-      const markerComponent = (
-        <Marker
-          key={`marker-${item.id}-${index}`}
-          position={marker}
-          label={item.number.toString()}
-        />
-      );
-      elements.push(markerComponent);
-    });
-  });
-
-  return (
-    <GoogleMap
-      defaultZoom={props.defaultZoom}
-      defaultCenter={props.defaultCenter}
-      options={mapOptions}
-      onClick={e => props.onMapClick(e)}
-      onResize={e => props.onMapResize(e)}
-      onCenterChanged={e => props.onMapCenterChanged(e)}
-      onZoomChanged={e => props.onMapZoomChanged(e)}
-    >
-      {elements}
-    </GoogleMap>
-  );
+  render() {
+    // Props
+    const {
+      items,
+      selected,
+      editable,
+      addressMarker,
+      defaultZoom,
+      defaultCenter,
+      onMapClick,
+      onMapResize,
+      onMapCenterChanged,
+      onMapZoomChanged,
+      onConstituencyClick,
+      onConstituencyDblClick,
+      onConstituencyChange,
+    } = this.props;
+    // Options
+    const mapOptions = {
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: google.maps.ControlPosition.TOP_RIGHT,
+      },
+    };
+    // Elements
+    const getMapComponents = () => {
+      const components = [];
+      // Custom marker
+      if(addressMarker){
+        components.push(
+          <Marker
+            key={`marker-address`}
+            position={addressMarker}
+          />
+        );
+      }
+      // Polygons
+      _.each(items, (item) => {
+        _.each(item.polygons, (polygon, index) => {
+          components.push(
+            <Polygon
+              key={`polygon-${item.id}-${index}`}
+              polygon={polygon}
+              editable={editable && selected && (selected.id === item.id)}
+              onChange={(e, path) => {
+                const newItem = _.clone(item);
+                newItem.polygons[index] = path;
+                onConstituencyChange(e, newItem);
+              }}
+              onClick={e => onConstituencyClick(e, item)}
+              onDblClick={e => onConstituencyDblClick(e, item)}
+            />
+          );
+        });
+        // Markers
+        _.each(item.markers, (marker, index) => {
+          components.push(
+            <ConstMarker
+              key={`marker-${item.id}-${index}`}
+              position={marker}
+              label={item.number.toString()}
+            />
+          );
+        });
+      });
+      return components;
+    }
+  
+    return (
+      <GoogleMap
+        defaultZoom={defaultZoom}
+        defaultCenter={defaultCenter}
+        options={mapOptions}
+        onClick={e => onMapClick(e)}
+        onResize={e => onMapResize(e)}
+        onCenterChanged={e => onMapCenterChanged(e)}
+        onZoomChanged={e => onMapZoomChanged(e)}
+      >
+        { getMapComponents() }
+      </GoogleMap>
+    );
+  }
 }
+
+
 
 // Attach prop types
 

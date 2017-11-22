@@ -36,6 +36,32 @@ const defaultProps = {
 
 };
 
+// Helpers
+
+const isPointInsidePoligon = (point, vs) => {
+  let inside = false;
+  for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+      let xi = vs[i].lat, yi = vs[i].lng;
+      let xj = vs[j].lat, yj = vs[j].lng;
+
+      let intersect = ((yi > point.lng) != (yj > point.lng))
+          && (point.lat < (xj - xi) * (point.lng - yi) / (yj - yi) + xi);
+      if (intersect) inside = !inside;
+  }
+  return inside;
+};
+
+const regionWithPoint = (regions, point) => {
+  return _.find(regions, region => {
+    const { polygons } = region;
+    const polygonWithPoint = _.find(polygons, polygon => {
+      const { inner = [], outer = [] } = polygon;
+      return isPointInsidePoligon(point, outer);
+    });
+    return polygonWithPoint ? true : false;
+  });
+}
+
 // ConstituenciesPage
 
 class ConstituenciesPage extends Component {
@@ -45,6 +71,9 @@ class ConstituenciesPage extends Component {
       user: null,
       userRole: null,
       selected: null,
+      center: null,
+      addressMarker: null,
+      addressRegion: null,
       constituencyDialog: { open: false, item: null },
       drawerOpen: false,
     };
@@ -140,9 +169,32 @@ class ConstituenciesPage extends Component {
     this.setState({ drawerOpen: false });
   }
 
-  onPlaceSelected = (placeData) => {
+  onSearchPlaceSelected = (data) => {
     log('place selected');
-    log(placeData);
+    log(data);
+    const { constituencies } = this.props;
+    const regions = _.map(constituencies, (item, id) => ({ id, ...item }));
+    const { coordinates } = data;
+    const addressMarker = coordinates;
+    const addressRegion = regionWithPoint(regions, coordinates) || null;
+    this.setState({
+      addressMarker, 
+      addressRegion,
+      constituencyDialog: {
+        open: true,
+        item: addressRegion,
+        key: utils.id.genId(),
+      },
+    });
+  }
+
+  onSearchPlaceChanged = (value) => {
+    if(!value){
+      this.setState({
+        addressMarker: null, 
+        addressRegion: null,
+      });
+    }
   }
 
   // Properties
@@ -168,17 +220,24 @@ class ConstituenciesPage extends Component {
       drawerOpen,
       user,
       userRole,
+      center,
+      addressMarker,
+      addressRegion,
     } = this.state;
     // Data
     const editable = this.isEditMode;
-    const constArr = _.map(constituencies, (item, id) => ({ id, ...item }));
+    let regions = _.map(constituencies, (item, id) => ({ id, ...item }));
+    if(addressRegion){
+      regions = _.filter(regions, item => item.id === addressRegion.id );
+    }
     // Render
     return (
       <div style={[styles.container, style]}>
         <SearchBar 
           style={styles.searchBar}
           onMenuClick={this.onOpenMenuClick}
-          onPlaceSelected={this.onPlaceSelected}
+          onPlaceSelected={this.onSearchPlaceSelected}
+          onPlaceChanged={this.onSearchPlaceChanged}
         />
         <Map
           ref={(el) => { this.map = el; }}
@@ -190,7 +249,9 @@ class ConstituenciesPage extends Component {
 
           editable={editable}
           selected={selected}
-          items={constArr}
+          items={regions}
+          center={center}
+          addressMarker={addressMarker}
 
           onMapClick={this.onMapClick}
           onMapCenterChanged={this.onMapCenterChanged}

@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// UI
+// Components
 import { Marker } from 'react-google-maps';
 // Styles
 import { colors } from 'styles';
