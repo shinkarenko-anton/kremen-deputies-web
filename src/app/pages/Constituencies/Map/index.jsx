@@ -1,18 +1,19 @@
+// Utils
+import _ from 'lodash';
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// Utils
-import _ from 'lodash';
 // Google Map
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 // Elements
-import ConstituencyPolygon from './ConstituencyPolygon';
-import ConstituencyMarker from './ConstituencyMarker';
+import Polygon from './polygon';
+import Marker from './marker';
 
 // Consts
 const KREMEN_CENTER_LOCATION = { lat: 49.07041247214882, lng: 33.42281959697266 };
 
-// PropTypes
+// Prop types
+
 const propTypes = {
   constituencies: PropTypes.array.isRequired,
   selected: PropTypes.bool,
@@ -30,7 +31,6 @@ const propTypes = {
   onConstituencyChange: PropTypes.func.isRequired,
 };
 
-// DefaultProps
 const defaultProps = {
   defaultZoom: 13,
   defaultCenter: KREMEN_CENTER_LOCATION,
@@ -38,7 +38,9 @@ const defaultProps = {
 };
 
 // ConstituenciesMap
+
 function ConstituenciesMap(props) {
+  // Props
   const {
     constituencies,
     selected,
@@ -46,7 +48,7 @@ function ConstituenciesMap(props) {
     onConstituencyDblClick,
     onConstituencyChange,
   } = props;
-
+  // Options
   const mapOptions = {
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
@@ -59,8 +61,8 @@ function ConstituenciesMap(props) {
 
   _.each(constituencies, (item) => {
     _.each(item.polygons, (polygon, index) => {
-      const constituencyPolygon = (
-        <ConstituencyPolygon
+      const polygonComponent = (
+        <Polygon
           key={`polygon-${item.id}-${index}`}
           polygon={polygon}
           editable={props.editable && selected && (selected.id === item.id)}
@@ -73,17 +75,17 @@ function ConstituenciesMap(props) {
           onDblClick={e => onConstituencyDblClick(e, item)}
         />
       );
-      elements.push(constituencyPolygon);
+      elements.push(polygonComponent);
     });
     _.each(item.markers, (marker, index) => {
-      const constituencyMarker = (
-        <ConstituencyMarker
+      const markerComponent = (
+        <Marker
           key={`marker-${item.id}-${index}`}
           position={marker}
           label={item.number.toString()}
         />
       );
-      elements.push(constituencyMarker);
+      elements.push(markerComponent);
     });
   });
 

@@ -1,24 +1,25 @@
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// Elements
-import ConstituenciesInfo from './ConstituenciesInfo';
-import ConstituenciesAuth from './ConstituenciesAuth';
-import ConstituenciesAdmin from './ConstituenciesAdmin';
+// Components
+import InfoBlock from './infoBlock';
+import AuthBlock from './authBlock';
+import AdminBlock from './adminBlock';
 
-// PropTypes
+// Prop types
+
 const propTypes = {
   user: PropTypes.object,
   userRole: PropTypes.string,
 };
 
-// DefaultProps
 const defaultProps = {
   user: null,
   userRole: null,
 };
 
 // ConstituenciesSidebar
+
 class ConstituenciesSidebar extends React.Component {
   constructor(props) {
     super(props);
@@ -45,11 +46,11 @@ class ConstituenciesSidebar extends React.Component {
     const user = this.props.user;
 
     const notAuthContent = this.state.showAuth ? (
-      <ConstituenciesAuth
+      <AuthBlock
         onGoBackClick={e => this.onGoBackClick(e)}
       />
     ) : (
-      <ConstituenciesInfo
+      <InfoBlock
         onLoginClick={e => this.onLoginClick(e)}
       />
     );
@@ -57,7 +58,7 @@ class ConstituenciesSidebar extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         {user ? (
-          <ConstituenciesAdmin
+          <AdminBlock
             user={user}
             userRole={this.props.userRole}
           />
@@ -66,6 +67,8 @@ class ConstituenciesSidebar extends React.Component {
     );
   }
 }
+
+// Attach prop types
 
 ConstituenciesSidebar.propTypes = propTypes;
 ConstituenciesSidebar.defaultProps = defaultProps;

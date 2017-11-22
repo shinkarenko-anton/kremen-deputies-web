@@ -5,7 +5,7 @@ import utils from 'utils';
 import React from 'react';
 import PropTypes from 'prop-types';
 // UI
-import DeputiePhotosSlider from './DeputiePhotosSlider';
+import DeputiePhotosSlider from './deputiePhotosSlider';
 // Styles
 import { mixings } from 'styles';
 

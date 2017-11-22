@@ -9,7 +9,7 @@ import _ from 'lodash';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'components/Dialog';
 // Elements
-import DeputieInfo from './DeputieInfo';
+import DeputieInfo from './deputieInfo';
 
 // PropTypes
 const propTypes = {

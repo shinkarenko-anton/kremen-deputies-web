@@ -34,6 +34,8 @@ class ConstituencyMarker extends React.Component {
   }
 }
 
+// Attach prop types
+
 ConstituencyMarker.propTypes = propTypes;
 ConstituencyMarker.defaultProps = defaultProps;
 
