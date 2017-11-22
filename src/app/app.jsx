@@ -5,9 +5,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // Navigation
 import Navigation from 'navigation';
 // Redux
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/es/integration/react'
+import { PersistGate } from 'redux-persist/es/integration/react';
 // Firebase
 import { database } from 'services/firebase';
 // Styles
@@ -24,6 +23,7 @@ import Log from 'utils/log';
 const log = Log.withModule('app');
 
 // Init Log
+console.log(ENV);
 const logEnabled = ConfigStorage.get('log') || ((typeof ENV !== 'undefined') && (ENV === 'dev'));
 if (logEnabled) {
   log.enabled(true);

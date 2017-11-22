@@ -13,7 +13,7 @@ import RightsPage from 'pages/Rights';
 import { mixings } from 'styles';
 
 // Navigation
-function Navigation(props){
+function Navigation(props) {
   return (
     <Router>
       <Switch>
@@ -21,7 +21,7 @@ function Navigation(props){
           exact
           path="/"
           render={() => (
-            <ConstituenciesPage style={ mixings.fullFixedScreen } />
+            <ConstituenciesPage style={mixings.fullFixedScreen} />
           )}
         />
         <Route

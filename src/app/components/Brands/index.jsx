@@ -26,7 +26,7 @@ class Brands extends Component {
     this.state = {};
   }
 
-    // Render
+  // Render
 
   render() {
     return (
@@ -89,7 +89,7 @@ const styles = {
   img: {
     width: '100%',
   },
-}
+};
 
 // Attach prop types
 

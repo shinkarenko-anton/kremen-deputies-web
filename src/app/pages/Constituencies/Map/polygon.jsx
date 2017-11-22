@@ -30,7 +30,7 @@ class ConstituencyPoligon extends React.Component {
     this.state = {};
   }
 
-    // Lifecycle hooks
+  // Lifecycle hooks
 
   componentDidMount() {
 
@@ -40,7 +40,7 @@ class ConstituencyPoligon extends React.Component {
     this.polygon = null;
   }
 
-    // Element
+  // Element
 
   handlePolygon(polygon) {
     if (!polygon) return;
@@ -74,10 +74,10 @@ class ConstituencyPoligon extends React.Component {
     });
   }
 
-    // Render
+  // Render
 
   render() {
-        // Constituency
+    // Constituency
     const polygon = this.props.polygon;
     if (!polygon) return null;
 

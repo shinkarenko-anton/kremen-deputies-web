@@ -13,7 +13,7 @@
     "dev": "ENV=dev webpack -d --watch",
     "dist": "webpack -p --progress",
     "deploy": "firebase deploy --only hosting",
-    "lint": "eslint src/app/**/*.js*"
+    "lint": "eslint src/app --ext=js,jsx"
   },
   "author": "Jaroslav Khorishchenko <websnipter@gmail.com>",
   "license": "ISC",

@@ -15,26 +15,31 @@ const KREMEN_CENTER_LOCATION = { lat: 49.07041247214882, lng: 33.42281959697266 
 // Prop types
 
 const propTypes = {
-  constituencies: PropTypes.array.isRequired,
+  items: PropTypes.array,
   selected: PropTypes.bool,
   defaultZoom: PropTypes.number,
   defaultCenter: PropTypes.object,
 
-  onMapLoad: PropTypes.func.isRequired,
-  onMapClick: PropTypes.func.isRequired,
-  onMapResize: PropTypes.func.isRequired,
-  onMapCenterChanged: PropTypes.func.isRequired,
-  onMapZoomChanged: PropTypes.func.isRequired,
+  onMapClick: PropTypes.func,
+  onMapCenterChanged: PropTypes.func,
+  onMapZoomChanged: PropTypes.func,
 
-  onConstituencyClick: PropTypes.func.isRequired,
-  onConstituencyDblClick: PropTypes.func.isRequired,
-  onConstituencyChange: PropTypes.func.isRequired,
+  onConstituencyClick: PropTypes.func,
+  onConstituencyDblClick: PropTypes.func,
+  onConstituencyChange: PropTypes.func,
 };
 
 const defaultProps = {
+  items: [],
   defaultZoom: 13,
   defaultCenter: KREMEN_CENTER_LOCATION,
   selected: false,
+  onMapClick: () => {},
+  onMapCenterChanged: () => {},
+  onMapZoomChanged: () => {},
+  onConstituencyClick: () => {},
+  onConstituencyDblClick: () => {},
+  onConstituencyChange: () => {},
 };
 
 // ConstituenciesMap
@@ -42,7 +47,7 @@ const defaultProps = {
 function ConstituenciesMap(props) {
   // Props
   const {
-    constituencies,
+    items,
     selected,
     onConstituencyClick,
     onConstituencyDblClick,
@@ -59,7 +64,7 @@ function ConstituenciesMap(props) {
 
   const elements = [];
 
-  _.each(constituencies, (item) => {
+  _.each(items, (item) => {
     _.each(item.polygons, (polygon, index) => {
       const polygonComponent = (
         <Polygon
@@ -91,7 +96,6 @@ function ConstituenciesMap(props) {
 
   return (
     <GoogleMap
-      ref={map => props.onMapLoad(map)}
       defaultZoom={props.defaultZoom}
       defaultCenter={props.defaultCenter}
       options={mapOptions}

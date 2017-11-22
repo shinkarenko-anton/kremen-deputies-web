@@ -49,7 +49,7 @@ class ConstituenciesPage extends Component {
     };
   }
 
-    // Lifecycle hooks
+  // Lifecycle hooks
 
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
@@ -149,33 +149,19 @@ class ConstituenciesPage extends Component {
   // Render
   render() {
     // Props
-
-    const newProps = _.clone(this.props);
-    if (newProps.constituencies) delete newProps.constituencies;
-    if (newProps.configs) delete newProps.configs;
-    if (newProps.onConstituencyChange) delete newProps.onConstituencyChange;
-    if (newProps.onConfigsChange) delete newProps.onConfigsChange;
-
-    // Edit mode
+    const {
+      constituencies,
+    } = this.props;
+    // State
+    const {
+      selected,
+    } = this.state;
+    // Data
     const editable = this.isEditMode;
-
-    // Mod  data
-    const constituencies = _.map(this.props.constituencies, (item, id) => {
-      const newItem = _.clone(item);
-      newItem.id = id;
-      return newItem;
-    });
-
-    const onMapLoad = () => {
-      log('map loaded');
-    };
-
-    const onMapResize = () => {
-      // log('on map resize');
-    };
-
+    const constArr = _.map(constituencies, (item, id) => ({ id, ...item }));
+    // Render
     return (
-      <div {...newProps}>
+      <div>
         <Map
           ref={(el) => { this.map = el; }}
           containerElement={(<div style={mixings.fullScreen} />)}
@@ -185,12 +171,10 @@ class ConstituenciesPage extends Component {
           defaultZoom={this.props.configs[CONFIG_KEYS.MAP_ZOOM]}
 
           editable={editable}
-          selected={this.state.selected}
-          constituencies={constituencies}
+          selected={selected}
+          items={constArr}
 
-          onMapLoad={map => onMapLoad(map)}
           onMapClick={e => this.onMapClick(e)}
-          onMapResize={e => onMapResize(e)}
           onMapCenterChanged={e => this.onMapCenterChanged(e)}
           onMapZoomChanged={e => this.onMapZoomChanged(e)}
 
@@ -239,10 +223,10 @@ const styles = {
   actionBtnWrap: {
     position: 'absolute',
     right: 20,
-    top: 20
+    top: 20,
   },
   actionBtn: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   sidebarWrap: {
     padding: 20,
@@ -254,7 +238,7 @@ const styles = {
     left: 0,
     bottom: 24,
   },
-}
+};
 
 // Attach prop types
 ConstituenciesPage.propTypes = propTypes;

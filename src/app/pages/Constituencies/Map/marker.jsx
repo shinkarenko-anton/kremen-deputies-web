@@ -22,7 +22,7 @@ class ConstituencyMarker extends React.Component {
     this.state = {};
   }
 
-    // Render
+  // Render
 
   render() {
     return (

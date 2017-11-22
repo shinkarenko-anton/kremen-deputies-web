@@ -13,5 +13,5 @@ export default connect(
   dispatch => ({
     onConstituencyChange: item => dispatch(actions.constituencies.change(item)),
     onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val)),
-  })
+  }),
 )(Component);

@@ -68,15 +68,15 @@ class DeputiesAuth extends React.Component {
     const onLoginWithFacebookClick = () => {
       log('login with facebook click');
       auth.signInWithPopup(fbAuthProvider).then(() => {
-              // let token = result.credential.accessToken;
-              // let user = result.user;
+        // let token = result.credential.accessToken;
+        // let user = result.user;
       }).catch((err) => {
         log.err(err);
         alert('Сталась помилка під час авторизації...');
-              // let errorCode = err.code;
-              // let errorMessage = err.message;
-              // let email = err.email;
-              // let credential = err.credential;
+        // let errorCode = err.code;
+        // let errorMessage = err.message;
+        // let email = err.email;
+        // let credential = err.credential;
       });
     };
 

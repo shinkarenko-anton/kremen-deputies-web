@@ -47,7 +47,7 @@ class ConstituencyDialog extends Component {
     this.state = {};
   }
 
-    // Render
+  // Render
 
   render() {
     const constituency = this.props.item;

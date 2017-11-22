@@ -1,5 +1,3 @@
-// Redux
-import { combineReducers } from 'redux';
 // Reducers
 import { reducer as configs } from './configs';
 import { reducer as constituencies } from './constituencies';

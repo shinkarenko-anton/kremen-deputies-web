@@ -6,38 +6,32 @@ const initial = {};
 
 // Types
 import types from './types';
-export {default as types} from './types';
+export { default as types } from './types';
 
 // Actions
 export const actions = {
   set: constituencies => ({ type: types.CONSTITUENCIES_SET, constituencies }),
   change: item => ({ type: types.CONSTITUENCIES_CHANGE, item }),
-}
+};
 
 // Selectros
 export const selectors = {
-  get: (state) => _.get(state, ['constituencies'], {}),
-}
+  get: state => _.get(state, ['constituencies'], {}),
+};
 
 // Reducer
 export const reducer = (state = initial, action) => {
-  switch (action.type){
+  switch (action.type) {
     case types.CONSTITUENCIES_SET:
       return action.constituencies;
     case types.CONSTITUENCIES_CHANGE: {
-      let item = action.item;
-      if (!item) return newState;
-      // Clonging just in case
-      item = _.clone(item);
-      // Getting id from object and remove this id from object
-      const id = item.id;
-      delete item.id;
-      // update state
-      newState[id] = item;
-      return newState;
+      const { item } = action;
+      if (!item) return state;
+      const { id, ...constData } = item;
+      return { ...state, [id]: constData };
     }
     default:
       return state;
   }
-}
+};
 
