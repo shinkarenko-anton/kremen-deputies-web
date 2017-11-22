@@ -37,48 +37,33 @@ class Brands extends Component {
     const {
       style,
     } = this.props;
+    // Data
+    const items = [
+      {icon: iqHubLogo, title: "IQ Hub", link: "https://io.kr.ua/"},
+      {icon: vestnikLogo, title: "Вісник Кременчука", link: "https://vestnik.in.ua/"},
+      {icon: googlePlayLogo, title: "Карта виборчих округів Кременчука в Google Play", link: "https://play.google.com/store/apps/details?id=constituencies.kremen.ua"},
+    ];
     // Render
     return (
       <div style={[styles.container, style]}>
-        <div style={styles.item}>
-          <a
-            href="https://play.google.com/store/apps/details?id=constituencies.kremen.ua"
-            target="__blank"
-            style={styles.link}
+        {_.map(items, ({icon, title, link}, index) => (
+          <div 
+            key={index}
+            style={styles.item}
           >
-            <img
-              src={googlePlayLogo}
-              style={styles.img}
-              alt="Карта виборчих округів Кременчука в Google Play"
-            />
-          </a>
-        </div>
-        <div style={styles.item}>
-          <a
-            href="http://io.kr.ua/"
-            target="__blank"
-            style={styles.link}
-          >
-            <img
-              src={iqHubLogo}
-              style={styles.img}
-              alt="IQ Hub"
-            />
-          </a>
-        </div>
-        <div style={styles.item}>
-          <a
-            href="http://vestnik.in.ua/"
-            target="__blank"
-            style={styles.link}
-          >
-            <img
-              src={vestnikLogo}
-              style={styles.img}
-              alt="Вісник Кременчука"
-            />
-          </a>
-        </div>
+            <a
+              href={link}
+              target="__blank"
+              style={styles.link}
+            >
+              <img
+                src={icon}
+                style={styles.img}
+                alt={title}
+              />
+            </a>
+          </div>
+        ))}
       </div>
     );
   }
@@ -99,7 +84,7 @@ const styles = {
     cursor: 'pointer',
   },
   img: {
-    width: '100%',
+    width: 100,
   },
 };
 
