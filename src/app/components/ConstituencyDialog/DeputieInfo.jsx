@@ -1,26 +1,27 @@
+// Utils
+import _ from 'lodash';
+import utils from 'utils';
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// Utils
-import _ from 'lodash';
-import utils from '../../shared/Services/Utils';
 // UI
 import DeputiePhotosSlider from './DeputiePhotosSlider';
 // Styles
 import { mixings } from 'styles';
 
 // PropTypes
+
 const propTypes = {
   deputie: PropTypes.object.isRequired,
   style: PropTypes.object,
 };
 
-// DefaultProps
 const defaultProps = {
   style: {},
 };
 
 // DeputieInfo
+
 function DeputieInfo(props) {
   const { deputie, style } = props;
   if (!deputie) return null;

@@ -27,6 +27,7 @@ module.exports = function webpackStuff(env) {
                 views: appPath + '/views',
                 store: appPath + '/store',
                 navigation: appPath + '/navigation',
+                services: appPath + '/services',
                 styles: appPath + '/styles',
                 utils: appPath + '/utils',
                 assets: assetsPath

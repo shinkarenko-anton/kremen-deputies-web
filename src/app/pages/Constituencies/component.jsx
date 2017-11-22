@@ -1,32 +1,28 @@
-// React
-import React from 'react';
-import PropTypes from 'prop-types';
-// Redux
-import { connect } from 'react-redux';
-// UI
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import Drawer from 'material-ui/Drawer';
 // Utils
 import _ from 'lodash';
-import utils from '../../shared/Services/Utils';
-// Styles
-import { mixings } from 'styles';
+import utils from 'utils';
+// React
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // Components
-import ConstituenciesMap from './Map';
-import ConstituenciesSidebar from './Sidebar';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Drawer from 'material-ui/Drawer';
+import Map from './Map';
+import Sidebar from './Sidebar';
 import ConstituencyDialog from 'components/ConstituencyDialog';
 import BrandsPanel from 'components/Brands';
+// Styles
+import { mixings } from 'styles';
 // Firebase
-import { auth, database } from '../../shared/Firebase/Firebase';
-// Redux Actions
-import actions from '../../shared/Redux/Actions';
+import { auth, database } from 'services/firebase';
 // Configs
-import ConfigsKeys from '../../shared/Configs/ConfigsKeys';
+import { CONFIG_KEYS } from 'services/configStorage';
 // Log
-import Log from '../../shared/Services/Log';
+import Log from 'utils/log';
 const log = Log.withModule('ConstituenciesPage');
 
-// PropTypes
+// Prop types
+
 const propTypes = {
   constituencies: PropTypes.object.isRequired,
   configs: PropTypes.object.isRequired,
@@ -35,25 +31,13 @@ const propTypes = {
   onConfigsChange: PropTypes.func.isRequired,
 };
 
-// DefaultProps
 const defaultProps = {
 
 };
 
-// Redux
-const mapStateToProps = state => ({
-  constituencies: state.constituencies,
-  configs: state.configs,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onConstituencyChange: item => dispatch(actions.constituencies.change(item)),
-  onConfigsChange: (name, val) => dispatch(actions.configs.change(name, val)),
-});
-
 // ConstituenciesPage
-class ConstituenciesPage extends React.Component {
-    // Constructor
+
+class ConstituenciesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,7 +81,7 @@ class ConstituenciesPage extends React.Component {
       if (map) {
         const center = map.getCenter();
         const centerData = { lat: center.lat(), lng: center.lng() };
-        this.props.onConfigsChange(ConfigsKeys.MAP_CENTER, centerData);
+        this.props.onConfigsChange(CONFIG_KEYS.MAP_CENTER, centerData);
       }
     }
   }
@@ -107,7 +91,7 @@ class ConstituenciesPage extends React.Component {
       const map = this.map.state.map;
       if (map) {
         const zoom = map.getZoom();
-        this.props.onConfigsChange(ConfigsKeys.MAP_ZOOM, zoom);
+        this.props.onConfigsChange(CONFIG_KEYS.MAP_ZOOM, zoom);
       }
     }
   }
@@ -159,7 +143,7 @@ class ConstituenciesPage extends React.Component {
     return this.state.user &&
            this.state.userRole === 'admin' &&
            this.props.configs &&
-           this.props.configs[ConfigsKeys.EDIT_MODE] === true;
+           this.props.configs[CONFIG_KEYS.EDIT_MODE] === true;
   }
 
   // Render
@@ -192,13 +176,13 @@ class ConstituenciesPage extends React.Component {
 
     return (
       <div {...newProps}>
-        <ConstituenciesMap
+        <Map
           ref={(el) => { this.map = el; }}
           containerElement={(<div style={mixings.fullScreen} />)}
           mapElement={(<div style={mixings.fullScreen} />)}
 
-          defaultCenter={this.props.configs[ConfigsKeys.MAP_CENTER]}
-          defaultZoom={this.props.configs[ConfigsKeys.MAP_ZOOM]}
+          defaultCenter={this.props.configs[CONFIG_KEYS.MAP_CENTER]}
+          defaultZoom={this.props.configs[CONFIG_KEYS.MAP_ZOOM]}
 
           editable={editable}
           selected={this.state.selected}
@@ -237,7 +221,7 @@ class ConstituenciesPage extends React.Component {
           onRequestChange={() => this.setState({ drawer: { open: false } })}
         >
           <div style={{ padding: 20, height: '100%' }}>
-            <ConstituenciesSidebar
+            <Sidebar
               userRole={this.state.userRole}
               user={this.state.user}
             />
@@ -249,7 +233,8 @@ class ConstituenciesPage extends React.Component {
   }
 }
 
+// Attach prop types
 ConstituenciesPage.propTypes = propTypes;
 ConstituenciesPage.defaultProps = defaultProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConstituenciesPage);
+export default ConstituenciesPage;

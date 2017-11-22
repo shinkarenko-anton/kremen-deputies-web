@@ -1,5 +1,5 @@
 // Log
-import Log from './Log';
+import Log from 'utils/log';
 const log = Log.withModule('ConfigStorage');
 
 // Config Storage
@@ -28,6 +28,16 @@ function setConfig(key, val) {
   const valStr = JSON.stringify(val);
   localStorage.setItem(fullKey, valStr);
 }
+
+// Keys
+
+export const CONFIG_KEYS = {
+  MAP_CENTER: 'mapCenter',
+  MAP_ZOOM: 'mapZoom',
+  EDIT_MODE: 'editMode',
+};
+
+// Export
 
 export default {
   get: getConfig,

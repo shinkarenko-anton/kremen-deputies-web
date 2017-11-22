@@ -15,7 +15,7 @@ export const actions = {
 
 // Selectros
 export const selectors = {
-  items: state => _.get(state, ['configs'], {}),
+  get: (state) => _.get(state, ['configs'], {}),
 }
 
 // Reducer

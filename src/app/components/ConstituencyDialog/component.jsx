@@ -25,16 +25,8 @@ const defaultProps = {
   onClose: null,
 };
 
-// Redux
-const mapStateToProps = state => ({
-  deputies: state.deputies,
-});
+// Helpers
 
-const mapDispatchToProps = () => ({
-
-});
-
-// Utils
 const constituencyToVotersCount = (constituency) => {
   let votersCount = 0;
   if (constituency.stations && constituency.stations.length) {
@@ -95,4 +87,4 @@ class ConstituencyDialog extends React.Component {
 ConstituencyDialog.propTypes = propTypes;
 ConstituencyDialog.defaultProps = defaultProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConstituencyDialog);
+export default ConstituencyDialog;

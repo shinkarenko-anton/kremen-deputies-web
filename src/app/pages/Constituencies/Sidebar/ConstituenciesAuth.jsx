@@ -6,9 +6,9 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 // Firebase
-import { auth, fbAuthProvider, googleAuthProvider } from '../../../shared/Firebase/Firebase';
+import { auth, fbAuthProvider, googleAuthProvider } from 'services/firebase';
 // Log
-import Log from '../../../shared/Services/Log';
+import Log from 'utils/log';
 const log = Log.withModule('DeputiesAuth');
 
 // PropTypes

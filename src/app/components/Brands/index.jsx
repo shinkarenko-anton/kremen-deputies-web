@@ -1,12 +1,12 @@
-// React
-import React from 'react';
-import PropTypes from 'prop-types';
 // Utils
 import _ from 'lodash';
+// React
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // Assets
-import vestnikLogo from '../../../assets/img/logo/vestnik-logo-300w.png';
-import iqHubLogo from '../../../assets/img/logo/iqhub-logo-300w.png';
-import googlePlayLogo from '../../../assets/img/logo/google-play-logo-vector.svg';
+import vestnikLogo from 'assets/img/logo/vestnik-logo-300w.png';
+import iqHubLogo from 'assets/img/logo/iqhub-logo-300w.png';
+import googlePlayLogo from 'assets/img/logo/google-play-logo-vector.svg';
 
 // PropTypes
 const propTypes = {
@@ -18,23 +18,9 @@ const defaultProps = {
   style: {},
 };
 
-// Style
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-};
-
-const linkStyle = {
-  borderBottom: 'none',
-  cursor: 'pointer',
-};
-
-const imgStyle = {
-  width: '100%',
-};
-
 // Brands
-class Brands extends React.Component {
+
+class Brands extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -44,16 +30,16 @@ class Brands extends React.Component {
 
   render() {
     return (
-      <div style={_.assign({}, containerStyle, this.props.style)}>
+      <div style={_.assign({}, styles.container, this.props.style)}>
         <div style={{ padding: '5px' }}>
           <a
             href="https://play.google.com/store/apps/details?id=constituencies.kremen.ua"
             target="__blank"
-            style={linkStyle}
+            style={styles.link}
           >
             <img
               src={googlePlayLogo}
-              style={imgStyle}
+              style={styles.img}
               alt="Карта виборчих округів Кременчука в Google Play"
             />
           </a>
@@ -62,11 +48,11 @@ class Brands extends React.Component {
           <a
             href="http://io.kr.ua/"
             target="__blank"
-            style={linkStyle}
+            style={styles.link}
           >
             <img
               src={iqHubLogo}
-              style={imgStyle}
+              style={styles.img}
               alt="IQ Hub"
             />
           </a>
@@ -75,11 +61,11 @@ class Brands extends React.Component {
           <a
             href="http://vestnik.in.ua/"
             target="__blank"
-            style={linkStyle}
+            style={styles.link}
           >
             <img
               src={vestnikLogo}
-              style={imgStyle}
+              style={styles.img}
               alt="Вісник Кременчука"
             />
           </a>
@@ -89,7 +75,24 @@ class Brands extends React.Component {
   }
 }
 
+// Styles
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  link: {
+    borderBottom: 'none',
+    cursor: 'pointer',
+  },
+  img: {
+    width: '100%',
+  },
+}
+
 // Attach prop types
+
 Brands.propTypes = propTypes;
 Brands.defaultProps = defaultProps;
 

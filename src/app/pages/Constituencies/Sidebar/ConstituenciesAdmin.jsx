@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 // Firebase
-import { auth } from '../../../shared/Firebase/Firebase';
+import { auth } from 'services/firebase';
 // Redux
-import actions from '../../../shared/Redux/Actions';
+import { actions } from 'store';
 // Configs
-import ConfigsKeys from '../../../shared/Configs/ConfigsKeys';
+import { CONFIG_KEYS } from 'services/configStorage';
 // Log
-import Log from '../../../shared/Services/Log';
+import Log from 'utils/log';
 const log = Log.withModule('DeputieAdmin');
 
 // PropTypes

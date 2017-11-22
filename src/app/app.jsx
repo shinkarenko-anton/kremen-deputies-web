@@ -8,7 +8,7 @@ import Navigation from 'navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 // Firebase
-import { database } from './shared/Firebase/Firebase';
+import { database } from 'services/firebase';
 // Styles
 import './app.scss';
 import '../../node_modules/font-awesome/css/font-awesome.css';
@@ -17,7 +17,7 @@ import { store, actions } from 'store';
 // Styles
 import { Theme } from 'styles';
 // Configs
-import ConfigStorage from './shared/Services/ConfigStorage';
+import ConfigStorage from 'services/configStorage';
 // Log
 import Log from 'utils/log';
 const log = Log.withModule('app');
