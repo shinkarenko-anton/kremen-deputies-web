@@ -30,12 +30,12 @@ class ConstituenciesSidebar extends React.Component {
 
   // Events
 
-  onLoginClick(e) {
+  onLoginClick = (e) => {
     e.stopPropagation();
     this.setState({ showAuth: true });
   }
 
-  onGoBackClick(e) {
+  onGoBackClick = (e) => {
     e.stopPropagation();
     this.setState({ showAuth: false });
   }
@@ -43,20 +43,24 @@ class ConstituenciesSidebar extends React.Component {
   // Render
 
   render() {
-    const user = this.props.user;
+    // Props
+    const {
+      style,
+      user,
+    } = this.props;
 
     const notAuthContent = this.state.showAuth ? (
       <AuthBlock
-        onGoBackClick={e => this.onGoBackClick(e)}
+        onGoBackClick={this.onGoBackClick}
       />
     ) : (
       <InfoBlock
-        onLoginClick={e => this.onLoginClick(e)}
+        onLoginClick={this.onLoginClick}
       />
     );
 
     return (
-      <div style={{ height: '100%' }}>
+      <div style={[styles.container, style]}>
         {user ? (
           <AdminBlock
             user={user}
@@ -66,6 +70,14 @@ class ConstituenciesSidebar extends React.Component {
       </div>
     );
   }
+}
+
+// Styles
+
+const styles = {
+  container: {
+    height: '100%'
+  },
 }
 
 // Attach prop types

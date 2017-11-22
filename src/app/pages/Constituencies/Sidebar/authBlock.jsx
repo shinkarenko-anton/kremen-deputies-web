@@ -21,13 +21,6 @@ const defaultProps = {
 
 };
 
-// Style
-const style = {
-  row: {
-    marginTop: 10,
-  },
-};
-
 // DeputiesAuth
 class DeputiesAuth extends React.Component {
   constructor(props) {
@@ -140,6 +133,15 @@ class DeputiesAuth extends React.Component {
     );
   }
 }
+
+// Style
+const style = {
+  row: {
+    marginTop: 10,
+  },
+};
+
+// Attach prop types
 
 DeputiesAuth.propTypes = propTypes;
 DeputiesAuth.defaultProps = defaultProps;
