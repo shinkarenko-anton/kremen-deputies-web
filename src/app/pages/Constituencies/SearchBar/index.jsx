@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import MenuBtn from './menuBtn';
 import Places from './places';
+import CancelBtn from './cancelBtn';
 
 // Styles
 import Radium from 'radium';
@@ -30,6 +31,20 @@ class SearchBar extends Component{
     }
   }
 
+  // Events
+
+  onCancelClick = () => {
+    const { onCancelClick } = this.props;
+    this.setState({address: ''});
+    onCancelClick();
+  }
+
+  onPlaceChanged = (address) => {
+    const { onPlaceChanged } = this.props;
+    this.setState({address});
+    onPlaceChanged(address);
+  }
+
   // Render
 
   render(){
@@ -38,7 +53,6 @@ class SearchBar extends Component{
       style,
       onMenuClick,
       onPlaceSelected,
-      onPlaceChanged,
     } = this.props;
     // State
     const {
@@ -54,9 +68,16 @@ class SearchBar extends Component{
           />
           <Places 
             style={styles.search}
+            value={address}
             onPlaceSelected={onPlaceSelected}
-            onPlaceChanged={onPlaceChanged}
+            onPlaceChanged={this.onPlaceChanged}
           />
+          {address ? (
+            <CancelBtn
+              style={styles.cancelBtn}
+              onClick={this.onCancelClick}
+            />
+          ) : null}
         </Paper>
       </div>
     );
@@ -67,7 +88,7 @@ class SearchBar extends Component{
 
 const styles = {
   container: {
-  
+    width: 400,
   },
   content: {
     padding: 10,
@@ -78,10 +99,13 @@ const styles = {
     alignItems: 'center',
   },
   menuBtn: {
-
+    
+  },
+  cancelBtn: {
+    marginLeft: 10,
   },
   search: {
-    width: 400,
+    flex: 1,
   }
 }
 

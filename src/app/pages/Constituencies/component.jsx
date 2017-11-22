@@ -62,6 +62,16 @@ const regionWithPoint = (regions, point) => {
   });
 }
 
+const getPolygonCenter = (polygon) => {
+  const x1 = _.minBy(polygon, item => item.lat).lat;
+  const y1 = _.minBy(polygon, item => item.lng).lng;
+  const x2 = _.maxBy(polygon, item => item.lat).lat;
+  const y2 = _.maxBy(polygon, item => item.lng).lng;
+  const lat = x1 + ((x2 - x1) / 2);
+  const lng = y1 + ((y2 - y1) / 2);
+  return {lat, lng};
+}
+
 // ConstituenciesPage
 
 class ConstituenciesPage extends Component {
@@ -71,7 +81,6 @@ class ConstituenciesPage extends Component {
       user: null,
       userRole: null,
       selected: null,
-      center: null,
       addressMarker: null,
       addressRegion: null,
       constituencyDialog: { open: false, item: null },
@@ -179,6 +188,14 @@ class ConstituenciesPage extends Component {
     const addressRegion = regionWithPoint(regions, coordinates) || null;
     if(!addressRegion){
       alert('За заданою адресою виборчий округ не знайдено');
+    }else{
+      const { polygons } = addressRegion;
+      if(polygons.length && this.map){
+        const map = this.map.state.map;
+        const polygonCenters = _.map(polygons, ({inner, outer}) => getPolygonCenter(outer));
+        const center = polygonCenters.length == 1 ? polygonCenters[0] : getPolygonCenter(polygonCenters);
+        map.setCenter(center);
+      }
     }
     this.setState({
       addressMarker, 
@@ -200,6 +217,13 @@ class ConstituenciesPage extends Component {
     }
   }
 
+  onCancelClick = () => {
+    this.setState({
+      addressMarker: null, 
+      addressRegion: null,
+    });
+  }
+
   // Properties
 
   get isEditMode() {
@@ -214,6 +238,7 @@ class ConstituenciesPage extends Component {
     // Props
     const {
       style,
+      configs,
       constituencies,
     } = this.props;
     // State
@@ -223,7 +248,6 @@ class ConstituenciesPage extends Component {
       drawerOpen,
       user,
       userRole,
-      center,
       addressMarker,
       addressRegion,
     } = this.state;
@@ -239,6 +263,7 @@ class ConstituenciesPage extends Component {
         <SearchBar 
           style={styles.searchBar}
           onMenuClick={this.onOpenMenuClick}
+          onCancelClick={this.onCancelClick}
           onPlaceSelected={this.onSearchPlaceSelected}
           onPlaceChanged={this.onSearchPlaceChanged}
         />
@@ -247,13 +272,12 @@ class ConstituenciesPage extends Component {
           containerElement={(<div style={mixings.fullScreen} />)}
           mapElement={(<div style={mixings.fullScreen} />)}
 
-          defaultCenter={this.props.configs[CONFIG_KEYS.MAP_CENTER]}
-          defaultZoom={this.props.configs[CONFIG_KEYS.MAP_ZOOM]}
+          defaultCenter={configs[CONFIG_KEYS.MAP_CENTER]}
+          defaultZoom={configs[CONFIG_KEYS.MAP_ZOOM]}
 
           editable={editable}
           selected={selected}
           items={regions}
-          center={center}
           addressMarker={addressMarker}
 
           onMapClick={this.onMapClick}

@@ -41,11 +41,6 @@ class Places extends Component{
 
   // Events
 
-  onInputChange = (value) => {
-    this.setState({value});
-    this.props.onPlaceChanged(value);
-  }
-
   onSelect = (value, placeId) => {
     const { onPlaceSelected } = this.props;
     this.setState({value});
@@ -66,12 +61,10 @@ class Places extends Component{
   render(){
     // Props
     const { 
-      style
-    } = this.props;
-    // State
-    const {
+      style,
       value,
-    } = this.state;
+      onPlaceChanged,
+    } = this.props;
     // Options
     const options = {
       location: new google.maps.LatLng(COORDINATES.KREMENCHUK.lat, COORDINATES.KREMENCHUK.lng),
@@ -85,7 +78,7 @@ class Places extends Component{
           options={options}
           inputProps={{
             value,
-            onChange: this.onInputChange,
+            onChange: onPlaceChanged,
             placeholder: 'Пошук за адресою'
           }}
           onSelect={this.onSelect}
