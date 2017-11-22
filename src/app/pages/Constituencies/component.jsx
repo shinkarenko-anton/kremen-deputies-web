@@ -45,7 +45,7 @@ class ConstituenciesPage extends Component {
       userRole: null,
       selected: null,
       constituencyDialog: { open: false, item: null },
-      drawer: { open: false },
+      drawerOpen: false,
     };
   }
 
@@ -76,23 +76,21 @@ class ConstituenciesPage extends Component {
 
   onMapCenterChanged() {
     // log('on center changed');
-    if (this.map) {
-      const map = this.map.state.map;
-      if (map) {
-        const center = map.getCenter();
-        const centerData = { lat: center.lat(), lng: center.lng() };
-        this.props.onConfigsChange(CONFIG_KEYS.MAP_CENTER, centerData);
-      }
+    if(!this.map) return;
+    const map = this.map.state.map;
+    if (map) {
+      const center = map.getCenter();
+      const centerData = { lat: center.lat(), lng: center.lng() };
+      this.props.onConfigsChange(CONFIG_KEYS.MAP_CENTER, centerData);
     }
   }
 
   onMapZoomChanged() {
-    if (this.map) {
-      const map = this.map.state.map;
-      if (map) {
-        const zoom = map.getZoom();
-        this.props.onConfigsChange(CONFIG_KEYS.MAP_ZOOM, zoom);
-      }
+    if(!this.map) return;
+    const map = this.map.state.map;
+    if (map) {
+      const zoom = map.getZoom();
+      this.props.onConfigsChange(CONFIG_KEYS.MAP_ZOOM, zoom);
     }
   }
 
@@ -134,7 +132,7 @@ class ConstituenciesPage extends Component {
   }
 
   onOpenMenuClick() {
-    this.setState({ drawer: { open: true } });
+    this.setState({ drawerOpen: true });
   }
 
   // Properties
@@ -156,6 +154,10 @@ class ConstituenciesPage extends Component {
     // State
     const {
       selected,
+      constituencyDialog,
+      drawerOpen,
+      user,
+      userRole,
     } = this.state;
     // Data
     const editable = this.isEditMode;
@@ -183,10 +185,10 @@ class ConstituenciesPage extends Component {
           onConstituencyDblClick={(e, constituency) => this.onConstituencyDblClick(e, constituency)}
           onConstituencyChange={(e, constituency) => this.onConstituencyChange(e, constituency)}
         />
-        {this.state.constituencyDialog.item ? (
+        {constituencyDialog.item ? (
           <ConstituencyDialog
-            open={this.state.constituencyDialog.open}
-            item={this.state.constituencyDialog.item}
+            open={constituencyDialog.open}
+            item={constituencyDialog.item}
             onClose={e => this.onConstituencyDialogClose(e)}
           />
                 ) : null}
@@ -202,8 +204,8 @@ class ConstituenciesPage extends Component {
           docked={false}
           openSecondary
           width={360}
-          open={this.state.drawer.open}
-          onRequestChange={() => this.setState({ drawer: { open: false } })}
+          open={drawerOpen}
+          onRequestChange={() => this.setState({ drawerOpen: false })}
         >
           <div style={styles.sidebarWrap}>
             <Sidebar
