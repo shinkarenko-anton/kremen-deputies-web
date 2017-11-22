@@ -23,7 +23,6 @@ import Log from 'utils/log';
 const log = Log.withModule('app');
 
 // Init Log
-console.log(ENV);
 const logEnabled = ConfigStorage.get('log') || ((typeof ENV !== 'undefined') && (ENV === 'dev'));
 if (logEnabled) {
   log.enabled(true);

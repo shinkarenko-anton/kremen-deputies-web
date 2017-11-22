@@ -150,6 +150,7 @@ class ConstituenciesPage extends Component {
   render() {
     // Props
     const {
+      style,
       constituencies,
     } = this.props;
     // State
@@ -161,7 +162,7 @@ class ConstituenciesPage extends Component {
     const constArr = _.map(constituencies, (item, id) => ({ id, ...item }));
     // Render
     return (
-      <div>
+      <div style={[styles.container, style]}>
         <Map
           ref={(el) => { this.map = el; }}
           containerElement={(<div style={mixings.fullScreen} />)}
@@ -211,7 +212,9 @@ class ConstituenciesPage extends Component {
             />
           </div>
         </Drawer>
-        <BrandsPanel style={styles.brand} />
+        <BrandsPanel 
+          style={styles.brands}
+        />
       </div>
     );
   }
@@ -220,6 +223,9 @@ class ConstituenciesPage extends Component {
 // Styles
 
 const styles = {
+  container: {
+
+  },
   actionBtnWrap: {
     position: 'absolute',
     right: 20,
