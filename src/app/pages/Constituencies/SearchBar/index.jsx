@@ -6,9 +6,9 @@ import Paper from 'material-ui/Paper';
 import MenuBtn from './menuBtn';
 import Places from './places';
 import CancelBtn from './cancelBtn';
-
 // Styles
 import Radium from 'radium';
+import { sizes } from 'styles';
 
 // Prop types
 
@@ -89,6 +89,9 @@ class SearchBar extends Component{
 const styles = {
   container: {
     width: 400,
+    [`@media (max-width: ${sizes.screens.phone})`]: {
+      width: '100%',
+    },
   },
   content: {
     padding: 10,

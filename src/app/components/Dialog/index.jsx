@@ -1,12 +1,13 @@
+// Utils
+import _ from 'lodash';
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
-// Utils
-import _ from 'lodash';
-// UI
+// Components
 import Paper from 'material-ui/Paper';
 
-// PropTypes
+// Prop types
+
 const propTypes = {
   open: PropTypes.bool,
   title: PropTypes.string,
@@ -15,7 +16,6 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
-// DefaultProps
 const defaultProps = {
   open: false,
   title: '',

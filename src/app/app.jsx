@@ -15,6 +15,7 @@ import '../../node_modules/font-awesome/css/font-awesome.css';
 // State
 import { store, actions, persistor } from 'store';
 // Styles
+import { StyleRoot } from 'radium';
 import { Theme } from 'styles';
 // Configs
 import ConfigStorage from 'services/configStorage';
@@ -47,13 +48,15 @@ constituenciesRef.once('value').then((snap) => {
 // AppContainer
 function AppContainer() {
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Theme>
-          <Navigation />
-        </Theme>
-      </PersistGate>
-    </Provider>
+    <StyleRoot>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <Theme>
+            <Navigation />
+          </Theme>
+        </PersistGate>
+      </Provider>
+    </StyleRoot>
   );
 }
 
