@@ -110,6 +110,7 @@ class ConstituenciesMap extends Component{
               key={`marker-${item.id}-${index}`}
               position={marker}
               label={item.number.toString()}
+              onClick={e => onConstituencyClick(e, item)}
             />
           );
         });

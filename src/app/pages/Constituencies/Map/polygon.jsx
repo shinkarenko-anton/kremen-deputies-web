@@ -21,6 +21,8 @@ const propTypes = {
 // DefaultProps
 const defaultProps = {
   editable: false,
+  onClick: () => {},
+  onDblClick: () => {},
 };
 
 // ConstituencyPoligon
@@ -77,11 +79,16 @@ class ConstituencyPoligon extends React.Component {
   // Render
 
   render() {
+    // Props
+    const {
+      polygon,
+      onClick,
+      onDblClick,
+    } = this.props;
     // Constituency
-    const polygon = this.props.polygon;
     if (!polygon) return null;
 
-    const paths = [];
+    let paths = [];
     if (polygon.outer) {
       paths.push(polygon.outer);
     }
@@ -102,8 +109,8 @@ class ConstituencyPoligon extends React.Component {
           fillColor: colors.blue,
           fillOpacity: 0.1,
         }}
-        onClick={e => this.props.onClick(e)}
-        onDblClick={e => this.props.onDblClick(e)}
+        onClick={onClick}
+        onDblClick={onDblClick}
       />
     );
   }

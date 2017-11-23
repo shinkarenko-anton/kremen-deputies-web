@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-
+  onClick: () => {},
 };
 
 // ConstituencyMarker
@@ -36,6 +36,7 @@ class ConstituencyMarker extends React.Component {
     const {
       label,
       position,
+      onClick,
     } = this.props;
     // Icon
     const icon = {
@@ -57,6 +58,7 @@ class ConstituencyMarker extends React.Component {
         position={position}
         label={labelOpt}
         icon={icon}
+        onClick={onClick}
       />
     );
   }
