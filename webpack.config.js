@@ -1,74 +1,82 @@
-// Require
-const path = require('path');
 const webpack = require('webpack');
-// Plugins
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// Data
 const package = require('./package.json');
-const appPath = path.resolve(__dirname, 'src/app');
+// Load configs from .env file
+require('dotenv').config();
+// Paths
+const appPath = path.resolve(__dirname, 'src');
 const distPath = path.resolve(__dirname, 'dist');
-const assetsPath = path.resolve(__dirname, 'src/assets');
 
-// Exports
-module.exports = function webpackStuff(env) {
-    return {
-        entry: {
-            'app': appPath + '/app.jsx'
-        },
-        output: {
-            path: distPath,
-            filename: '[name].js'
-        },
-        resolve: {
-            alias: {
-                components: appPath + '/components',
-                pages: appPath + '/pages',
-                views: appPath + '/views',
-                store: appPath + '/store',
-                navigation: appPath + '/navigation',
-                services: appPath + '/services',
-                styles: appPath + '/styles',
-                utils: appPath + '/utils',
-                consts: appPath + '/consts',
-                assets: assetsPath
-            },
-            extensions: ['.js', '.jsx']
-        },
-        module: {
-            loaders: [
-                { test: /\.jsx?/, use: 'babel-loader', include: appPath },
-                { test: /\.(png|woff|woff2|eot|ttf|svg|gif)/, use: 'url-loader?limit=100000' },
-                { test: /\.css$/, use: ["style-loader", "css-loader"] },
-                { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] }
-            ]
-        },
-        plugins: [
-            new HtmlWebpackPlugin({
-                title: package.title,
-                company: package.company,
-                description: package.description,
-                url: package.url,
-                filename: 'index.html',
-                template: 'src/assets/templates/index.ejs',
-                hash: true,
-                minify: {
-                    collapseWhitespace: true,
-                    removeComments: true,
-                    minifyJS: true
-                }
-            }),
-            new CopyWebpackPlugin([
-                {context: 'src', from: 'assets/img/fav/*'},
-                {context: 'src', from: 'assets/img/banner/*'}
-            ]),
-            new webpack.DefinePlugin({
-                VERSION: JSON.stringify(package.version),
-                ENV: JSON.stringify(env)
-            })
-        ],
-        devServer: {
-            historyApiFallback: true
-        }
-    }
+const getMapsApiKey = (devEnv) => {
+  const { env } = process;
+  if ((devEnv === 'dev') && (env.MAPS_API_KEY_DEV)) { return env.MAPS_API_KEY_DEV; }
+  if ((devEnv === 'prod') && (env.MAPS_API_KEY_PROD)) { return env.MAPS_API_KEY_PROD; }
+  if (env.MAPS_API_KEY) { return env.MAPS_API_KEY; }
+  throw new Error('MAPS_API_KEY_DEV or MAPS_API_KEY_PROD or MAPS_API_KEY not defined in the .env file');
 }
+
+module.exports = (env) => ({
+  entry: {
+    'app': `${appPath}/app.tsx`
+  },
+  output: {
+    path: distPath,
+    filename: '[name].js'
+  },
+  resolve: {
+    alias: {
+      assets: `${appPath}/assets`,
+      common: path.resolve(__dirname, '../../common'),
+      components: `${appPath}/components`,
+      core: `${appPath}/core`,
+      screens: `${appPath}/screens`,
+      scenes: `${appPath}/scenes`,
+      styles: `${appPath}/styles`,
+      utils: `${appPath}/utils`,
+    },
+    extensions: ['.js', '.ts', '.tsx']
+  },
+  module: {
+    rules: [
+      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
+      // Use url-loader for the files under 10k, for other cases - file-loader
+      { test: /\.(woff|woff2|eot|ttf|svg|png|jpg)/, use: [
+        { loader: 'url-loader', options: { limit: 100000, name: 'assets/[name].[ext]' } }
+      ] },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: package.title,
+      company: package.company,
+      description: package.description,
+      url: package.url,
+      filename: 'index.html',
+      template: 'src/templates/index.ejs',
+      hash: true,
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyJS: true
+      }
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/assets/img/*.{png,jpg}', to: 'assets', flatten: true },
+    ]),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(package.version),
+      ENV: JSON.stringify(env.ENV),
+      MAPS_API_KEY: JSON.stringify(getMapsApiKey(env.ENV)),
+    })
+  ],
+  devServer: {
+    historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  }
+});

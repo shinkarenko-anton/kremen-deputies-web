@@ -1,24 +1,24 @@
 {
-    "rules": {
-        "deputies": {
-            ".read": "true",
-            ".write": "(auth != null) && root.child('roles/' + auth.uid).val() === 'admin'"
-        },
-        "constituencies": {
-            ".read": "true",
-            ".write": "(auth != null) && root.child('roles/' + auth.uid).val() === 'admin'"
-        },
-        "users": {
-            "$uid": {
-                ".read": "auth != null && auth.uid === $uid",
-                ".write": "auth != null && auth.uid === $uid"
-            }
-        },
-        "roles": {
-            "$uid": {
-                ".read": "auth != null && auth.uid === $uid",
-                ".write": "false"
-            }
-        }
+  "rules": {
+    "deputies": {
+      ".read": "true",
+      ".write": "(auth != null) && root.child('roles/' + auth.uid).val() === 'admin'"
+    },
+    "constituencies": {
+      ".read": "true",
+      ".write": "(auth != null) && root.child('roles/' + auth.uid).val() === 'admin'"
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "roles": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "false"
+      }
     }
+  }
 }

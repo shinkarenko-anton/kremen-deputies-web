@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "CommonJS",
+    "jsx": "react",
+    "sourceMap": false,
+    "outDir": "./dist/",
+    "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "components": ["components"],
+      "components/*": ["components/*"],
+      "common": ["common"],
+      "common/*": ["common/*"],
+      "navigation": ["navigation"],
+      "navigation/*": ["navigation/*"],
+      "pages": ["pages"],
+      "pages/*": ["pages/*"],
+      "scenes": ["scenes"],
+      "scenes/*": ["scenes/*"],
+      "services": ["services"],
+      "services/*": ["services/*"],
+      "store": ["store"],
+      "store/*": ["store/*"],
+      "styles": ["styles"],
+      "styles/*": ["styles/*"],
+      "utils": ["utils"],
+      "utils/*": ["utils/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "plugins": [
+      {"name": "typescript-tslint-plugin"}
+    ]
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
