@@ -1,6 +1,6 @@
 import ContentPage from 'components/ContentPage';
 import React, { PureComponent } from 'react';
-import { IBaseStyles } from 'styles';
+import { IStyles } from 'styles';
 
 // tslint:disable max-line-length
 export default class RightsPage extends PureComponent {
@@ -54,7 +54,7 @@ export default class RightsPage extends PureComponent {
 }
 // tslint:enable max-line-length
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   center: {
     textAlign: 'center',
   },

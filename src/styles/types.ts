@@ -1,10 +1,11 @@
-import { PositionProperty } from 'csstype';
 import { CSSProperties } from 'react';
 
-export type CSSPosProp = PositionProperty;
-export type IBaseStyle = CSSProperties;
+export type IStyle = CSSProperties;
 export type ITextStyle = CSSProperties;
 
-export interface IBaseStyles {
-  [key: string]: IBaseStyle;
+export interface IStyles {
+  [key: string]: IStyle;
 }
+
+export type MergeStyleVal = IStyle | null | undefined | boolean;
+export type MergeStyleVals = MergeStyleVal | MergeStyleVal[];

@@ -1,4 +1,4 @@
-export default {
+export const colors = {
   orange: '#ff9800',
   red: '#F44336',
   green: '#4CAF50',

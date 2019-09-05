@@ -1,17 +1,17 @@
 import Paper from '@material-ui/core/Paper';
-import { View } from 'components/UI';
+import { View } from 'components/Base';
 import React, { PureComponent } from 'react';
-import { IBaseStyle, IBaseStyles } from 'styles';
+import { IStyle, IStyles } from 'styles';
 
 interface IProps {
-  style?: IBaseStyle;
+  style?: IStyle;
 }
 
 export default class ContentPage extends PureComponent<IProps> {
   render() {
     const { style, children } = this.props;
     return (
-      <View style={[styles.container, style]}>
+      <View style={[ styles.container, style ]}>
         <Paper
           className="g-img-100"
           style={styles.content}
@@ -23,7 +23,7 @@ export default class ContentPage extends PureComponent<IProps> {
   }
 }
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   container: {
     backgroundColor: '#eee',
     padding: '30px 0',

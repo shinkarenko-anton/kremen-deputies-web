@@ -1,5 +1,5 @@
 import Paper from '@material-ui/core/Paper';
-import { View } from 'components/UI';
+import { View } from 'components/Base';
 import React, { PureComponent, ReactNode, SyntheticEvent } from 'react';
 import './index.scss';
 

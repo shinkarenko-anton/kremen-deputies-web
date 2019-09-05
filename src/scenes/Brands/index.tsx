@@ -1,6 +1,6 @@
-import { View } from 'components/UI';
+import { View } from 'components/Base';
 import React, { PureComponent } from 'react';
-import { IBaseStyle, IBaseStyles } from 'styles';
+import { IStyle, IStyles } from 'styles';
 
 import googlePlayLogo from './assets/google-play-logo-vector.svg';
 import iqHubLogo from './assets/iqhub-logo-300w.png';
@@ -25,14 +25,14 @@ const items = [
 ];
 
 interface IProps {
-  style?: IBaseStyle;
+  style?: IStyle;
 }
 
 export default class Brands extends PureComponent<IProps> {
   public render() {
     const { style } = this.props;
     return (
-      <View style={[styles.container, style]}>
+      <View style={[ styles.container, style ]}>
         {items.map(({icon, title, link}, index) => (
           <View
             key={index}
@@ -40,7 +40,7 @@ export default class Brands extends PureComponent<IProps> {
           >
             <a
               href={link}
-              target='__blank'
+              target="__blank"
               style={styles.link}
             >
               <img
@@ -56,7 +56,7 @@ export default class Brands extends PureComponent<IProps> {
   }
 }
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   container: {
     display: 'flex',
     flexDirection: 'row',

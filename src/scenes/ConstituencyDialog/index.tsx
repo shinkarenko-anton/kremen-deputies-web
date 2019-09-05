@@ -1,15 +1,15 @@
 import Button from '@material-ui/core/Button';
-import { IConstituency, IDeputiesMap } from 'common';
 import Dialog from 'components/Dialog';
+import { IConstituency, IDeputysMap } from 'core';
 import { compact } from 'lodash';
 import React, { MouseEvent, PureComponent } from 'react';
-import { IBaseStyles } from 'styles';
+import { IStyles } from 'styles';
 import DeputieInfo from './components/DeputieInfo';
 
 interface IProps {
   open?: boolean;
   item: IConstituency;
-  deputies: IDeputiesMap;
+  deputies: IDeputysMap;
   onClose: () => void;
 }
 
@@ -35,9 +35,9 @@ export class ConstituencyDialog extends PureComponent<IProps> {
     if (!item || !item.deputies) { return null; }
     const votersCount = constituencyToVotersCount(item);
 
-    const actions = [(
+    const actions = [ (
       <Button onClick={this.onCloseClick}>Закрити</Button>
-    )];
+    ) ];
 
     const deputies = compact(item.deputies.map((deputieId) => this.props.deputies[deputieId]));
 
@@ -60,7 +60,7 @@ export class ConstituencyDialog extends PureComponent<IProps> {
   }
 }
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   itemBorder: {
     marginTop: 20,
     paddingTop: 20,

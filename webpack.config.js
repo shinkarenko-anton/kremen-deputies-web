@@ -11,10 +11,10 @@ const distPath = path.resolve(__dirname, 'dist');
 
 const getMapsApiKey = (devEnv) => {
   const { env } = process;
-  if ((devEnv === 'dev') && (env.MAPS_API_KEY_DEV)) { return env.MAPS_API_KEY_DEV; }
-  if ((devEnv === 'prod') && (env.MAPS_API_KEY_PROD)) { return env.MAPS_API_KEY_PROD; }
-  if (env.MAPS_API_KEY) { return env.MAPS_API_KEY; }
-  throw new Error('MAPS_API_KEY_DEV or MAPS_API_KEY_PROD or MAPS_API_KEY not defined in the .env file');
+  const key = `MAPS_TOKEN_${devEnv.toUpperCase()}`;
+  const token = env[key];
+  if (token) { return token; }
+  throw new Error(`${key} not defined in the .env file`);
 }
 
 module.exports = (env) => ({
@@ -28,9 +28,9 @@ module.exports = (env) => ({
   resolve: {
     alias: {
       assets: `${appPath}/assets`,
-      common: path.resolve(__dirname, '../../common'),
       components: `${appPath}/components`,
       core: `${appPath}/core`,
+      navigation: `${appPath}/navigation`,
       screens: `${appPath}/screens`,
       scenes: `${appPath}/scenes`,
       styles: `${appPath}/styles`,

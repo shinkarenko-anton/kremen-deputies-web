@@ -1,9 +1,9 @@
-import { View } from 'components/UI';
+import { View } from 'components/Base';
 import React, { PureComponent } from 'react';
-import { IBaseStyle, IBaseStyles } from 'styles';
+import { IStyle, IStyles } from 'styles';
 
 interface IProps {
-  style?: IBaseStyle;
+  style?: IStyle;
   items: string[];
 }
 
@@ -12,14 +12,14 @@ export default class PhotoSlider extends PureComponent<IProps> {
     const { items, style } = this.props;
     if (!items.length) { return null; }
     return (
-      <View style={[styles.container, style]}>
+      <View style={[ styles.container, style ]}>
         <img src={items[0]} style={styles.img} alt="Фото депутата" />
       </View>
     );
   }
 }
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   container: {
     textAlign: 'center',
   },

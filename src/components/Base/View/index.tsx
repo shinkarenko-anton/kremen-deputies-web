@@ -1,6 +1,6 @@
 import { isArray } from 'lodash';
 import React, { CSSProperties, PureComponent, ReactNode, SyntheticEvent } from 'react';
-import { IBaseStyles, m } from 'styles';
+import { IStyles, m } from 'styles';
 
 interface IProps {
   style?: CSSProperties | any[];
@@ -14,7 +14,7 @@ interface IProps {
   onClick?: (e: SyntheticEvent) => void;
 }
 
-export default class View extends PureComponent<IProps> {
+export class View extends PureComponent<IProps> {
   render() {
     const { style, className, children, row, column, direction, justifyContent, alignItems, onClick } = this.props;
     const cStyle = m(
@@ -34,7 +34,7 @@ export default class View extends PureComponent<IProps> {
   }
 }
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   container: {
     display: 'flex',
     flexDirection: 'column',

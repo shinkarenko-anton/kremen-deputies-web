@@ -1,4 +1,5 @@
-export interface IDeputie {
+export interface IDeputy {
+  id: string;
   name?: string;
   schedule?: string;
   address?: string;
@@ -8,8 +9,8 @@ export interface IDeputie {
   photos?: string[];
 }
 
-export interface IDeputiesMap {
-  [key: string]: IDeputie;
+export interface IDeputysMap {
+  [key: string]: IDeputy;
 }
 
 export interface IConstituencyStation {

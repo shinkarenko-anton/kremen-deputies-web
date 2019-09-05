@@ -72,7 +72,7 @@ export const setLogEnabled = (val: boolean) => {
   enabled = val;
 };
 
-const Log = (m: string) => {
+export const Log = (m: string) => {
   // tslint:disable:no-console
   const logWithLevel = (data: any[], level: LogLevel) => {
     emit('log', m, level, data);
@@ -130,5 +130,3 @@ const Log = (m: string) => {
 
   return { trace, debug, info, warn, err, start, end, on };
 };
-
-export default Log;

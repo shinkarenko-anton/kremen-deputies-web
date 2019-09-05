@@ -1,13 +1,13 @@
-import { IDeputie } from 'common';
-import { View } from 'components/UI';
+import { View } from 'components/Base';
+import { IDeputy } from 'core';
 import React, { PureComponent } from 'react';
-import { IBaseStyle, IBaseStyles, threeDots } from 'styles';
+import { IStyle, IStyles, threeDots } from 'styles';
 import { capitalizeFirstLetter } from 'utils';
 import PhotoSlider from './components/PhotoSlider';
 
 interface IProps {
-  style?: IBaseStyle;
-  item: IDeputie;
+  style?: IStyle;
+  item: IDeputy;
 }
 
 export default class DeputieInfo extends PureComponent<IProps> {
@@ -77,7 +77,7 @@ export default class DeputieInfo extends PureComponent<IProps> {
   }
 }
 
-const styles: IBaseStyles = {
+const styles: IStyles = {
   fb: {
     ...threeDots,
     width: 260,
