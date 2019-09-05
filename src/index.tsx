@@ -5,5 +5,5 @@ import './index.scss';
 
 ReactDOM.render(
   <App />,
-  document.getElementById('deputies-web') as HTMLElement,
+  document.getElementById('deputies-app') as HTMLElement,
 );

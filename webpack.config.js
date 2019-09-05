@@ -19,7 +19,7 @@ const getMapsApiKey = (devEnv) => {
 
 module.exports = (env) => ({
   entry: {
-    'app': `${appPath}/app.tsx`
+    'app': `${appPath}/index.tsx`
   },
   output: {
     path: distPath,
