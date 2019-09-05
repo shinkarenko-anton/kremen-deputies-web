@@ -31,7 +31,7 @@ const on = (name: LogEventName, handler: LogEventHandlerRecord) => {
   handlers.push({ name, handler });
 };
 
-let enabled = true;
+let enabled = ENV === 'dev' ? true : false;
 
 const levelToSymbol = (level: LogLevel) => {
   switch (level) {

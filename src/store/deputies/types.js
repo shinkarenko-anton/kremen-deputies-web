@@ -1,4 +1,0 @@
-export default {
-  DEPUTIES_SET: 'DEPUTIES_SET',
-  DEPUTIES_CHANGE: 'DEPUTIES_CHANGE',
-};
