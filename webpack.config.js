@@ -70,7 +70,7 @@ module.exports = (env) => ({
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(package.version),
       ENV: JSON.stringify(env.ENV),
-      MAPS_API_KEY: JSON.stringify(getMapsApiKey(env.ENV)),
+      MAPS_TOKEN: JSON.stringify(getMapsApiKey(env.ENV)),
     })
   ],
   devServer: {

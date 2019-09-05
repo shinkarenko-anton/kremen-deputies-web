@@ -1,3 +1,17 @@
+// Geo
+
+export interface ILatLng {
+  lat: number;
+  lng: number;
+}
+
+export interface ILatLngPolygon {
+  outer: ILatLng[];
+  inner?: ILatLng[];
+}
+
+// Bussines
+
 export interface IDeputy {
   id: string;
   name?: string;
@@ -13,15 +27,17 @@ export interface IDeputysMap {
   [key: string]: IDeputy;
 }
 
-export interface IConstituencyStation {
-  id: number;
-  address?: string;
-  numberOfVoters: number;
-}
-
 export interface IConstituency {
   id: string;
   number: number;
   deputies: string[];
+  markers: ILatLng[];
   stations: IConstituencyStation[];
+  polygons: ILatLngPolygon[];
+}
+
+export interface IConstituencyStation {
+  id: number;
+  addresses?: string;
+  numberOfVoters: number;
 }

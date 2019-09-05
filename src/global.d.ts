@@ -17,4 +17,4 @@ declare module 'googlemaps';
 
 declare const VERSION: string | undefined;
 declare const ENV: 'dev' | 'prod' | undefined;
-declare const MAPS_API_KEY: string | undefined;
+declare const MAPS_TOKEN: string | undefined;
