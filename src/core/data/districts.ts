@@ -1,7 +1,7 @@
-import { IConstituency } from 'core/types';
+import { IDistrict } from 'core/types';
 
 // tslint:disable max-line-length
-export const constituencies: IConstituency[] = [ {
+export const defDistricts: IDistrict[] = [ {
   deputies : [ 'kremen-golovach-oleksandr' ],
   id : 'kremen-constituency-001',
   markers : [ {

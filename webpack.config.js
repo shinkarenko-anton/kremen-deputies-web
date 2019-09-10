@@ -23,7 +23,8 @@ module.exports = (env) => ({
   },
   output: {
     path: distPath,
-    filename: '[name].js'
+    filename: '[name]-[hash].js',
+    publicPath: '/',
   },
   resolve: {
     alias: {

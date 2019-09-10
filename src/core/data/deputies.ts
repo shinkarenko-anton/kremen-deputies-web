@@ -1,7 +1,7 @@
 import { IDeputy } from 'core/types';
 
 // tslint:disable max-line-length
-export const deputies: IDeputy[] = [ {
+export const defDeputies: IDeputy[] = [ {
   id: 'kremen-bokovan-mykola',
   address : 'приймальня КМОПП «ПОРУЧ» м. Кременчук, вул. Троїцька (вул. Красіна), 23/33',
   fb : 'https://www.facebook.com/bokovan',

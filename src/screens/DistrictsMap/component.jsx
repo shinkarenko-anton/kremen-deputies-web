@@ -25,7 +25,7 @@ const log = Log.withModule('ConstituenciesPage');
 // Prop types
 
 const propTypes = {
-  constituencies: PropTypes.object.isRequired,
+  districts: PropTypes.object.isRequired,
   configs: PropTypes.object.isRequired,
 
   onConstituencyChange: PropTypes.func.isRequired,
@@ -157,7 +157,7 @@ class ConstituenciesPage extends Component {
     const id = constituency.id;
     const data = _.cloneDeep(constituency);
     if (data.id) delete data.id;
-    database.ref(`/constituencies/${id}`).set(data);
+    database.ref(`/districts/${id}`).set(data);
   }
 
   onConstituencyDialogClose = () =>  {
@@ -181,8 +181,8 @@ class ConstituenciesPage extends Component {
   onSearchPlaceSelected = (data) => {
     log('place selected');
     log(data);
-    const { constituencies } = this.props;
-    const regions = _.map(constituencies, (item, id) => ({ id, ...item }));
+    const { districts } = this.props;
+    const regions = _.map(districts, (item, id) => ({ id, ...item }));
     const { coordinates } = data;
     const addressMarker = coordinates;
     const addressRegion = regionWithPoint(regions, coordinates) || null;
@@ -239,7 +239,7 @@ class ConstituenciesPage extends Component {
     const {
       style,
       configs,
-      constituencies,
+      districts,
     } = this.props;
     // State
     const {
@@ -253,7 +253,7 @@ class ConstituenciesPage extends Component {
     } = this.state;
     // Data
     const editable = this.isEditMode;
-    let regions = _.map(constituencies, (item, id) => ({ id, ...item }));
+    let regions = _.map(districts, (item, id) => ({ id, ...item }));
     if(addressRegion){
       regions = _.filter(regions, item => item.id === addressRegion.id );
     }

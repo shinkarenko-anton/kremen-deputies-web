@@ -10,7 +10,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const ConstituencyMarker: FC<IProps> = ({ position, label, onClick }) => {
+const DistrictMarker: FC<IProps> = ({ position, label, onClick }) => {
   const icon: google.maps.Icon = {
     url: IconMarker,
     size: new google.maps.Size(30, 49),
@@ -26,4 +26,4 @@ const ConstituencyMarker: FC<IProps> = ({ position, label, onClick }) => {
   );
 };
 
-export default ConstituencyMarker;
+export default DistrictMarker;

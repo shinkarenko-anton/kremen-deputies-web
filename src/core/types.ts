@@ -27,16 +27,16 @@ export interface IDeputysMap {
   [key: string]: IDeputy;
 }
 
-export interface IConstituency {
+export interface IDistrict {
   id: string;
   number: number;
   deputies: string[];
   markers: ILatLng[];
-  stations: IConstituencyStation[];
+  stations: IDistrictStation[];
   polygons: ILatLngPolygon[];
 }
 
-export interface IConstituencyStation {
+export interface IDistrictStation {
   id: number;
   addresses?: string;
   numberOfVoters: number;

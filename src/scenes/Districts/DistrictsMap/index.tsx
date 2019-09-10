@@ -1,8 +1,8 @@
 import Map from 'components/Map';
-import { IConstituency, ILatLng } from 'core';
+import { IDistrict, ILatLng } from 'core';
 import React, { CSSProperties, FC, RefObject } from 'react';
 import { GoogleMap } from 'react-google-maps';
-import ConstituencyPolygon from './components/ConstituencyPolygon';
+import DistrictPolygon from './components/DistrictPolygon';
 
 interface IProps {
   style?: CSSProperties;
@@ -11,16 +11,17 @@ interface IProps {
   defaultZoom?: number;
   center?: ILatLng;
   zoom?: number;
-  constituencies: IConstituency[];
+  districts: IDistrict[];
   onMapClick?: (e: google.maps.MouseEvent | google.maps.IconMouseEvent) => void;
   onMapDblClick?: (e: google.maps.MouseEvent) => void;
   onMapCenterChange?: () => void;
   onMapZoomChange?: () => void;
+  onDistrictClick?: (item: IDistrict) => void;
 }
 
-const ConstituencyMap: FC<IProps> = ({
+export const DistrictsMap: FC<IProps> = ({
   style, mapRef, defaultCenter, defaultZoom, center, zoom, onMapClick, onMapDblClick, onMapCenterChange,
-  onMapZoomChange, constituencies,
+  onMapZoomChange, districts, onDistrictClick,
 }) => {
   return (
     <Map
@@ -35,14 +36,13 @@ const ConstituencyMap: FC<IProps> = ({
       onCenterChanged={onMapCenterChange}
       onZoomChanged={onMapZoomChange}
     >
-      {constituencies.map((item) => (
-        <ConstituencyPolygon
-          key={`ConstituencyPolygon-${item.id}`}
+      {districts.map((item) => (
+        <DistrictPolygon
+          key={`DistrictPolygon-${item.id}`}
           item={item}
+          onClick={onDistrictClick}
         />
       ))}
     </Map>
   );
 };
-
-export default  ConstituencyMap;

@@ -38,11 +38,11 @@ deputiesRef.once('value').then((snap) => {
   store.dispatch(actions.deputies.set(deputies));
 });
 
-// Getting list of constituencies
-const constituenciesRef = database.ref('/constituencies');
-constituenciesRef.once('value').then((snap) => {
-  const constituencies = snap.val();
-  store.dispatch(actions.constituencies.set(constituencies));
+// Getting list of districts
+const districtsRef = database.ref('/districts');
+districtsRef.once('value').then((snap) => {
+  const districts = snap.val();
+  store.dispatch(actions.districts.set(districts));
 });
 
 // AppContainer

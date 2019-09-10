@@ -1,13 +1,13 @@
 import { View } from 'components/Base';
-import { defCoordinates, ILatLng } from 'core';
-import { constituencies } from 'core/data';
+import { defCoord, getDistrictDeputies, IDistrict, ILatLng } from 'core';
+import { defDeputies, defDistricts } from 'core/data';
 import React, { CSSProperties, PureComponent } from 'react';
 import { GoogleMap } from 'react-google-maps';
+import { DistrictDialog, DistrictsMap } from 'scenes/Districts';
 import { fullScreen, horizontalCenter, IStyles } from 'styles';
 import { gLatLngToILatLng, Log } from 'utils';
 import Brands from './components/Brands';
-import ConstituencyMap from './components/ConstituencyMap';
-const log = Log('screens.MapScreen');
+const log = Log('screens.DistrictsMapScreen');
 
 interface IProps {
   style?: CSSProperties;
@@ -16,14 +16,18 @@ interface IProps {
 interface IState {
   center: ILatLng;
   zoom: number;
+  districtDialogOpen: boolean;
+  districtDialogItem?: IDistrict;
 }
 
-export default class MapScreen extends PureComponent<IProps, IState> {
+export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
   private map?: GoogleMap;
 
-  state = {
-    center: defCoordinates.kremen.loc,
-    zoom: defCoordinates.kremen.zoom,
+  state: IState = {
+    center: defCoord.kremen.loc,
+    zoom: defCoord.kremen.zoom,
+    districtDialogOpen: false,
+    districtDialogItem: undefined,
   };
 
   private onMapRef = (map: GoogleMap | null) => {
@@ -47,23 +51,41 @@ export default class MapScreen extends PureComponent<IProps, IState> {
     this.setState({ zoom });
   }
 
+  private onDistrictClick = (item: IDistrict) => {
+    log.debug('on district click, item=', item);
+    this.setState({ districtDialogOpen: true, districtDialogItem: item });
+  }
+
+  private onDistrictDialogClose = () => {
+    this.setState({ districtDialogOpen: false });
+  }
+
   render() {
     const { style } = this.props;
-    const { center, zoom } = this.state;
+    const { center, zoom, districtDialogOpen, districtDialogItem } = this.state;
     return (
       <View style={[ styles.container, style ]}>
-        <ConstituencyMap
+        <DistrictsMap
           style={styles.map}
           mapRef={this.onMapRef}
           defaultCenter={center}
           defaultZoom={zoom}
-          constituencies={constituencies}
+          districts={defDistricts}
           center={center}
           zoom={zoom}
           onMapClick={this.onMapClick}
           onMapCenterChange={this.onMapCenterChange}
           onMapZoomChange={this.onMapZoomChange}
+          onDistrictClick={this.onDistrictClick}
         />
+        {!!districtDialogItem && (
+          <DistrictDialog
+            open={districtDialogOpen}
+            item={districtDialogItem}
+            deputies={getDistrictDeputies(districtDialogItem, defDeputies)}
+            onClose={this.onDistrictDialogClose}
+          />
+        )}
         <Brands style={styles.brands} />
       </View>
     );

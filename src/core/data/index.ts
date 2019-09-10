@@ -1,2 +1,2 @@
-export * from './constituencies';
+export * from './districts';
 export * from './deputies';

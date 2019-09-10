@@ -1,12 +1,3 @@
-// @import
-//   "../assets/scss/screens",
-//   "../assets/scss/colors",
-//   "../assets/scss/mixings",
-
-//   "./views/ConstituencyDialog/DeputieInfo",
-//   "./components/Dialog/Dialog"
-// ;
-
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 html,
@@ -37,31 +28,3 @@ a{
     opacity: .7;
   }
 }
-
-// /* Global styles */
-
-// .g-img-100{
-//   img{
-//     width: 100%;
-//   }
-// }
-
-// /* Clear fix */
-
-// .cf:before,
-// .cf:after {
-//   content: " "; /* 1 */
-//   display: table; /* 2 */
-// }
-
-// .cf:after {
-//   clear: both;
-// }
-
-// /**
-//  * For IE 6/7 only
-//  * Include this rule to trigger hasLayout and contain floats.
-//  */
-// .cf {
-//   *zoom: 1;
-// }

@@ -1,12 +1,12 @@
-import { IConstituency, ILatLng, ILatLngPolygon } from 'core';
+import { IDistrict, ILatLng, ILatLngPolygon } from 'core';
 import React, { FC } from 'react';
 import { Polygon } from 'react-google-maps';
 import { colors } from 'styles';
-import ConstituencyMarker from './components/ConstituencyMarker';
+import DistrictMarker from './components/DistrictMarker';
 
 interface IProps {
-  item: IConstituency;
-  onClick?: (item: IConstituency) => void;
+  item: IDistrict;
+  onClick?: (item: IDistrict) => void;
 }
 
 const polygonToPaths = (item: ILatLngPolygon): ILatLng[][] => {
@@ -15,7 +15,7 @@ const polygonToPaths = (item: ILatLngPolygon): ILatLng[][] => {
   return paths;
 };
 
-const ConstituencyPolygon: FC<IProps> = ({ onClick, item }) => {
+const DistrictPolygon: FC<IProps> = ({ onClick, item }) => {
   const onPolygonClick = () => {
     if (onClick) { onClick(item); }
   };
@@ -28,7 +28,7 @@ const ConstituencyPolygon: FC<IProps> = ({ onClick, item }) => {
     <>
       {item.polygons.map((polygon, index) => (
         <Polygon
-          key={`ConstituencyPolygon-${item.id}-${index}`}
+          key={`DistrictPolygon-${item.id}-${index}`}
           paths={polygonToPaths(polygon)}
           draggable={false}
           options={{
@@ -42,8 +42,8 @@ const ConstituencyPolygon: FC<IProps> = ({ onClick, item }) => {
         />
       ))}
       {item.markers.map((position, index) => (
-        <ConstituencyMarker
-          key={`ConstituencyMarker-${item.id}-${index}`}
+        <DistrictMarker
+          key={`DistrictMarker-${item.id}-${index}`}
           label={`${item.number}`}
           position={position}
           onClick={onMarkerClick}
@@ -53,4 +53,4 @@ const ConstituencyPolygon: FC<IProps> = ({ onClick, item }) => {
   );
 };
 
-export default ConstituencyPolygon;
+export default DistrictPolygon;
