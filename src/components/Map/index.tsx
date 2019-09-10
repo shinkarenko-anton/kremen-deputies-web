@@ -1,18 +1,27 @@
 import React, { CSSProperties, FC, RefObject } from 'react';
 import { GoogleMap, GoogleMapProps, withGoogleMap, withScriptjs } from 'react-google-maps';
-import { Log } from 'utils';
+import { Log, qsParamsToStr } from 'utils';
 const log = Log('components.Map');
 
 interface IMapProps extends GoogleMapProps {
   mapRef?: RefObject<GoogleMap> | ((instance: GoogleMap | null) => void);
 }
 
-const Map: FC<IMapProps> = ({ mapRef, ...props}) => (
-  <GoogleMap
-    ref={mapRef}
-    {...props}
-  />
-);
+const Map: FC<IMapProps> = ({ mapRef, ...props}) => {
+  const options: google.maps.MapOptions = {
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.TOP_RIGHT,
+    },
+  };
+  return (
+    <GoogleMap
+      ref={mapRef}
+      {...props}
+      options={options}
+    />
+  );
+};
 
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 
@@ -32,9 +41,10 @@ const WrappedMapWithDefault: FC<IWrappedMapProps> = ({ style, token, ...props}) 
     log.warn('empty google maps token');
     return null;
   }
+  const qs = qsParamsToStr({ key: curToken, libraries: 'geometry,places' });
   return (
     <WrappedMap
-      googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${curToken}&libraries=geometry`}
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?${qs}`}
       loadingElement={<div style={style} />}
       containerElement={<div style={style} />}
       mapElement={<div style={style} />}

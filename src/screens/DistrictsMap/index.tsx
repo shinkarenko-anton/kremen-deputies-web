@@ -5,8 +5,9 @@ import React, { CSSProperties, PureComponent } from 'react';
 import { GoogleMap } from 'react-google-maps';
 import { DistrictDialog, DistrictsMap } from 'scenes/Districts';
 import { fullScreen, horizontalCenter, IStyles } from 'styles';
-import { gLatLngToILatLng, Log } from 'utils';
+import { gLatLngToILatLng, isPointInsidePoligon, Log } from 'utils';
 import Brands from './components/Brands';
+import SearchBar from './components/SearchBar';
 const log = Log('screens.DistrictsMapScreen');
 
 interface IProps {
@@ -60,6 +61,19 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
     this.setState({ districtDialogOpen: false });
   }
 
+  private onLocationSelect = (val: ILatLng) => {
+    log.debug('location selected, val=', val);
+    const district = defDistricts.find((item) => {
+      const polygon = item.polygons.find((pItem) => isPointInsidePoligon(val, pItem.outer));
+      return polygon ? true : false;
+    });
+    if (district) {
+      this.setState({ districtDialogOpen: true, districtDialogItem: district });
+    } else {
+      alert('За заданою адресою виборчий округ не знайдено');
+    }
+  }
+
   render() {
     const { style } = this.props;
     const { center, zoom, districtDialogOpen, districtDialogItem } = this.state;
@@ -77,7 +91,12 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
           onMapCenterChange={this.onMapCenterChange}
           onMapZoomChange={this.onMapZoomChange}
           onDistrictClick={this.onDistrictClick}
-        />
+        >
+          <SearchBar
+            style={styles.searchBar}
+            onLocationSelect={this.onLocationSelect}
+          />
+        </DistrictsMap>
         {!!districtDialogItem && (
           <DistrictDialog
             open={districtDialogOpen}
@@ -105,6 +124,8 @@ const styles: IStyles = {
     top: 10,
     left: 10,
     zIndex: 1,
+    width: '100%',
+    maxWidth: 400,
   },
   sidebarWrap: {
     padding: 20,
@@ -114,5 +135,8 @@ const styles: IStyles = {
     ...horizontalCenter,
     position: 'absolute',
     bottom: '10px',
+  },
+  sidebar: {
+    height: '100%',
   },
 };

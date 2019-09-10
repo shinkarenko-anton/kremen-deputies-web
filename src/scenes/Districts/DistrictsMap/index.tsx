@@ -1,10 +1,11 @@
 import Map from 'components/Map';
 import { IDistrict, ILatLng } from 'core';
-import React, { CSSProperties, FC, RefObject } from 'react';
+import React, { CSSProperties, FC, ReactNode, RefObject } from 'react';
 import { GoogleMap } from 'react-google-maps';
 import DistrictPolygon from './components/DistrictPolygon';
 
 interface IProps {
+  children?: ReactNode;
   style?: CSSProperties;
   mapRef?: RefObject<GoogleMap> | ((instance: GoogleMap | null) => void);
   defaultCenter?: ILatLng;
@@ -12,6 +13,7 @@ interface IProps {
   center?: ILatLng;
   zoom?: number;
   districts: IDistrict[];
+  options?: google.maps.MapOptions;
   onMapClick?: (e: google.maps.MouseEvent | google.maps.IconMouseEvent) => void;
   onMapDblClick?: (e: google.maps.MouseEvent) => void;
   onMapCenterChange?: () => void;
@@ -21,7 +23,7 @@ interface IProps {
 
 export const DistrictsMap: FC<IProps> = ({
   style, mapRef, defaultCenter, defaultZoom, center, zoom, onMapClick, onMapDblClick, onMapCenterChange,
-  onMapZoomChange, districts, onDistrictClick,
+  onMapZoomChange, districts, onDistrictClick, options, children,
 }) => {
   return (
     <Map
@@ -30,6 +32,7 @@ export const DistrictsMap: FC<IProps> = ({
       defaultCenter={defaultCenter}
       defaultZoom={defaultZoom}
       center={center}
+      options={options}
       zoom={zoom}
       onClick={onMapClick}
       onDblClick={onMapDblClick}
@@ -43,6 +46,7 @@ export const DistrictsMap: FC<IProps> = ({
           onClick={onDistrictClick}
         />
       ))}
+      {children}
     </Map>
   );
 };
