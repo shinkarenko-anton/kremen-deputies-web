@@ -1,7 +1,7 @@
 import { Paper } from '@material-ui/core';
 import { ILatLng } from 'core';
 import React, { FC, useState } from 'react';
-import { IStyle, IStyles, m } from 'styles';
+import { IStyle, IStyles, m, px } from 'styles';
 import { gLatLngToILatLng } from 'utils';
 import PlaceSearch from './components/PlaceSearch';
 
@@ -33,8 +33,7 @@ const styles: IStyles = {
     paddingLeft: 10,
     paddingRight: 10,
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
   },
   search: {
     flex: 1,

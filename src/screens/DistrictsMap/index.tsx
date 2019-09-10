@@ -1,8 +1,9 @@
 import { View } from 'components/Base';
 import { defCoord, getDistrictDeputies, IDistrict, ILatLng } from 'core';
 import { defDeputies, defDistricts } from 'core/data';
-import React, { CSSProperties, PureComponent } from 'react';
+import React, { CSSProperties, MouseEvent, PureComponent } from 'react';
 import { GoogleMap } from 'react-google-maps';
+import { AppInfoDialog } from 'scenes/App/AppInfoDialog';
 import { DistrictDialog, DistrictsMap } from 'scenes/Districts';
 import { fullScreen, horizontalCenter, IStyles } from 'styles';
 import { gLatLngToILatLng, isPointInsidePoligon, Log } from 'utils';
@@ -19,6 +20,7 @@ interface IState {
   zoom: number;
   districtDialogOpen: boolean;
   districtDialogItem?: IDistrict;
+  appInfoDialogOpen?: boolean;
 }
 
 export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
@@ -57,8 +59,17 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
     this.setState({ districtDialogOpen: true, districtDialogItem: item });
   }
 
+  private onAboutBtnClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    this.setState({ appInfoDialogOpen: true });
+  }
+
   private onDistrictDialogClose = () => {
     this.setState({ districtDialogOpen: false });
+  }
+
+  private onAppInfoDialogClose = () => {
+    this.setState({ appInfoDialogOpen: false });
   }
 
   private onLocationSelect = (val: ILatLng) => {
@@ -76,7 +87,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
 
   render() {
     const { style } = this.props;
-    const { center, zoom, districtDialogOpen, districtDialogItem } = this.state;
+    const { center, zoom, districtDialogOpen, districtDialogItem, appInfoDialogOpen } = this.state;
     return (
       <View style={[ styles.container, style ]}>
         <DistrictsMap
@@ -97,6 +108,10 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
             onLocationSelect={this.onLocationSelect}
           />
         </DistrictsMap>
+        <AppInfoDialog
+          open={appInfoDialogOpen}
+          onClose={this.onAppInfoDialogClose}
+        />
         {!!districtDialogItem && (
           <DistrictDialog
             open={districtDialogOpen}
@@ -105,7 +120,18 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
             onClose={this.onDistrictDialogClose}
           />
         )}
-        <Brands style={styles.brands} />
+        <View style={styles.footer} column={true} alignItems="center">
+          <Brands style={styles.brands} />
+          <div style={styles.footerText}>
+            <a style={styles.aboutBtn} href="#" onClick={this.onAboutBtnClick}>
+              Про додаток
+            </a>
+            {`  v${VERSION}  `}
+            <a href="http://io.kr.ua/" target="__blank">
+                IQ Hub &copy; {`${(new Date()).getFullYear()}`} рік.
+            </a>
+          </div>
+        </View>
       </View>
     );
   }
@@ -131,12 +157,18 @@ const styles: IStyles = {
     padding: 20,
     height: '100%',
   },
-  brands: {
+  footer: {
     ...horizontalCenter,
     position: 'absolute',
     bottom: '10px',
   },
   sidebar: {
+    width: 360,
+  },
+  sidebarContent: {
     height: '100%',
+  },
+  footerText: {
+    fontSize: 12,
   },
 };

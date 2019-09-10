@@ -7,11 +7,10 @@ interface IProps {
   style?: IStyle;
 }
 
-const Sidebar: FC<IProps> = ({ style }) => {
+const AppInfo: FC<IProps> = ({ style }) => {
   return (
     <View style={m(styles.container, style)}>
       <View style={styles.content}>
-        <h3>Про додаток</h3>
         <p>
           Карта виборчих округів дозволяє вам
           дізнатись хто є депутатом вашого району
@@ -91,16 +90,6 @@ const Sidebar: FC<IProps> = ({ style }) => {
           </a>
         </p>
       </View>
-      <View style={styles.footer}>
-        <View style={styles.copyright}>
-          <a href="http://io.kr.ua/" target="__blank" style={{ borderBottom: 'none' }}>
-              IQ Hub &copy; 2017 рік.
-          </a>
-        </View>
-        <View style={styles.version}>
-          {`v${VERSION}`}
-        </View>
-      </View>
     </View>
   );
 };
@@ -123,18 +112,6 @@ const styles: IStyles = {
   content: {
     flex: 1,
   },
-  footer: {
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  copyright: {
-    marginTop: 10,
-    fontSize: '10px',
-  },
-  version: {
-    marginTop: 6,
-    fontSize: 8,
-  },
   logoContainer: {
     textAlign: 'center',
   },
@@ -146,4 +123,4 @@ const styles: IStyles = {
   },
 };
 
-export default  Sidebar;
+export default AppInfo;
