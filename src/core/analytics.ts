@@ -40,7 +40,7 @@ export type MetricEvent =
  * @param {Dict?} params - event additional data
  */
 export const track = (event: MetricEvent, params?: Dict) => {
-  if (!enabled) { return; }
   log.debug('track event=', event);
+  if (!enabled) { return; }
   mixpanel.track(event, params);
 };
