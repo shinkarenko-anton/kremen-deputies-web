@@ -1,8 +1,8 @@
-import { View } from 'components/Base';
+import { Image, View } from 'components/Base';
 import React, { FC } from 'react';
 import { IStyle, IStyles } from 'styles';
-import iqHubLogo from './assets/iqhub-logo-300w.png';
-import vestnikLogo from './assets/vestnik-logo-300w.png';
+import LogoIQHub from './assets/iqhub-logo-300w.png';
+import LogoVestnik from './assets/vestnik-logo-300w.png';
 
 interface IProps {
   style?: IStyle;
@@ -11,11 +11,11 @@ interface IProps {
 const Brands: FC<IProps> = ({ style }) => {
 
   const items = [ {
-    icon: iqHubLogo,
+    icon: LogoIQHub,
     title: 'IQ Hub',
     link: 'https://io.kr.ua/',
   }, {
-    icon: vestnikLogo,
+    icon: LogoVestnik,
     title: 'Вісник Кременчука',
     link: 'https://vestnik.in.ua/',
   } ];
@@ -23,8 +23,7 @@ const Brands: FC<IProps> = ({ style }) => {
   return (
     <View
       style={[ styles.container, style ]}
-      row={true}
-      justifyContent="center"
+      column={true}
       alignItems="center"
     >
       {items.map(({icon, title, link}, index) => (
@@ -32,15 +31,11 @@ const Brands: FC<IProps> = ({ style }) => {
           key={index}
           style={styles.item}
         >
-          <a
-            href={link}
-            target="__blank"
-            style={styles.link}
-          >
-            <img
+          <a href={link} target="__blank" style={styles.link}>
+            <Image
               src={icon}
-              style={styles.img}
               alt={title}
+              width={64}
             />
           </a>
         </View>
@@ -58,9 +53,6 @@ const styles: IStyles = {
   link: {
     borderBottom: 'none',
     cursor: 'pointer',
-  },
-  img: {
-    width: 100,
   },
 };
 

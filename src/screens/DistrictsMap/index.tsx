@@ -1,11 +1,11 @@
-import { View } from 'components/Base';
+import { Link, View } from 'components/Base';
 import { defCoord, getDistrictDeputies, IDistrict, ILatLng } from 'core';
 import { defDeputies, defDistricts } from 'core/data';
-import React, { CSSProperties, MouseEvent, PureComponent } from 'react';
+import { NavPaths } from 'navigation/types';
+import React, { CSSProperties, PureComponent } from 'react';
 import { GoogleMap } from 'react-google-maps';
-import { AppInfoDialog } from 'scenes/App/AppInfoDialog';
 import { DistrictDialog, DistrictsMap } from 'scenes/Districts';
-import { fullScreen, horizontalCenter, IStyles } from 'styles';
+import { fullScreen, horizontalCenter, IStyles, m, threeDots } from 'styles';
 import { gLatLngToILatLng, isPointInsidePoligon, Log } from 'utils';
 import Brands from './components/Brands';
 import SearchBar from './components/SearchBar';
@@ -20,7 +20,6 @@ interface IState {
   zoom: number;
   districtDialogOpen: boolean;
   districtDialogItem?: IDistrict;
-  appInfoDialogOpen?: boolean;
 }
 
 export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
@@ -59,17 +58,8 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
     this.setState({ districtDialogOpen: true, districtDialogItem: item });
   }
 
-  private onAboutBtnClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    this.setState({ appInfoDialogOpen: true });
-  }
-
   private onDistrictDialogClose = () => {
     this.setState({ districtDialogOpen: false });
-  }
-
-  private onAppInfoDialogClose = () => {
-    this.setState({ appInfoDialogOpen: false });
   }
 
   private onLocationSelect = (val: ILatLng) => {
@@ -87,7 +77,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
 
   render() {
     const { style } = this.props;
-    const { center, zoom, districtDialogOpen, districtDialogItem, appInfoDialogOpen } = this.state;
+    const { center, zoom, districtDialogOpen, districtDialogItem } = this.state;
     return (
       <View style={[ styles.container, style ]}>
         <DistrictsMap
@@ -108,10 +98,6 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
             onLocationSelect={this.onLocationSelect}
           />
         </DistrictsMap>
-        <AppInfoDialog
-          open={appInfoDialogOpen}
-          onClose={this.onAppInfoDialogClose}
-        />
         {!!districtDialogItem && (
           <DistrictDialog
             open={districtDialogOpen}
@@ -120,17 +106,17 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
             onClose={this.onDistrictDialogClose}
           />
         )}
-        <View style={styles.footer} column={true} alignItems="center">
-          <Brands style={styles.brands} />
-          <div style={styles.footerText}>
-            <a style={styles.aboutBtn} href="#" onClick={this.onAboutBtnClick}>
-              Про додаток
-            </a>
-            {`  v${VERSION}  `}
-            <a href="http://io.kr.ua/" target="__blank">
-                IQ Hub &copy; {`${(new Date()).getFullYear()}`} рік.
-            </a>
-          </div>
+        <Brands style={styles.brands} />
+        <View style={styles.footerCenter} alignItems="center" row={true}>
+          <Link style={m(styles.noBorder, styles.footerItem)} href={NavPaths.About}>
+            Про додаток
+          </Link>
+          <View style={styles.footerItem}>
+            {`v${VERSION}`}
+          </View>
+          <Link style={m(styles.noBorder, styles.footerItem)} href="http://io.kr.ua/">
+            {`IQ Hub © ${(new Date()).getFullYear()} рік.`}
+          </Link>
         </View>
       </View>
     );
@@ -153,22 +139,24 @@ const styles: IStyles = {
     width: '100%',
     maxWidth: 400,
   },
-  sidebarWrap: {
-    padding: 20,
-    height: '100%',
-  },
-  footer: {
+  footerCenter: {
     ...horizontalCenter,
+    bottom: 0,
+  },
+  footerItem: {
+    backgroundColor: 'rgba(255, 255, 255, .5)',
+    padding: '2px 6px',
+    marginLeft: 1,
+    marginRight: 1,
+    fontSize: 10,
+    ...threeDots,
+  },
+  noBorder: {
+    border: 'none',
+  },
+  brands: {
     position: 'absolute',
-    bottom: '10px',
-  },
-  sidebar: {
-    width: 360,
-  },
-  sidebarContent: {
-    height: '100%',
-  },
-  footerText: {
-    fontSize: 12,
+    bottom: 24,
+    left: 2,
   },
 };
