@@ -17,7 +17,8 @@
     "lint:types": "tsc --noEmit --skipLibCheck",
     "lint:code": "tslint -p tsconfig.json -e node_modules -e dist --fix",
     "lint": "yarn lint:types && yarn lint:code",
-    "deploy": "firebase deploy --only hosting"
+    "deploy": "yarn dist:prod && yarn deploy:prod",
+    "deploy:prod": "firebase deploy --only hosting"
   },
   "author": "Jaroslav Khorishchenko <websnipter@gmail.com>",
   "license": "ISC",
