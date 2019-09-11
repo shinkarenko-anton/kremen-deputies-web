@@ -7,10 +7,11 @@ import PlaceSearch from './components/PlaceSearch';
 
 interface IProps {
   style?: IStyle;
+  className?: string;
   onLocationSelect?: (val: ILatLng) => void;
 }
 
-const SearchBar: FC<IProps> = ({ style, onLocationSelect }) => {
+const SearchBar: FC<IProps> = ({ style, className, onLocationSelect }) => {
   const onPlaceSearcSelect = (val: google.maps.GeocoderResult) => {
     if (!onLocationSelect) { return; }
     const location = gLatLngToILatLng(val.geometry.location);
@@ -18,7 +19,7 @@ const SearchBar: FC<IProps> = ({ style, onLocationSelect }) => {
   };
 
   return (
-    <Paper style={m(styles.container, style)}>
+    <Paper className={className} style={m(styles.container, style)}>
       <PlaceSearch
         style={styles.search}
         onSelect={onPlaceSearcSelect}

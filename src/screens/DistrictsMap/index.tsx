@@ -1,11 +1,12 @@
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core';
 import { Link, View } from 'components/Base';
-import { defCoord, getDistrictDeputies, IDistrict, ILatLng, track } from 'core';
+import { defCoord, getConfig, getDistrictDeputies, IDistrict, ILatLng, setConfig, track } from 'core';
 import { defDeputies, defDistricts } from 'core/data';
 import { NavPaths } from 'navigation/types';
 import React, { CSSProperties, PureComponent } from 'react';
 import { GoogleMap } from 'react-google-maps';
 import { DistrictDialog, DistrictsMap } from 'scenes/Districts';
-import { fullScreen, horizontalCenter, IStyles, m, threeDots } from 'styles';
+import { fullScreen, horizontalCenter, IStyles, m, threeDots, mdMaxWidth, ScreenSize } from 'styles';
 import { gLatLngToILatLng, isPointInsidePoligon, Log } from 'utils';
 import Brands from './components/Brands';
 import SearchBar from './components/SearchBar';
@@ -22,12 +23,12 @@ interface IState {
   districtDialogItem?: IDistrict;
 }
 
-export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
+class DistrictsMapScreen extends PureComponent<WithStyles<typeof classNames> & IProps, IState> {
   private map?: GoogleMap;
 
   state: IState = {
-    center: defCoord.kremen.loc,
-    zoom: defCoord.kremen.zoom,
+    center: getConfig<ILatLng>('mapCenter') || defCoord.kremen.loc,
+    zoom: getConfig<number>('mapZoom') || defCoord.kremen.zoom,
     districtDialogOpen: false,
     districtDialogItem: undefined,
   };
@@ -48,12 +49,14 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
   private onMapCenterChange = () => {
     if (!this.map) { return; }
     const center = gLatLngToILatLng(this.map.getCenter());
+    setConfig('mapCenter', center);
     this.setState({ center });
   }
 
   private onMapZoomChange = () => {
     if (!this.map) { return; }
     const zoom = this.map.getZoom();
+    setConfig('mapZoom', zoom);
     this.setState({ zoom });
   }
 
@@ -82,7 +85,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
   }
 
   render() {
-    const { style } = this.props;
+    const { style, classes } = this.props;
     const { center, zoom, districtDialogOpen, districtDialogItem } = this.state;
     return (
       <View style={[ styles.container, style ]}>
@@ -100,7 +103,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
           onDistrictClick={this.onDistrictClick}
         >
           <SearchBar
-            style={styles.searchBar}
+            className={classes.searchBar}
             onLocationSelect={this.onLocationSelect}
           />
         </DistrictsMap>
@@ -113,7 +116,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
           />
         )}
         <Brands style={styles.brands} />
-        <View style={styles.footerCenter} alignItems="center" row={true}>
+        <View style={styles.footer} justifyContent="center" row={true}>
           <Link style={m(styles.noBorder, styles.footerItem)} href={NavPaths.About}>
             Про додаток
           </Link>
@@ -129,6 +132,20 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
   }
 }
 
+const classNames = (theme: Theme) => createStyles({
+  searchBar: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    zIndex: 1,
+    width: 400,
+    [mdMaxWidth(ScreenSize.Phone)]: {
+      width: 'inherit',
+      right: 10,
+    },
+  },
+});
+
 const styles: IStyles = {
   container: {
     ...fullScreen,
@@ -137,21 +154,15 @@ const styles: IStyles = {
     width: '100%',
     height: '100%',
   },
-  searchBar: {
+  footer: {
     position: 'absolute',
-    top: 10,
-    left: 10,
-    zIndex: 1,
-    width: '100%',
-    maxWidth: 400,
-  },
-  footerCenter: {
-    ...horizontalCenter,
+    left: 0,
+    right: 0,
     bottom: 0,
   },
   footerItem: {
     backgroundColor: 'rgba(255, 255, 255, .5)',
-    padding: '2px 6px',
+    padding: '1px 6px',
     marginLeft: 1,
     marginRight: 1,
     fontSize: 10,
@@ -166,3 +177,5 @@ const styles: IStyles = {
     left: 2,
   },
 };
+
+export default withStyles(classNames)(DistrictsMapScreen);

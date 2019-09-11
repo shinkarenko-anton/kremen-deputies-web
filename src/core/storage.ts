@@ -35,7 +35,7 @@ export const setStringConfig = (key: string, val: string) => setConfig(key, val)
 
 const getFullKey = (key: string) => `${pref}:${key}`;
 
-export const getConfig = (key: string): unknown => {
+export const getConfig = <T>(key: string): T | undefined => {
   const fullKey = getFullKey(key);
   const val = localStorage.getItem(fullKey);
   if (val === undefined) { return undefined; }
@@ -48,7 +48,7 @@ export const getConfig = (key: string): unknown => {
   }
 };
 
-export const setConfig = (key: string, val: unknown) => {
+export const setConfig = <T>(key: string, val: T) => {
   const fullKey = getFullKey(key);
   const valStr = JSON.stringify(val);
   localStorage.setItem(fullKey, valStr);

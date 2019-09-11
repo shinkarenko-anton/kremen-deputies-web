@@ -3,8 +3,8 @@ import { Log } from 'utils';
 import getUserLocale, { getUserLocales } from './locales';
 const log = Log('core.analytics');
 
-// const enabled = ENV !== 'dev' ? true : false;
-const enabled = true;
+const enabled = ENV !== 'dev' ? true : false;
+// const enabled = true;
 
 mixpanel.init('325fbae612a3cd571f0b3a5fc45230bb');
 
