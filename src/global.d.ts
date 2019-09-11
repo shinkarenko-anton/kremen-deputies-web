@@ -18,3 +18,9 @@ declare module 'googlemaps';
 declare const VERSION: string | undefined;
 declare const ENV: 'dev' | 'prod' | undefined;
 declare const MAPS_TOKEN: string | undefined;
+
+interface Navigator {
+  userLanguage?: string;
+  browserLanguage?: string;
+  systemLanguage?: string;
+}

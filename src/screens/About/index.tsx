@@ -1,8 +1,10 @@
 import ContentPage from 'components/ContentPage';
-import React, { FC } from 'react';
+import { track } from 'core';
+import React, { FC, useEffect } from 'react';
 import AppInfo from 'scenes/AppInfo';
 
 const AboutScreen: FC = () => {
+  useEffect(() => track('AboutScreenVisit'), []);
   return (
     <ContentPage>
       <h1>Про додаток</h1>

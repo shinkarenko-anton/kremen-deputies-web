@@ -1,5 +1,5 @@
 import { Link, View } from 'components/Base';
-import { defCoord, getDistrictDeputies, IDistrict, ILatLng } from 'core';
+import { defCoord, getDistrictDeputies, IDistrict, ILatLng, track } from 'core';
 import { defDeputies, defDistricts } from 'core/data';
 import { NavPaths } from 'navigation/types';
 import React, { CSSProperties, PureComponent } from 'react';
@@ -32,6 +32,10 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
     districtDialogItem: undefined,
   };
 
+  public componentDidMount() {
+    track('DistrictsMapScreenVisist');
+  }
+
   private onMapRef = (map: GoogleMap | null) => {
     if (!map || this.map) { return; }
     this.map = map;
@@ -54,6 +58,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
   }
 
   private onDistrictClick = (item: IDistrict) => {
+    track('DistrictClick', item);
     log.debug('on district click, item=', item);
     this.setState({ districtDialogOpen: true, districtDialogItem: item });
   }
@@ -63,6 +68,7 @@ export default class DistrictsMapScreen extends PureComponent<IProps, IState> {
   }
 
   private onLocationSelect = (val: ILatLng) => {
+    track('SearchPlaceResultClick', val);
     log.debug('location selected, val=', val);
     const district = defDistricts.find((item) => {
       const polygon = item.polygons.find((pItem) => isPointInsidePoligon(val, pItem.outer));

@@ -1,9 +1,11 @@
 import ContentPage from 'components/ContentPage';
-import React, { FC } from 'react';
+import { track } from 'core';
+import React, { FC, useEffect } from 'react';
 import { IStyles } from 'styles';
 
-// tslint:disable max-line-length
 const RightsScreen: FC = () => {
+  useEffect(() => track('RightsScreenVisit'), []);
+  // tslint:disable max-line-length
   return (
     <ContentPage>
       <h1>Права, обов‘язки та відповідальність депутата</h1>
@@ -53,8 +55,8 @@ const RightsScreen: FC = () => {
       </p>
     </ContentPage>
   );
+  // tslint:enable max-line-length
 };
-// tslint:enable max-line-length
 
 const styles: IStyles = {
   center: {
