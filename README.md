@@ -2,7 +2,7 @@
 
 Web app with all open information about [Kremnchuk's](https://goo.gl/maps/QHs6upUwFPM2) districts and deputies. Checkout the app at [https://deputat.io.kr.ua/](https://deputat.io.kr.ua/).
 
-[Official information about Kremnchuk's districts](https://www1.kremen.gov.ua/index.php/rozdil/miska_vlada/radanova/reception/page/443) (not avaliable for now).
+[Official information about Kremnchuk's deputies](http://dep.kremen.gov.ua/?view=deputy).
 
 ## Development
 
